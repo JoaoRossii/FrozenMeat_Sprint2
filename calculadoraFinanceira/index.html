@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculadora financeira</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1 class="titulo">Frozen Meat</h1>
+    <div class="principal">
+      <div class="secundario">
+        <h1>Calculadora Financeira</h1>
+        <div>
+          <!-- div para descentralizar o texto -->
+          <p>Com base em dados obtidos através de pesquisas entre funcionários e gerentes do setores de alimentação (dados disponíveis na tabela abaixo), foi elaborada está calculadora financeira, que contém os 10 produtos com mais desperdício em açougues. Dos produtos a seguir, preencha (em quilos) quanto o açougue forneçe:</p>
+          <p class="aviso">Caso não forneça o produto, deixar em branco.</p>
+        </div>
+        <div class="input_total">
+          <div class="inputs">
+            <div class="campo">
+              <span>Linguiça Toscana:</span>
+              <input id="inputLinguica" type="number" />
+            </div>
+            <div class="campo">
+              <span>Pernil Dianteiro:</span>
+              <input id="inputPernilDianteiro" type="number" />
+            </div>
+            <div class="campo">
+              <span>Acém Bovino:</span>
+              <input id="inputAcem" type="number" />
+            </div>
+            <div class="campo">
+              <span>Músculo Bovino:</span>
+              <input id="inputMusculo" type="number" />
+            </div>
+            <div class="campo">
+              <span>Contrafilé:</span>
+              <input id="inputContrafile" type="number" />
+            </div>
+            <div class="campo">
+              <span>Pernil Traseiro:</span>
+              <input id="inputPernilTraseiro" type="number" />
+            </div>
+            <div class="campo">
+              <span>Chã de Dentro:</span>
+              <input id="inputCha" type="number" />
+            </div>
+            <div class="campo">
+              <span>Lombo Suíno:</span>
+              <input id="inputLombo" type="number" />
+            </div>
+            <div class="campo">
+              <span>Costelinha Suína:</span>
+              <input id="inputCostelinha" type="number" />
+            </div>
+            <div class="campo">
+              <span>Maçã de Peito:</span>
+              <input id="inputMaca" type="number" />
+            </div>
+          </div>
+          <div class="tabela_total">
+            <img src="https://i.imgur.com/9IZWa6I.png" alt="" />
+            <div class="div_total_background">
+              <div id="divTotal">Total de desperdício:</div>
+            </div>
+          </div>
+        </div>
+        <button onclick="calcDesperdicio()">Calcular desperdício</button>
+        <div>
+          <!-- div para descentralizar o texto -->
+          <div id="divDetalhes"></div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+
+<script>
+  function calcDesperdicio() {
+    // declaração de variáveis:
+    // valores de entrada:
+    var linguicaPeso = Number(inputLinguica.value);
+    var pernilDianteiroPeso = Number(inputPernilDianteiro.value);
+    var acemPeso = Number(inputAcem.value);
+    var musculoPeso = Number(inputMusculo.value);
+    var contrafilePeso = Number(inputContrafile.value);
+    var pernilTraseiroPeso = Number(inputPernilTraseiro.value);
+    var chaPeso = Number(inputCha.value);
+    var lomboPeso = Number(inputLombo.value);
+    var costelinhaPeso = Number(inputCostelinha.value);
+    var macaPeso = Number(inputMaca.value);
+    // cálculo da massa de carne perdida por má refrigeração:
+    var linguicaPorc = linguicaPeso * 0.0485; //peso em Linguiça * porcentagem de desperdicio
+    var pernilDianteiroPorc = pernilDianteiroPeso * 0.082;
+    var acemPorc = acemPeso * 0.1022;
+    var musculoPorc = musculoPeso * 0.1085;
+    var contrafilePorc = contrafilePeso * 0.1123;
+    var pernilTraseiroPorc = pernilTraseiroPeso * 0.1235;
+    var chaPorc = chaPeso * 0.1321;
+    var lomboPorc = lomboPeso * 0.1345;
+    var costelinhaPorc = costelinhaPeso * 0.1478;
+    var macaPorc = macaPeso * 0.1524;
+    // soma de todo o peso em carne desperdiçado:
+    var totalPerdido = linguicaPorc + pernilDianteiroPorc + acemPorc + musculoPorc + contrafilePorc + pernilTraseiroPorc + chaPorc + lomboPorc + costelinhaPorc + macaPorc;
+    // conversão para valor monetário:
+    var total = linguicaPorc * 17 + pernilDianteiroPorc * 12 + acemPorc * 24.98 + musculoPorc * 28 + contrafilePorc * 42.98 + pernilTraseiroPorc * 28 + chaPorc * 17.39 + lomboPorc * 23.98 + costelinhaPorc * 32.99 + macaPorc * 8.93;
+
+    // exibe o resultado:
+    var resultado = "";
+    resultado = `<p><b>O total de quilogramas em produtos alimentícios (no açougue) que seu estabelecimento desperdiça por mês é de:</b></p><ul>`;
+
+    if (linguicaPeso > 0) {
+      resultado += `<li><span>${linguicaPeso}kg de Linguiça Toscana, a um valor de R$17.00 o kg, com uma taxa de desperdício igual a 4.85%, há um desperdício de ${linguicaPorc}kg, ou <b>R$${linguicaPorc * 17}</b></span></li>`;
+    }
+    if (pernilDianteiroPeso > 0) {
+      resultado += `<li><span>Em ${pernilDianteiroPeso}kg de Pernil Dianteiro, a um valor de R$12.00 o kg, com uma taxa de desperdício igual a 8.20%, há um desperdício de ${pernilDianteiroPorc}kg, ou <b>R$${pernilDianteiroPorc * 12}</b></span></li>`;
+    }
+    if (acemPeso > 0) {
+      resultado += `<li><span>${acemPeso}kg de Acém Bovino, a um valor de R$24.98 o kg, com uma taxa de desperdício igual a 10.22%, há um desperdício de ${acemPorc}kg, ou <b>R$${acemPorc * 24.98}</b></span></li>`;
+    }
+    if (musculoPeso > 0) {
+      resultado += `<li><span>${musculoPeso}kg de Músculo Bovino, a um valor de R$28.00 o kg, com uma taxa de desperdício igual a 10.85%, há um desperdício de ${musculoPorc}kg, ou <b>R$${musculoPorc * 28}</b></span></li>`;
+    }
+    if (contrafilePeso > 0) {
+      resultado += `<li><span>${contrafilePeso}kg de Contrafilé, a um valor de R$42.98 o kg, com uma taxa de desperdício igual a 11.23%, há um desperdício de ${contrafilePorc}kg, ou <b>R$${contrafilePorc * 42.98}</b></span></li>`;
+    }
+    if (pernilTraseiroPeso > 0) {
+      resultado += `<li><span>${pernilTraseiroPeso}kg de Pernil Traseiro, a um valor de R$28.00 o kg, com uma taxa de desperdício igual a 12.35%, há um desperdício de ${pernilTraseiroPorc}kg, ou <b>R$${pernilTraseiroPorc * 28}</b></span></li>`;
+    }
+    if (chaPeso > 0) {
+      resultado += `<li><span>${chaPeso}kg de Chã de Dentro, a um valor de R$17.39 o kg, com uma taxa de desperdício igual a 13.21%, há um desperdício de ${chaPorc}kg, ou <b>R$${chaPorc * 17.39}</b></span></li>`;
+    }
+    if (lomboPeso > 0) {
+      resultado += `<li><span>${lomboPeso}kg de Lombo Suíno, a um valor de R$23.98 o kg, com uma taxa de desperdício igual a 13.45%, há um desperdício de ${lomboPorc}kg, ou <b>R$${lomboPorc * 23.98}</b></span></li>`;
+    }
+    if (costelinhaPeso > 0) {
+      resultado += `<li><span>${costelinhaPeso}kg de Costelinha Suína, a um valor de R$32.99 o kg, com uma taxa de desperdício igual a 14.78%, há um desperdício de ${costelinhaPorc}kg, ou <b>R$${costelinhaPorc * 32.99}</b></span></li>`;
+    }
+    if (macaPeso > 0) {
+      resultado += `<li><span>${macaPeso}kg de Maçã de Peito, a um valor de R$8.93 o kg, com uma taxa de desperdício igual a 15.24%, há um desperdício de ${macaPorc}kg, ou <b>R$${macaPorc * 8.93}</b></span></li>`;
+    }
+    resultado += `</ul><h3><b>Um total de ${totalPerdido}kg, R$${total}</b></h3>`;
+    divDetalhes.innerHTML = resultado;
+    divTotal.innerHTML = `<h3>Total de desperdício:<h3><ul><li><span>${totalPerdido}kg de carne</span></li><li><span>R$${total}</span></li></ul>`;
+  }
+</script>

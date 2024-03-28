@@ -1,0 +1,86 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #4a6d7c;
+  color: #f5f0f6;
+  font-size: 1.2rem;
+}
+
+h1 {
+  font-size: 2rem;
+}
+
+.titulo {
+  font-family: monospace;
+  font-size: 2.5rem;
+}
+.aviso {
+  font-style: italic;
+}
+
+.principal {
+  border: 30px solid #7a5a6a;
+  border-radius: 5px;
+  background-color: #984447;
+  width: 75%;
+}
+.principal .secundario {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1.5rem;
+}
+.principal .input_total {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+.principal .inputs {
+  width: 25rem;
+}
+.principal .input_total .campo {
+  display: flex;
+  justify-content: space-between;
+  margin: 0.5rem;
+}
+.principal .inputs input {
+  border: 2px solid #4a6d7c;
+  border-radius: 5px;
+  background-color: #f5f0f6;
+}
+.principal button {
+  margin: 1rem;
+  border: 2px solid #9cfffa;
+  border-radius: 0.2rem;
+  background-color: #4a6d7c;
+  color: #f5f0f6;
+  width: 12rem;
+  height: 2rem;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+#divDetalhes li {
+  margin: 1rem;
+}
+
+.div_total_background {
+  border: 1px solid #9cfffa;
+  border-radius: 0.2rem;
+  background-color: #4a6d7c;
+  color: #f5f0f6;
+  font-weight: bold;
+}
+#divTotal {
+  margin: 0.5rem;
+}
+#divTotal ul {
+  margin: 2rem;
+}
