@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ptbr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastre-se</title>
+    <link rel="stylesheet" href="cssCadastro.css">
+</head>
+
+<body>
+    <div class="overlay"></div>
+    <div class="principal">
+        <h2>Cadastre-se</h2>
+        <input type="text" id="input_nome" placeholder="Nome completo" class="input"><br>
+        <input type="text" id="input_cpf" placeholder="CPF/CNPJ" class="input"><br>
+        <input type="text" id="input_email" placeholder="E-mail" class="input"><br>
+        <input type="text" id="input_telefone" placeholder="Número de telefone" class="input"><br>
+        <select id="select_cargo" class="input">
+            <option value="0" selected disabled>Selecione seu cargo</option>
+            <option value="funcionario">Funcionário</option>
+            <option value="gerente">Gerente</option>
+        </select>
+        <br><input type="password" id="input_senha" placeholder="Crie sua senha" class="input"><br>
+        <br><button onclick="cadastrar()" class="button">Cadastrar</button><br>
+        <div class = "mensagem" id="div_mensagem"></div>
+        
+    </div>
+
+</body>
+
+</html>
+
+<script>
+    function cadastrar() {
+        var nome = input_nome.value;
+        var cpf = input_cpf.value;
+        var email = input_email.value;
+        var telefone = Number(input_telefone.value);
+        var cargo = select_cargo.value;
+        var senha = input_senha.value;
+
+        var tamSenha = senha.length;
+        var tamCPF = cpf.length;
+        var arroba = email.indexOf('@');
+        
+        if (nome == '' || 
+        cpf == '' || 
+        email == '' || 
+        telefone == '' || 
+        senha == '' || 
+        cargo == 0) 
+        div_mensagem.innerHTML = '<u>Atenção!</u> Todos os campos precisam ser preenchidos para a conclusão do cadastro!';
+
+        else if (!/^\d+$/.test(cpf)) div_mensagem.innerHTML = 'O CPF ou CNPJ inserido deve ser válido para a conclusão do cadastro. Lembre-se de não utilizar caracteres especiais ou letras neste campo.';
+        else if (tamCPF != 11 && tamCPF != 14) div_mensagem.innerHTML = 'O CPF ou CNPJ inserido deve ser válido para a conclusão do cadastro.'
+        else if (arroba < 0) div_mensagem.innerHTML = 'O e-mail inserido deve ser válido para a conclusão do cadastro.';
+        else if (tamSenha < 8) div_mensagem.innerHTML = 'A senha deve possuir ao menos 8 caracteres.';
+        else if (isNaN(telefone)) div_mensagem.innerHTML = 'Você não deve inserir letras ou caracteres especiais no número de telefone!';
+        else div_mensagem.innerHTML = 'Usuário cadastrado com sucesso! Faça login no site para obter acesso às informações. <br> <a href="telaLogin.html">Ir para a tela de login</a>';
+        
+    }
+    
+</script>
