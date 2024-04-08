@@ -21,17 +21,27 @@
 <script>
     function cadastrar () {
         var cpf = input_cpf.value;
+        var cpf_sem_caracteres = cpf.replaceAll('.', '').replaceAll('-', '').replaceAll('/', '');
+        var qtdCaracteresCPF = Number(cpf_sem_caracteres);
+        var tamCPF = cpf_sem_caracteres.length;
+
         var senha = input_senha.value;
         var tamSenha = senha.length;
-        var tamCPF = cpf.length;
+        var hashtag = senha.indexOf('#');
+        var arrobaSenha = senha.indexOf('@');
+        var underline = senha.indexOf('_');
+        var cifrao = senha.indexOf('$');
+        var porcentagem = senha.indexOf('%');
+        
         
         if (cpf == '' ||  
         senha == '')
-        div_mensagem.innerHTML = '<u>Atenção!</u> Todos os campos precisam ser preenchidos para realizar o início da sessão!';
+        div_mensagem.innerHTML = '<u>Atenção!</u> Todos os campos precisam ser preenchidos para realizar o início da sessão! <br><br> <a href="telaCadastro.html">Não é cadastrado ainda? Cadastre-se</a>';
 
-        else if (!/^\d+$/.test(cpf)) div_mensagem.innerHTML = 'O CPF ou CNPJ inserido deve ser válido para o início da sessão. Lembre-se de não utilizar caracteres especiais ou letras neste campo.';
-        else if (tamCPF != 11 && tamCPF != 14) div_mensagem.innerHTML = 'O CPF ou CNPJ inserido deve ser válido para o início da sessão!.';
-        else if (tamSenha < 8) div_mensagem.innerHTML = 'Ops! Sua senha parece estar errada. Certifique-se de que ela está digitada corretamente, com os ao menos 8 caracteres cadastrados';
-        else div_mensagem.innerHTML = 'Usuário autenticado! Aguarde enquanto você é redirecionado pelo sistema.</a>';
+        else if (isNaN(qtdCaracteresCPF)) div_mensagem.innerHTML = 'Ops! Seu CPJ ou CNPJ parecem inválidos! <br><br> <a href="telaCadastro.html">Não é cadastrado ainda? Cadastre-se</a>';
+        else if (tamCPF != 11 && tamCPF != 14 && tamCPF != 18) div_mensagem.innerHTML = 'Ops! Seu CPJ ou CNPJ parecem inválidos! <br><br> <a href="telaCadastro.html">Não é cadastrado ainda? Cadastre-se</a>';
+        else if (tamSenha < 8) div_mensagem.innerHTML = 'Ops! Sua senha parece errada.<br><br> <a href="telaCadastro.html">Não é cadastrado ainda? Cadastre-se</a>';
+        else if (hashtag < 0 && arrobaSenha < 0 && underline < 0 && cifrao < 0 && porcentagem < 0) div_mensagem.innerHTML = 'Ops! Sua senha parece estar errada! <br><br> <a href="telaCadastro.html">Não é cadastrado ainda? Cadastre-se</a>';
+        else div_mensagem.innerHTML = 'Usuário logado! Aguarde enquanto fazemos o redirecionamento da página.';
     }
 </script>
