@@ -1,0 +1,124 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fc4f4f;
+  color: #f5f0f6;
+  font-size: 1.2rem;
+}
+
+h1 {
+  font-size: 2rem;
+}
+
+.titulo {
+  font-family: monospace;
+  font-size: 2.5rem;
+}
+.aviso {
+  font-style: italic;
+}
+
+.principal {
+  box-shadow: 0 0 30px 0px #5427846f;
+  border-radius: 5px;
+  color: #000;
+  background-color: #e5e5e5;
+  width: 800px;
+  height: fit-content;
+  margin-top: 5px;
+}
+.principal .secundario {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1.5rem;
+}
+.principal .input_total {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+.principal .inputs {
+  width: 25rem;
+}
+.principal .input_total .campo {
+  display: flex;
+  justify-content: space-between;
+  margin: 0.5rem;
+}
+.principal .inputs input {
+  border: 2px solid #b5b4b4;
+  width: 200px;
+  height: 30px;
+  border-radius: 5px;
+  background-color: #f5f0f6;
+}
+.principal button {
+  margin: 1rem;
+  border: none;
+  border-radius: 10px;
+  background-color: #fc4f4f;
+  color: #f5f0f6;
+  width: 200px;
+  height: 50px;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+#divDetalhes li {
+  margin: 1rem;
+}
+
+.div_total_background {
+  padding: 10px;
+  border-radius: 10px;
+  background-color: #fc4f4f;
+  color: #f5f0f6;
+  font-weight: bold;
+}
+#divTotal {
+  margin: 0.5rem;
+}
+#divTotal ul {
+  margin: 2rem;
+}
+
+#slc1{
+  width: 200px;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  background: transparent;
+  border-bottom: 2px solid #fc4f4f;
+  outline: none;
+}
+#slc1 option{
+  background: #e5e5e5;
+}
+.btnzin{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.ipt{
+  margin-top: 10px;
+  width: 120px;
+  text-align: center;
+  font-size: 40px;
+  height: 80px;
+  background: #d1d0d0;
+  border: none;
+  border-radius: 10px;
+  outline: none;
+}
