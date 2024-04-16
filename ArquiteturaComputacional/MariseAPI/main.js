@@ -29,11 +29,12 @@ const serial = async (
         {
             // altere!
             // Credenciais do banco de dados
-            host: 'localhost',
-            user: 'root',
-            password: '155115',
+            // Sempre alterar o IP para o IP da máquina local que estiver sendo utilizada!
+            host: '10.18.32.39',
+            user: 'aluno',
+            password: 'Sptech#2024',
             database: 'arqcomp',
-            port: 3306
+            port: 3307
         }
     ).promise();
 
