@@ -1,0 +1,95 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    overflow: hidden;
+    background: #f0f1f9;
+}
+.first{
+    width: 100%;
+    height: 100vh;
+}
+.background-container {
+    position: fixed;
+    top: 0;
+    right: 200px;
+    width: 50%; /* Ajuste conforme necessário */
+    height: 100vh;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.background-svg {
+    width: 100%;
+    position: fixed;
+    height: 100%;
+    transform: scale(2); /* Ajuste conforme necessário */
+}
+
+.header{
+    width: 100%;
+    height: 90px;
+    display: flex;
+    justify-content: space-between;
+}
+.logo{
+    width: 300px;
+    height: 100%;
+}
+.logo img{
+    width: 200px;
+    position: absolute;
+    top: -50px;    
+    left: 10px;
+}
+.pote{
+    width: 600px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.pote li{
+    list-style: none;
+    font-size: 18px;
+    width: 85px;
+    cursor: pointer;
+    color: #fff;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+}
+.pote li:hover{
+    background: #fff;
+    color: #000;
+    transition: 0.5s;
+}
+.contento{
+    width: 100%;
+    height: 70%;
+    align-items: center;
+    display: flex;
+    justify-content: space-evenly;
+}
+.amos{
+    width: 500px;
+    height: 350px;
+    justify-content: center;
+    flex-direction: column;
+    display: flex;
+
+}
+.amos h2{
+    font-size: 80px;
+}
+.amos p{
+    position: relative;
+    text-align: justify;
+    bottom: 60px;
+}
+.anoth{
+    width: 600px;
+    height: 500px;
+}
