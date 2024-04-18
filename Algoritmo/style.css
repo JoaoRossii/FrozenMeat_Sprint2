@@ -36,6 +36,7 @@ h1 {
   width: 800px;
   height: fit-content;
   margin-top: 5px;
+  ;
 }
 .principal .secundario {
   display: flex;
@@ -79,13 +80,24 @@ h1 {
   margin: 1rem;
 }
 
-.div_total_background {
+.div_total_background  {
   padding: 10px;
   border-radius: 10px;
   background-color: #fc4f4f;
   color: #f5f0f6;
   font-weight: bold;
 }
+
+
+.div_prejuizo_final  {
+
+  padding: 10px;
+  border-radius: 10px;
+  background-color: #fc4f4f;
+  color: #f5f0f6;
+  font-weight: bold;
+}
+
 #divTotal {
   margin: 0.5rem;
 }
@@ -93,8 +105,17 @@ h1 {
   margin: 2rem;
 }
 
-#slc1{
-  width: 200px;
+.slc1{
+  width: 230px;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  background: transparent;
+  border-bottom: 2px solid #fc4f4f;
+  outline: none;
+}
+.slc2{
+  width: 230px;
   border: none;
   font-size: 20px;
   cursor: pointer;
