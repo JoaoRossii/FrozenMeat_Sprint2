@@ -79,6 +79,7 @@ body {
     justify-content: center;
     flex-direction: column;
     display: flex;
+    
 
 }
 .amos h2{
@@ -92,4 +93,9 @@ body {
 .anoth{
     width: 600px;
     height: 500px;
+    position: relative;
+    left: 5%;
+}
+.anoth img{
+    width: 650px;
 }
