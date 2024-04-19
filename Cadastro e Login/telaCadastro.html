@@ -9,22 +9,32 @@
 </head>
 
 <body>
-    <div class="overlay"></div>
     <div class="principal">
-        <h2>Cadastre-se</h2>
-        <input type="text" id="input_nome" placeholder="Nome completo" class="input"><br>
-        <input type="text" id="input_cpf" placeholder="CPF/CNPJ" class="input"><br>
-        <input type="text" id="input_email" placeholder="E-mail" class="input"><br>
-        <input type="text" id="input_telefone" placeholder="Número de telefone" class="input"><br>
-        <select id="select_cargo" class="input">
-            <option value="0" selected disabled>Selecione seu cargo</option>
-            <option value="funcionario">Funcionário</option>
-            <option value="gerente">Gerente</option>
-        </select>
-        <br><input type="password" id="input_senha" placeholder="Crie sua senha" class="input"><br>
-        <br><button onclick="cadastrar()" class="button">Cadastrar</button><br>
-        <div class = "mensagem" id="div_mensagem"></div>
-        
+        <h2>CADASTRE-SE</h2>
+        <div class="coluna">
+            <div class="secundaria1">
+                <input type="text" id="input_nome" placeholder="Nome completo" class="input">
+                <input type="text" id="input_cpf" placeholder="CPF/CNPJ" class="input">
+                <input type="text" id="input_email" placeholder="E-mail" class="input">
+                <input type="text" id="input_telefone" placeholder="Número de telefone" class="input">
+            </div>
+            <div class="secundaria2">
+                <input type="text" id="input_empresa" placeholder="Nome da empresa" class="input">
+                <select id="select_cargo" class="input">
+                    <option value="0" selected disabled>Selecione seu cargo</option>
+                    <option value="funcionario">Funcionário</option>
+                    <option value="gerente">Gerente</option>
+                </select>
+                <input type="password" id="input_senha" placeholder="Crie sua senha" class="input">
+                <input type="password" id="input_Confsenha" placeholder="Confirme sua senha" class="input">
+            </div>
+        </div>
+        <button onclick="cadastrar()" class="button">Cadastrar</button>
+        <div class="mensagem" id="div_mensagem"></div>
+        <div id="div_aguardar" class="loading-div">
+            <img src="loading2.gif" id="loading-gif" />
+          </div>
+
     </div>
 
 </body>
@@ -32,13 +42,23 @@
 </html>
 
 <script>
+    div_aguardar.style.display = 'none';
+
     function cadastrar() {
+        
+
         var nome = input_nome.value;
         var email = input_email.value;
         var cargo = select_cargo.value;
         var senha = input_senha.value;
+        var empresa = input_empresa.value;
+        var confirmacaoSenha = input_Confsenha.value;
+
+        var tamEmpresa = empresa.length;
+        var tamNome = nome.length;
 
         var arroba = email.indexOf('@');
+        var ponto = email.indexOf('.');
 
         var cpf = input_cpf.value;
         var cpf_sem_caracteres = cpf.replaceAll('.', '').replaceAll('-', '').replaceAll('/', '');
@@ -46,7 +66,7 @@
         var tamCPF = cpf_sem_caracteres.length;
 
         var telefone = input_telefone.value;
-        var telefone_sem_caracteres = telefone.replaceAll ('(', '').replaceAll(')', '').replaceAll('-', '');
+        var telefone_sem_caracteres = telefone.replaceAll('(', '').replaceAll(')', '').replaceAll('-', '');
         var qdtCaracteresTelefone = Number(telefone_sem_caracteres);
         var tamTelefone = telefone_sem_caracteres.length;
 
@@ -56,24 +76,34 @@
         var underline = senha.indexOf('_');
         var cifrao = senha.indexOf('$');
         var porcentagem = senha.indexOf('%');
-        
-        if (nome == '' || 
-        cpf == '' || 
-        email == '' || 
-        telefone == '' || 
-        senha == '' || 
-        cargo == 0) 
-        div_mensagem.innerHTML = '<u>Atenção!</u> Todos os campos precisam ser preenchidos para a conclusão do cadastro!';
+        var verificarSenha = confirmacaoSenha;
 
+        if (nome == '' ||
+            cpf == '' ||
+            email == '' ||
+            telefone == '' ||
+            senha == '' ||
+            cargo == 0)
+            div_mensagem.innerHTML = '<u>Atenção!</u> Todos os campos precisam ser preenchidos para a conclusão do cadastro!';
+
+        else if (tamNome <= 1)  div_mensagem.innerHTML = 'O nome inserido é inválido.';
         else if (isNaN(qtdCaracteresCPF)) div_mensagem.innerHTML = 'O CPF ou CNPJ inserido deve ser válido para a conclusão do cadastro. Lembre-se de não utilizar letras neste campo.';
         else if (tamCPF != 11 && tamCPF != 14 && tamCPF != 18) div_mensagem.innerHTML = 'O CPF ou CNPJ inserido deve ser válido para a conclusão do cadastro.'
-        else if (arroba < 0) div_mensagem.innerHTML = 'O e-mail inserido deve ser válido para a conclusão do cadastro.';
+        else if (arroba < 0 || ponto < 0) div_mensagem.innerHTML = 'O e-mail inserido deve ser válido para a conclusão do cadastro.';
         else if (isNaN(qdtCaracteresTelefone)) div_mensagem.innerHTML = 'Você não deve inserir letras no número de telefone!';
-        else if (tamTelefone != 11 && tamTelefone!= 10) div_mensagem.innerHTML = 'O número de telefone inserido deve ser válido para a conclusão do cadastro';
+        else if (tamTelefone != 11 && tamTelefone != 10) div_mensagem.innerHTML = 'O número de telefone inserido deve ser válido para a conclusão do cadastro';
+        else if (tamEmpresa  <= 1) div_mensagem.innerHTML = 'O nome da empresa inserido é inválido.';
         else if (tamSenha < 8) div_mensagem.innerHTML = 'A senha deve possuir ao menos 8 caracteres.';
         else if (hashtag < 0 && arrobaSenha < 0 && underline < 0 && cifrao < 0 && porcentagem < 0) div_mensagem.innerHTML = 'Por segurança, a senha deve possuir ao menos um caractere especial!';
-        else div_mensagem.innerHTML = 'Usuário cadastrado com sucesso! Faça login no site para obter acesso às informações. <br> <a href="telaLogin.html">Ir para a tela de login</a>';
-        
+        else if (senha != verificarSenha) div_mensagem.innerHTML = 'A verificação da senha falhou.';
+        else div_mensagem.innerHTML = 'Usuário cadastrado com sucesso! Redirecionando para tela de login.';
+
+        if (div_mensagem.innerHTML == 'Usuário cadastrado com sucesso! Redirecionando para tela de login.'){
+        div_aguardar.style.display = 'block';
+            setTimeout(() => {
+            window.location = "telaLogin.html";
+          }, "3000");
+        }
     }
-    
+
 </script>
