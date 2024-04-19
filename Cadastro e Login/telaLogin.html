@@ -1,25 +1,32 @@
 <!DOCTYPE html>
 <html lang="ptbr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Faça seu login</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <div class="overlay"></div>
+    <div class="mae">
     <div class="principal">
-        <h2>Faça seu login</h2>
-        <input type="text" id="input_cpf" placeholder="CPF/CNPJ" class="input"><br>
-        <input type="password" id="input_senha" placeholder="Digite sua senha" class="input"><br>
-        <button onclick="cadastrar()" class="button">Entrar</button><br>
-        <div class = "mensagem" id="div_mensagem"></div>
+        <div class="login">
+            <h2>Faça seu login</h2>
+            <input type="text" id="input_cpf" placeholder="CPF/CNPJ" class="input">
+            <input type="password" id="input_senha" placeholder="Digite sua senha" class="input">
+            <button onclick="cadastrar()" class="button">Entrar</button>
+            <div class="mensagem" id="div_mensagem"></div>
+        </div>
     </div>
+    </div>
+</div>
 </body>
+
 </html>
 
 <script>
-    function cadastrar () {
+    function cadastrar() {
         var cpf = input_cpf.value;
         var cpf_sem_caracteres = cpf.replaceAll('.', '').replaceAll('-', '').replaceAll('/', '');
         var qtdCaracteresCPF = Number(cpf_sem_caracteres);
@@ -32,11 +39,11 @@
         var underline = senha.indexOf('_');
         var cifrao = senha.indexOf('$');
         var porcentagem = senha.indexOf('%');
-        
-        
-        if (cpf == '' ||  
-        senha == '')
-        div_mensagem.innerHTML = '<u>Atenção!</u> Todos os campos precisam ser preenchidos para realizar o início da sessão! <br><br> <a href="telaCadastro.html">Não é cadastrado ainda? Cadastre-se</a>';
+
+
+        if (cpf == '' ||
+            senha == '')
+            div_mensagem.innerHTML = '<u>Atenção!</u> Todos os campos precisam ser preenchidos para realizar o início da sessão! <br><br> <a href="telaCadastro.html">Não é cadastrado ainda? Cadastre-se</a>';
 
         else if (isNaN(qtdCaracteresCPF)) div_mensagem.innerHTML = 'Ops! Seu CPJ ou CNPJ parecem inválidos! <br><br> <a href="telaCadastro.html">Não é cadastrado ainda? Cadastre-se</a>';
         else if (tamCPF != 11 && tamCPF != 14 && tamCPF != 18) div_mensagem.innerHTML = 'Ops! Seu CPJ ou CNPJ parecem inválidos! <br><br> <a href="telaCadastro.html">Não é cadastrado ainda? Cadastre-se</a>';

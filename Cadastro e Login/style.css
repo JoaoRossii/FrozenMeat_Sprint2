@@ -1,87 +1,132 @@
 body {
-    background-image: url("https://img.freepik.com/fotos-premium/bife-de-carne-fresca-crua-com-tomate-cereja-pimenta-alho-azeite-e-ervas_80743-1483.jpg");
-    background-size: contain;
+    background-image: linear-gradient( #fff, #7c9cff);
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    font-family: monospace;
-}
-
-
-.overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 1;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 .principal {
-    background-color:#130e0248;
+    background-color:#f0f1f9;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
-    margin: auto;
     border-radius: 20px;
     border: 2px solid;
     border-color: #d3d3d3;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 30%;
-    height: 70%;
-    z-index: 2;
+    width: 50%;
+    height: 85vh;
+}
+
+.mae {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60%;
+    height: 60vh;
+}
+
+.mae .principal {
+    background-color:#f0f1f9;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 20px;
+    border: 2px solid;
+    border-color: #d3d3d3;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    height: 55vh;
+}
+
+.coluna {
+    display: flex;
+    flex-direction: row;
+    height: 50vh;
+    width:70%;
+
+}
+
+ .secundaria1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
+    margin-right: 25px;
+}
+
+.secundaria2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
+    margin-left: 25px;
+}
+
+.principal .login{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    width: 50%;
+    height: 100%;
 }
 
 .input {
-    font-family: monospace;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     border: 1px solid;
     border-radius: 15px;
-    width: 50%;
+    width: 100%;
     height: 40px;
     border-color: #d3d3d3;
 }
 
 h2 {
-    color: #ffffff;
+    color: #7c9cff;
     font-size: 30px;
 }
 
 .button {
-    font-family: monospace;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     border-radius: 20px;
     border: 1px solid;
-    border-color: #3a0000;
     width: 40%;
     height: 40px;
-    background-color: #870000;
-    color: #e5e5e5;
+    background-color: #7c9cff;
+    color: #fff;
     font-size: 130%;
 }
 
 .button:hover {
-    background-color: #3a0000;
+    background-color: grey;
 }
 
 
 .mensagem {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    color: #ffffff;
-    font-size: 16px;
-    width: 85%;
-    margin-top: 10px;
-    margin-bottom: 15px;
+    color: #7c9cff;
+    font-size: 18px;
+    width: 400px;
+    margin-top: 20px;
+    margin-bottom: 10px;
 }
 
 a {
     color: #fc494f;
-    font-size: 12px;
+    font-size: 15px;
     margin-top: 30px;
     margin-bottom: 10px;
 }
+
+.loading-div img {
+    height: 30px;
+    width: 30px;
+  }
