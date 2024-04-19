@@ -2,18 +2,18 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    overflow: hidden;
     background: #f0f1f9;
+    overflow-x: hidden;
 }
 .first{
     width: 100%;
     height: 100vh;
 }
 .background-container {
-    position: fixed;
+    position: relative;
     top: 0;
-    right: 200px;
-    width: 50%; /* Ajuste conforme necessário */
+    left: 35%;
+    width: 100%; /* Ajuste conforme necessário */
     height: 100vh;
     z-index: -1;
     overflow: hidden;
@@ -21,14 +21,17 @@ body {
 
 .background-svg {
     width: 100%;
-    position: fixed;
+    bottom: 35%;
+    position: absolute;
     height: 100%;
     transform: scale(2); /* Ajuste conforme necessário */
 }
 
 .header{
     width: 100%;
+    position: absolute;
     height: 90px;
+    top: 0;
     display: flex;
     justify-content: space-between;
 }
@@ -72,6 +75,8 @@ body {
     align-items: center;
     display: flex;
     justify-content: space-evenly;
+    position: absolute;
+    top: 100px;
 }
 .amos{
     width: 500px;
@@ -98,4 +103,43 @@ body {
 }
 .anoth img{
     width: 650px;
+}
+.second{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.princi{
+    width: 95%;
+    height: 85vh;
+    border-radius: 20px;
+    background: #7c9cff;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    box-shadow: 0 0 20px 10px #00000033;
+}
+.cardo{
+    border-radius: 8px;
+    width: 400px;
+    box-shadow: 0 0 20px 10px #0000000a;
+    background: #f0f1f9;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.cardo img{
+    margin-top: 10px;
+    width: 200px;
+    height: 200px;
+}
+.cardo p{
+    padding: 10px;
+    margin-top: 50px;
+    word-spacing: 5px;
+    text-align: justify;
+    font-size: 18px;
 }
