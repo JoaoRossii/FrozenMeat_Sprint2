@@ -8,7 +8,20 @@
 </head>
 <body>
     <section class="first">
-
+        <div class="hedo">
+            <div class="new-header">
+                <div class="imago">
+                    <img src="Logo Frozen Meat.png" alt="">
+                </div>
+                <div class="optinho">
+                    <li>Inicio</li>
+                    <li>Sobre</li>
+                    <li>Simulador</li>
+                    <li>Login</li>
+                    <li>Cadastro</li>
+                </div>
+            </div>
+        </div>
         <div class="background-container">
             <svg id="sw-js-blob-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" class="shape background-svg">
                 <defs>
@@ -59,5 +72,41 @@
 
         </div>
     </section>
-    </body>
+
+    <!-- JavaScript -->
+    <script>
+        const newHeader = document.querySelector('.hedo');
+
+       
+        function checkScroll() {
+      
+            if (window.scrollY > 0) {
+          
+                newHeader.style.opacity = '1';
+            } else {
+          
+                newHeader.style.opacity = '0';
+            }
+        }
+
+        // Adiciona um evento de rolagem ao documento
+        window.addEventListener('scroll', checkScroll);
+    </script>
+    <script>
+           const back = document.querySelector('.background-container');
+
+
+function checkScroll() {
+
+    if (window.scrollY > 0) {
+        back.style.left = '100%';
+    } else {
+        back.style.left = '35%';
+    }
+}
+
+// Adiciona um evento de rolagem ao documento
+window.addEventListener('scroll', checkScroll);
+    </script>
+</body>
 </html>
