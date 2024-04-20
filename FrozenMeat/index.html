@@ -4,11 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <title>Frozen Meat</title>
 </head>
 <body>
+    <div class="back-magos">
+    </div>
     <section class="first">
-        <div class="hedo">
+        <div class="hedo" id="hedo">
             <div class="new-header">
                 <div class="imago">
                     <img src="Logo Frozen Meat.png" alt="">
@@ -22,7 +25,7 @@
                 </div>
             </div>
         </div>
-        <div class="background-container">
+        <div class="background-container" id="backContainer">
             <svg id="sw-js-blob-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" class="shape background-svg">
                 <defs>
                     <linearGradient id="sw-gradient" x1="0" x2="1" y1="1" y2="0">
@@ -45,68 +48,111 @@
                 <li>Cadastro</li>
             </div>
         </div>
-        <div class="contento">
+        <div class="contento" id="contento">
             <div class="amos">
-                <h2>Frozen <span style="color: #c74c4e;">Meat</span></h2>
+                <h2>Frozen <span style="color: #bf3f55;">Meat</span></h2>
                 <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quaerat vel dolor ad enim quibusdam aliquid beatae, commodi nihil laborum vero, cum sit? Nobis architecto quo voluptatum in unde a odit.</p>
             </div>
             <div class="anoth">
-                <img src="prot__1_-removebg-preview.png" alt="">
+                <img src="meat.png" alt="">
             </div>
         </div>
     </section>
     <section class="second">
         <div class="princi">
             <div class="cardo">
-                <img src="icon1.png" alt="">
+                <h2>Missão</h2>
+                <img src="misson-icon.png" alt="">
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque mollitia repellendus sint earum sit unde harum quam aliquid recusandae cumque, fugit reprehenderit quaerat officiis, optio atque molestias dolor tempora impedit? lor</p>
             </div>
             <div class="cardo">
-                <img src="icon2.png" alt="">
+                <h2>Visão</h2>
+                <img src="vision-icon.png" alt="">
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque mollitia repellendus sint earum sit unde harum quam aliquid recusandae cumque, fugit reprehenderit quaerat officiis, optio atque molestias dolor tempora impedit? lor</p>
             </div>
             <div class="cardo">
-                <img src="icon3.png" alt="">
+                <h2>Valores</h2>
+                <img src="value-icon.png" alt="">
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque mollitia repellendus sint earum sit unde harum quam aliquid recusandae cumque, fugit reprehenderit quaerat officiis, optio atque molestias dolor tempora impedit? lor</p>
             </div>
-
         </div>
     </section>
-
-    <!-- JavaScript -->
+    <section class="terceira">
+        <div class="como-func" id="como-func">
+            <button onclick="subir()"><i class='bx bxs-up-arrow' id="arrowIc"></i></button>
+            <div class="como-content">
+                <h2>Como funcionamos?</h2>
+                <div class="cont-cont">
+                    <div class="cont-um">
+                        <h2>Trabalhamos com sensores</h2>
+                    </div>
+                    <div class="cont-dois">
+                        <h2>Dados em tempo real em <br>nossa Dashboard</h2>
+                    </div>
+                    <div class="cont-dois">
+                        <h2>Focados única e exclusivamente no refrigeramento de carnes</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="quarta"></section>
     <script>
-        const newHeader = document.querySelector('.hedo');
 
        
         function checkScroll() {
+            var newHeader = document.getElementById('hedo');
       
             if (window.scrollY > 0) {
           
                 newHeader.style.opacity = '1';
+                newHeader.style.pointerEvents = 'auto';
             } else {
           
                 newHeader.style.opacity = '0';
+                newHeader.style.pointerEvents = 'none';
+
             }
         }
 
-        // Adiciona um evento de rolagem ao documento
         window.addEventListener('scroll', checkScroll);
     </script>
     <script>
-           const back = document.querySelector('.background-container');
 
 
 function checkScroll() {
+            var back =  document.getElementById('backContainer');
+           var cont = document.getElementById('contento');
 
     if (window.scrollY > 0) {
         back.style.left = '100%';
+        cont.style.opacity = '0'
+
     } else {
         back.style.left = '35%';
+        cont.style.opacity = '1'
+
     }
 }
 
-// Adiciona um evento de rolagem ao documento
 window.addEventListener('scroll', checkScroll);
+ 
+var subGlobal = true;
+
+function subir() {
+    var func = document.getElementById('como-func');
+    var arrow = document.getElementById('arrowIc');
+    if (subGlobal) {
+        func.style.top = '120px'; 
+        arrow.style.transform = 'rotate(180deg)';
+        subGlobal = false; 
+    } else {
+        func.style.top = '95%';
+        arrow.style.transform = 'rotate(0deg)';
+        subGlobal = true; 
+    }
+}
+
     </script>
 </body>
 </html>
