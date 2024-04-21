@@ -3,6 +3,7 @@ body {
     padding: 0;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     background: #f0f1f9;
+    scroll-behavior: smooth;
     overflow-x: hidden;
 }
 body::-webkit-scrollbar{
@@ -63,7 +64,7 @@ body::-webkit-scrollbar-thumb{
 }
 .pote li{
     list-style: none;
-    font-size: 18px;
+    font-size: 22px;
     width: 85px;
     cursor: pointer;
     color: #f0f1f9;
@@ -212,6 +213,7 @@ body::-webkit-scrollbar-thumb{
     border-radius: 10px;
     font-weight: 500;
     height: 40px;
+    font-size: 20px;
     cursor: pointer;
 }
 .optinho li:hover{
@@ -226,14 +228,14 @@ body::-webkit-scrollbar-thumb{
     background-image: url('try.png');
     background-size: cover;
     z-index: -1;
-    opacity: 0.1;
+    opacity: 0.4;
 }
 .terceira{
     width: 100%;
     height: 100vh;
     overflow: hidden;
 }
-.como-func{
+.como-func {
     width: 100%;
     height: 100%;
     background: #7c9cff;
@@ -241,9 +243,10 @@ body::-webkit-scrollbar-thumb{
     border-radius: 30px;
     display: flex;
     justify-content: center;
+    align-items: center;
+    z-index: 99;
     top: 95%;
     transition: top 0.5s ease;
-    align-items: center;
 }
 .como-func button{
     width: 40px;
@@ -258,7 +261,7 @@ body::-webkit-scrollbar-thumb{
 }
 .como-content{
     width: 95%;
-    height: 90%;
+    height: 100%;
     border-radius: 20px;
     display: flex;
     flex-direction: column;
@@ -297,3 +300,102 @@ body::-webkit-scrollbar-thumb{
     font-size: 50px;
     text-align: center;
 }
+.test{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+}
+.test-cont{
+    width: 100%;
+    height: 100%;
+display: flex;
+align-items: center;
+justify-content: space-evenly;
+}
+.test-cont-um{
+    width: 800px;
+    height: 75%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.test-cont-um h2{
+    font-size: 70px;
+}
+.test-cont-um p{
+    padding-left: 20px;
+        padding-right: 90px;
+}
+.test-cont-dois{
+    width: 800px;
+    height: 75%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.test-cont-dois img{
+    width: 80%;
+}
+.quarta{
+    width: 100%;
+    height: 200vh;
+    background: #7c9cff;
+    display: none;
+    position: absolute;
+}
+.footer{
+    width: 100%;
+    height: 500px;
+    background: #fc7687;
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.footer img{
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    bottom: 0;
+    opacity: 0.7;
+
+}
+.obg{
+    width: 50%;
+    height: 90px;
+    border-radius: 20px;
+    background: #f0f1f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.obg h2{
+    font-size: 50px;
+    color: #be4459;
+}
+.loc-nav{
+    width: 400px;
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.loc-nav li{
+    list-style: none;
+    width: 150px;
+    height: 40px;
+    border-radius: 10px;
+    background: #f0f1f9;
+    font-size: 30px;
+    color: #be4459;
+    margin: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
