@@ -341,8 +341,8 @@ justify-content: space-evenly;
 }
 .quarta{
     width: 100%;
-    height: 200vh;
-    background: #7c9cff;
+    height: 220vh;
+    background: linear-gradient(#7c9dff, #7c9dff85, #f0f1f900, #f0f1f900);
     display: none;
     position: absolute;
 }
