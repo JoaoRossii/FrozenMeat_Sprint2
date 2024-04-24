@@ -55,7 +55,7 @@ body::-webkit-scrollbar-thumb{
     left: 10px;
 }
 .pote{
-    max-width: 900px;
+    max-width: 650px;
     width: 100%;
     height: 100%;
     display: flex;
@@ -64,7 +64,7 @@ body::-webkit-scrollbar-thumb{
 }
 .pote li{
     list-style: none;
-    font-size: 22px;
+    font-size: 20px;
     width: 85px;
     cursor: pointer;
     color: #f0f1f9;
@@ -100,7 +100,7 @@ body::-webkit-scrollbar-thumb{
 
 }
 .amos h2{
-    font-size: 100px;
+    font-size: 70px;
 }
 .amos p{
     position: relative;
@@ -116,7 +116,8 @@ body::-webkit-scrollbar-thumb{
     left: 5%;
 }
 .anoth img{
-    width: 650px;
+    width: 100%;
+    max-width: 550px;
     padding: 0px 10px 0px 10px;
 }
 .second{
@@ -148,17 +149,15 @@ body::-webkit-scrollbar-thumb{
 }
 .cardo img{
     margin-top: 10px;
-    width: 300px;
-    height: 300px;
+    width: 200px;
 }
 .cardo p{
     padding: 10px;
-    margin-top: 50px;
     word-spacing: 5px;
     font-weight: 700;
     text-align: justify;
     font-size: 18px;
-    padding: 100px;
+    padding: 20px;
 }
 .cardo h2{
     font-size: 50px;
@@ -195,6 +194,7 @@ body::-webkit-scrollbar-thumb{
     height: 180px;
     position: absolute;
     bottom: -50px;
+    left: 10%;
 }
 .optinho{
     width: 600px;
@@ -203,7 +203,7 @@ body::-webkit-scrollbar-thumb{
     align-items: center;
     justify-content: space-evenly;
 }
-.optinho li{
+.optinho li, a{
     color: #fff;
     list-style: none;
     width: 85px;
@@ -214,6 +214,7 @@ body::-webkit-scrollbar-thumb{
     font-weight: 500;
     height: 40px;
     font-size: 20px;
+    text-decoration: none;
     cursor: pointer;
 }
 .optinho li:hover{
@@ -268,7 +269,7 @@ body::-webkit-scrollbar-thumb{
     align-items: center;
 }
 .como-content h2{
-    font-size: 70px;
+    font-size: 50px;
     color: #f0f1f9;
 }
 .cont-cont{ 
@@ -287,7 +288,7 @@ body::-webkit-scrollbar-thumb{
     align-items: center;
 }
 .cont-um h2{
-    font-size: 50px;
+    font-size: 30px;
 }
 .cont-dois{
     width: 800px;
@@ -297,7 +298,7 @@ body::-webkit-scrollbar-thumb{
     align-items: center;
 }
 .cont-dois h2{
-    font-size: 50px;
+    font-size: 30px;
     text-align: center;
 }
 .test{
@@ -316,6 +317,7 @@ justify-content: space-evenly;
 }
 .test-cont-um{
     width: 800px;
+    margin-left: 50px;
     height: 75%;
     display: flex;
     flex-direction: column;
@@ -323,7 +325,7 @@ justify-content: space-evenly;
     justify-content: center;
 }
 .test-cont-um h2{
-    font-size: 70px;
+    font-size: 60px;
 }
 .test-cont-um p{
     padding-left: 20px;

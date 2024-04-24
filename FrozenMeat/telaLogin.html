@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ptbr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faça seu login</title>
+    <link rel="stylesheet" href="style2.css">
+</head>
+
+<body>
+    <div class="hedo" id="hedo">
+        <div class="new-header">
+            <div class="imago">
+                <a href="index.html"><img src="Logo Frozen Meat.png" alt=""></a>
+            </div>
+            <div class="optinho">
+                <a href="index.html"><li>Inicio</li></a>
+                <a href="#"><li>Sobre</li></a>
+                <a href="#"><li>Simulador</li></a>
+                <a href="telaLogin.html"><li>Login</li></a>
+                <a href="telaCadastro.html"><li>Cadastro</li></a>
+            </div>
+        </div>
+    </div>
+    <div class="mae">
+    <div class="principal">
+        <div class="login">
+            <h2>Faça seu login</h2>
+            <input type="text" id="input_cpf" placeholder="CPF/CNPJ" class="input">
+            <input type="password" id="input_senha" placeholder="Digite sua senha" class="input">
+            <button onclick="cadastrar()" class="button">Entrar</button>
+            <div class="mensagem" id="div_mensagem"></div>
+        </div>
+    </div>
+    </div>
+</div>
+</body>
+
+</html>
+
+<script>
+    function cadastrar() {
+        var cpf = input_cpf.value;
+        var cpf_sem_caracteres = cpf.replaceAll('.', '').replaceAll('-', '').replaceAll('/', '');
+        var qtdCaracteresCPF = Number(cpf_sem_caracteres);
+        var tamCPF = cpf_sem_caracteres.length;
+
+        var senha = input_senha.value;
+        var tamSenha = senha.length;
+        var hashtag = senha.indexOf('#');
+        var arrobaSenha = senha.indexOf('@');
+        var underline = senha.indexOf('_');
+        var cifrao = senha.indexOf('$');
+        var porcentagem = senha.indexOf('%');
+
+
+        if (cpf == '' ||
+            senha == '')
+            div_mensagem.innerHTML = '<u>Atenção!</u> Todos os campos precisam ser preenchidos para realizar o início da sessão! <br><br> <a href="telaCadastro.html">Não é cadastrado ainda? Cadastre-se</a>';
+
+        else if (isNaN(qtdCaracteresCPF)) div_mensagem.innerHTML = 'Ops! Seu CPJ ou CNPJ parecem inválidos! <br><br> <a href="telaCadastro.html">Não é cadastrado ainda? Cadastre-se</a>';
+        else if (tamCPF != 11 && tamCPF != 14 && tamCPF != 18) div_mensagem.innerHTML = 'Ops! Seu CPJ ou CNPJ parecem inválidos! <br><br> <a href="telaCadastro.html">Não é cadastrado ainda? Cadastre-se</a>';
+        else if (tamSenha < 8) div_mensagem.innerHTML = 'Ops! Sua senha parece errada.<br><br> <a href="telaCadastro.html">Não é cadastrado ainda? Cadastre-se</a>';
+        else if (hashtag < 0 && arrobaSenha < 0 && underline < 0 && cifrao < 0 && porcentagem < 0) div_mensagem.innerHTML = 'Ops! Sua senha parece estar errada! <br><br> <a href="telaCadastro.html">Não é cadastrado ainda? Cadastre-se</a>';
+        else div_mensagem.innerHTML = 'Usuário logado! Aguarde enquanto fazemos o redirecionamento da página.';
+    }
+</script>
