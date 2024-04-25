@@ -237,7 +237,7 @@ body{
 
 .monitoramento {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-items: center;
     width: 80%;
     height: 45vh;
@@ -250,15 +250,64 @@ body{
 .graficogrande h3 {
     text-align: center;
     color: #fff;
-    font-size: 25px;
+    font-size: 20px;
 }
 
-.graficogrande {
-    margin-bottom: 20px;
-}
 
 .graficopequenoLoja h3 {
+    text-align: center;
     color:#fff;
-    font-size: 25px;
+    font-size: 20px;
 }
 
+.graficopequenoCaminhao h3 {
+    text-align: center;
+    color: #fff;
+    font-size: 20px;
+}
+
+.graficopequenoCaminhao {
+    padding-left: 20px;
+}
+
+.mensagem {
+    width: 20%;
+    height: 30vh;
+    color: #fff;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.todinhos {
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+}
+
+.mensagem button {
+    width: 70%;
+    height: 50px;
+    border-radius: 20px;
+    border: none;
+    background-color: #fc7687;
+    color: #fff;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.mensagem a {
+    width: 100%;
+}
+.bai{
+    position: absolute;
+    top: 85%;
+    margin-bottom: 10px;
+}
+
+.tabela {
+    width: 70%;
+    height: 80%;
+}
