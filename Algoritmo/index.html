@@ -87,16 +87,6 @@
   
 
   // Adiciona condições if para cada tipo de carne selecionado
-  if (peso <= 0) {
-    alert(' Insira um valor maior que 0 para realizar o calculo!')
-  }
-  else if (carne == 0) {
-    alert('Selecione uma opção valida para carne!')
-  }
-  else if (unidade == 0) {
-    alert('Selecione uma unidade de medida valida para carne!')
-  }
-  else {
   if (carne === 1) { // Linguica
     prejuizoTotal += linguicaPorc * 17; // Preço médio por kg
     div_Total.innerHTML += `<p><b>Linguiça:</b> R$ ${linguicaPorc * 17}</p>`;
@@ -128,7 +118,6 @@
     prejuizoTotal += macaPorc * 8.93; // Preço médio por kg
     div_Total.innerHTML += `<p><b>Maçã:</b> R$ ${macaPorc * 8.93}</p>`;
   }
-}
   totalPerda += prejuizoTotal
   div_prejuizo_final.innerHTML = `O total de valor desperdiçado atualmente em todas as carnes somadas está em : R$ ${totalPerda}`
   // Exibe o total de prejuízo
