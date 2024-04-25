@@ -4,6 +4,16 @@
   box-sizing: border-box;
 }
 
+
+/* 
+#7C9CFF
+#444655
+#A8AABC
+#FC7687
+#BF3F55
+*/
+
+
 body {
   display: flex;
   flex-direction: column;

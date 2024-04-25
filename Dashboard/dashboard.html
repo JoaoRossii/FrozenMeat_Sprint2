@@ -1,58 +1,163 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="resto.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <title>Dashboard</title>
 </head>
+
 <body>
     <div class="header">
         <p>Frozen Maet</p>
         <img src="image-removebg-preview.png" class="logo">
         <img src="prof.png" alt="">
     </div>
-   <div class="side-bar" id="sidebar">
-    <ul>
-        <li class="meni"><i class='bx bx-menu menu' id="expandButton"></i><h1 class="tit">Frozen<h1 class="sci">Meat</h1></h1></li>
-        <li><i class='bx bxs-dashboard' ></i> <span>Menu</span></li>
-        <li class="pesqui"><i class='bx bx-search pesq'></i><input type="text" placeholder="Pesquise aqui"></li>
-        <li><i class='bx bxs-thermometer' ></i><span>Frigorífico</span></li>
-        <li><i class='bx bxs-truck'></i></i><span>Baús</span></li>
-        <li class="bai1"> <i class='bx bxs-moon night'></i><span class="dif">Modo noturno</span></li>
-        <li class="bai"><i class='bx bx-log-out uau'></i><span class="dif2">Log-out</span></li>
-    </ul>
-</div>
+    <div class="side-bar" id="sidebar">
+        <ul>
+            <li class="meni"><i class='bx bx-menu menu' id="expandButton"></i>
+                <h1 class="tit">Frozen<h1 class="sci">Meat</h1>
+                </h1>
+            </li>
+            <li><i class='bx bxs-dashboard'></i> <span>Menu</span></li>
+            <li><i class='bx bxs-thermometer'></i><span>Ver frigoríficos</span></li>
+            <li class="bai"><i class='bx bx-log-out uau'></i><span class="dif2">Log-out</span></li>
+        </ul>
+
+
+    </div>
+    <div class="infos">
+        <div class="container">
+            <div class="card">
+                <img src="freezer.png">
+                <p>Você possui 100 frigoríficos sob monitoramento FrozenMeat.</p>
+            </div>
+
+            <div class="card">
+                <div class="caminhao">
+                    <img src="caminhão.png">
+                    <p>50 sensores estão instalados nos caminhões de transporte Swift.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="loja">
+                    <img src="loja.png">
+                    <p>50 sensores estão instalados nos frigoríficos das lojas Swift.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="infos">
+        <div class="monitoramento">
+            <div class="graficogrande">
+                <h3>Frigoríficos</h3>
+                <canvas id="myChart" style="position: relative; width:82%"></canvas>
+            </div>
+            <div class="graficopequenoLoja">
+                <h3>Lojas</h3>
+                <canvas id="myChart2" style="position: relative; width:82%"></canvas>
+            </div>
+            <div class="graficopequenoCaminhao">
+                <h3>Lojas</h3>
+                <canvas id="myChart3" style="position: relative; width:82%"></canvas>
+            </div>
+        </div>
+    </div>
 
 </body>
+
 </html>
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
+    document.addEventListener("DOMContentLoaded", function () {
         const sidebar = document.getElementById("sidebar");
         const expandButton = document.getElementById("expandButton");
 
-        expandButton.addEventListener("click", function() {
+        expandButton.addEventListener("click", function () {
             sidebar.classList.toggle("expanded");
         });
 
-        const body = document.querySelector("body");
 
-        const nightModeToggle = document.querySelector('.night');
-
-
-        nightModeToggle.addEventListener('click', () => {
-            body.classList.toggle('dark');
+    });
 
 
-            localStorage.setItem('nightMode', body.classList.contains('dark') ? 'true' : 'false');
-        });
-        
-        const nightMode = localStorage.getItem('nightMode');
+    //gráficos de pizza
+    const ctx = document.getElementById('myChart');
 
-        if (nightMode === 'true') {
-            body.classList.add('dark');
+    new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: ['Frigoríficos Normais', 'Frigoríficos com Anormalidades'],
+            datasets: [{
+                label: 'Frigoríficos',
+                backgroundColor: ['#6CE5E8', '#41B8D5'],
+                borderColor: '#000',
+                data: [70, 30],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            plugins: {
+                legend: {
+                    labels: {
+                        color: '#000',
+                    },
+                }
+            }
         }
     });
+
+    const ctx2 = document.getElementById('myChart2');
+
+    new Chart(ctx2, {
+        type: 'pie',
+        data: {
+            labels: ['Frigoríficos Normais', 'Frigoríficos com Anormalidades'],
+            datasets: [{
+                label: 'Frigoríficos',
+                backgroundColor: ['#6CE5E8', '#41B8D5'],
+                borderColor: '#000',
+                data: [70, 30],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            plugins: {
+                legend: {
+                    labels: {
+                        color: '#000',
+                    },
+                }
+            }
+        }
+    })
+
+    const ctx3 = document.getElementById('myChart3');
+
+new Chart(ctx2, {
+    type: 'pie',
+    data: {
+        labels: ['Frigoríficos Normais', 'Frigoríficos com Anormalidades'],
+        datasets: [{
+            label: 'Frigoríficos',
+            backgroundColor: ['#6CE5E8', '#41B8D5'],
+            borderColor: '#000',
+            data: [70, 30],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        plugins: {
+            legend: {
+                labels: {
+                    color: '#000',
+                },
+            }
+        }
+    }
+})
 </script>

@@ -7,11 +7,19 @@
   font-family: "Roboto", sans-serif;
 }
 
+/* 
+#7C9CFF
+#444655
+#A8AABC
+#FC7687
+#BF3F55
+*/
+
 body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #fc4f4f;
+  background-color: #7C9CFF;
   color: #f5f0f6;
   font-size: 1.2rem;
 }
@@ -68,7 +76,7 @@ h1 {
   margin: 1rem;
   border: none;
   border-radius: 10px;
-  background-color: #fc4f4f;
+  background-color: #7C9CFF;
   color: #f5f0f6;
   width: 200px;
   height: 50px;
@@ -83,7 +91,7 @@ h1 {
 .div_total_background  {
   padding: 10px;
   border-radius: 10px;
-  background-color: #fc4f4f;
+  background-color: #7C9CFF;
   color: #f5f0f6;
   font-weight: bold;
 }
@@ -93,9 +101,10 @@ h1 {
 
   padding: 10px;
   border-radius: 10px;
-  background-color: #fc4f4f;
+  background-color: #7C9CFF;
   color: #f5f0f6;
   font-weight: bold;
+  margin: 5px;
 }
 
 #divTotal {
@@ -111,7 +120,7 @@ h1 {
   font-size: 20px;
   cursor: pointer;
   background: transparent;
-  border-bottom: 2px solid #fc4f4f;
+  border-bottom: 2px solid #7C9CFF;
   outline: none;
 }
 .slc2{
@@ -120,7 +129,7 @@ h1 {
   font-size: 20px;
   cursor: pointer;
   background: transparent;
-  border-bottom: 2px solid #fc4f4f;
+  border-bottom: 2px solid #7C9CFF;
   outline: none;
 }
 #slc1 option{

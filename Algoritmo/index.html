@@ -1,136 +1,157 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Calculadora financeira</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <div class="principal">
-      <div class="secundario">
-        <h1>Calculadora Financeira</h1><br>
-        <div>
-          <!-- div para descentralizar o texto -->
-          <p style="text-align: justify;">Com base em dados obtidos através de pesquisas entre funcionários e gerentes do setores de alimentação (dados disponíveis na tabela abaixo), foi elaborada está calculadora financeira, que contém os 10 produtos com mais desperdício em açougues. Dos produtos a seguir, preencha (em quilos) quanto o açougue forneçe:</p>
-          <p class="aviso">Caso não forneça o produto, deixar em branco.</p>
-        </div>
-        <br>
-        <select class="slc1" id="select_carne">
-          <option value="0" selected disabled>Selecione Uma Opção</option>
-          <option value="1">Linguiça Toscana</option>
-          <option value="2">Pernil Dianteiro</option>
-          <option value="3">Acém Bovino</option>
-          <option value="4">Músculo Bovino</option>
-          <option value="5">Contrafilé</option>
-          <option value="6">Chã de Dentro</option>
-          <option value="7">Lombo Suíno</option>
-          <option value="8">Costelinha Suína</option>
-          <option value="9">Maça de Peito</option>
-        </select>
 
-        <select class="slc2" id="select_unidade">
-          <option value="0" selected disabled>Selecione Uma Opção</option>
-          <option value="1">Quilogramas (KG)</option>
-          <option value="2">Gramas (g)</option>
-        </select>
-        <input type="text" id="input_peso" class="ipt">
-          <div class="tabela_total">
-            <img src="https://i.imgur.com/9IZWa6I.png" alt="">
-          </div>
-          <div class="btnzin">
-            <button onclick="calcDesperdicio()">Calcular desperdício</button>
-          </div>
-            <div class="div_total_background">
-              <div id="div_Total">Total de desperdício:</div>
-            </div>
-            <div class="div_prejuizo_carne" id="div_prejuizo_carne"></div>
-        </div>
-        <div class="div_prejuizo_final" id="div_prejuizo_final">O total de valor desperdiçado atualmente em todas as carnes somadas está em :</div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calculadora financeira</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style2.css" />
+</head>
+
+<body>
+  <div class="hedo" id="hedo">
+    <div class="new-header">
+      <div class="imago">
+        <a href="index.html"><img src="Logo Frozen Meat.png" alt=""></a>
       </div>
-        <div>
-          <!-- div para descentralizar o texto -->
-          <div id="divDetalhes"></div>
-        </div>
+      <div class="optinho">
+        <a href="index.html">
+          <li>Inicio</li>
+        </a>
+        <a href="#">
+          <li>Sobre</li>
+        </a>
+        <a href="../Algoritmo/index.html">
+          <li>Simulador</li>
+        </a>
+        <a href="telaLogin.html">
+          <li>Login</li>
+        </a>
+        <a href="telaCadastro.html">
+          <li>Cadastro</li>
+        </a>
       </div>
     </div>
-  </body>
+  </div>
+  <div class="principal">
+    <div class="secundario">
+      <h1>Calculadora Financeira</h1><br>
+      <div>
+        <!-- div para descentralizar o texto -->
+        <p style="text-align: justify;">Com base em dados obtidos através de pesquisas entre funcionários e gerentes do
+          setores de alimentação (dados disponíveis na tabela abaixo), foi elaborada está calculadora financeira, que
+          contém os 10 produtos com mais desperdício em açougues. Dos produtos a seguir, preencha (em quilos) quanto o
+          açougue forneçe:</p>
+        <p class="aviso">Caso não forneça o produto, deixar em branco.</p>
+      </div>
+      <br>
+      <select class="slc1" id="select_carne">
+        <option value="0" selected disabled>Selecione Uma Opção</option>
+        <option value="1">Linguiça Toscana</option>
+        <option value="2">Pernil Dianteiro</option>
+        <option value="3">Acém Bovino</option>
+        <option value="4">Músculo Bovino</option>
+        <option value="5">Contrafilé</option>
+        <option value="6">Chã de Dentro</option>
+        <option value="7">Lombo Suíno</option>
+        <option value="8">Costelinha Suína</option>
+        <option value="9">Maça de Peito</option>
+      </select>
+
+      <select class="slc2" id="select_unidade">
+        <option value="0" selected disabled>Selecione Uma Opção</option>
+        <option value="1">Quilogramas (KG)</option>
+        <option value="2">Gramas (g)</option>
+      </select>
+      <input type="text" id="input_peso" class="ipt">
+      <div class="tabela_total">
+        <img src="https://i.imgur.com/9IZWa6I.png" alt="">
+      </div>
+      <div class="btnzin">
+        <button onclick="calcDesperdicio()">Calcular desperdício</button>
+      </div>
+      <div class="div_total_background">
+        <div id="div_Total">Total de desperdício:</div>
+      </div>
+      <div class="div_prejuizo_carne" id="div_prejuizo_carne"></div>
+    </div>
+    <div class="div_prejuizo_final" id="div_prejuizo_final">O total de valor desperdiçado atualmente em todas as carnes
+      somadas está em :</div>
+  </div>
+  <div>
+    <!-- div para descentralizar o texto -->
+    <div id="divDetalhes"></div>
+  </div>
+  </div>
+  </div>
+</body>
+
 </html>
 
 <script>
   var totalPerda = 0;
- function calcDesperdicio() {
-  
-  // declaração de variáveis:
-  // valores de entrada:
-  var peso = input_peso.value;
-  var unidade = select_unidade.value;
-  var carne = Number(select_carne.value);
-  // Converter para quilogramas se a unidade for gramas
-  if (unidade === "2") {
-    peso = peso / 1000; // Converter gramas para quilogramas
-  }
-  // cálculo da massa de carne perdida por má refrigeração:
-  var linguicaPorc = peso * 0.0485; //peso em Linguiça * porcentagem de desperdicio
-  var pernilDianteiroPorc = peso * 0.082;
-  var acemPorc = peso * 0.1022;
-  var musculoPorc = peso * 0.1085;
-  var contrafilePorc = peso * 0.1123;
-  var pernilTraseiroPorc = peso * 0.1235;
-  var chaPorc = peso * 0.1321;
-  var lomboPorc = peso * 0.1345;
-  var costelinhaPorc = peso * 0.1478;
-  var macaPorc = peso * 0.1524;
+  function calcDesperdicio() {
 
-  // Variável para armazenar o prejuízo total
-  var prejuizoTotal = 0;
-  
+    // declaração de variáveis:
+    // valores de entrada:
+    var peso = input_peso.value;
+    var unidade = select_unidade.value;
+    var carne = Number(select_carne.value);
+    // Converter para quilogramas se a unidade for gramas
+    if (unidade === "2") {
+      peso = peso / 1000; // Converter gramas para quilogramas
+    }
+    // cálculo da massa de carne perdida por má refrigeração:
+    var linguicaPorc = peso * 0.0485; //peso em Linguiça * porcentagem de desperdicio
+    var pernilDianteiroPorc = peso * 0.082;
+    var acemPorc = peso * 0.1022;
+    var musculoPorc = peso * 0.1085;
+    var contrafilePorc = peso * 0.1123;
+    var pernilTraseiroPorc = peso * 0.1235;
+    var chaPorc = peso * 0.1321;
+    var lomboPorc = peso * 0.1345;
+    var costelinhaPorc = peso * 0.1478;
+    var macaPorc = peso * 0.1524;
 
-  // Adiciona condições if para cada tipo de carne selecionado
-  if (peso <= 0) {
-    alert(' Insira um valor maior que 0 para realizar o calculo!')
+    // Variável para armazenar o prejuízo total
+    var prejuizoTotal = 0;
+
+
+    // Adiciona condições if para cada tipo de carne selecionado
+    if (carne === 1) { // Linguica
+      prejuizoTotal += linguicaPorc * 17; // Preço médio por kg
+      div_Total.innerHTML += `<p><b>Linguiça:</b> R$ ${linguicaPorc * 17}</p>`;
+    } else if (carne === 2) { // Pernil Dianteiro
+      prejuizoTotal += pernilDianteiroPorc * 12; // Preço médio por kg
+      div_Total.innerHTML += `<p><b>Pernil Dianteiro:</b> R$ ${pernilDianteiroPorc * 12}</p>`;
+    } else if (carne === 3) { // Acém
+      prejuizoTotal += acemPorc * 24.98; // Preço médio por kg
+      div_Total.innerHTML += `<p><b>Acém:</b> R$ ${acemPorc * 24.98}</p>`;
+    } else if (carne === 4) { // Músculo
+      prejuizoTotal += musculoPorc * 28; // Preço médio por kg
+      div_Total.innerHTML += `<p><b>Músculo:</b> R$ ${musculoPorc * 28}</p>`;
+    } else if (carne === 5) { // Contrafilé 
+      prejuizoTotal += contrafilePorc * 42.98; // Preço médio por kg
+      div_Total.innerHTML += `<p><b>Contrafilé:</b> R$ ${contrafilePorc * 42.98}</p>`;
+    } else if (carne === 6) { // Pernil Traseiro
+      prejuizoTotal += pernilTraseiroPorc * 28; // Preço médio por kg
+      div_Total.innerHTML += `<p><b>Pernil Traseiro:</b> R$ ${pernilTraseiroPorc * 28}</p>`;
+    } else if (carne === 7) { // Chã
+      prejuizoTotal += chaPorc * 17.39; // Preço médio por kg
+      div_Total.innerHTML += `<p><b>Chã:</b> R$ ${chaPorc * 17.39}</p>`;
+    } else if (carne === 8) { // Lombo
+      prejuizoTotal += lomboPorc * 23.98; // Preço médio por kg
+      div_Total.innerHTML += `<p><b>Lombo:</b> R$ ${lomboPorc * 23.98}</p>`;
+    } else if (carne === 9) { // Costelinha
+      prejuizoTotal += costelinhaPorc * 32.99; // Preço médio por kg
+      div_Total.innerHTML += `<p><b>Costelinha:</b> R$ ${costelinhaPorc * 32.99}</p>`;
+    } else if (carne === 10) { // Maçã
+      prejuizoTotal += macaPorc * 8.93; // Preço médio por kg
+      div_Total.innerHTML += `<p><b>Maçã:</b> R$ ${macaPorc * 8.93}</p>`;
+    }
+    totalPerda += prejuizoTotal
+    div_prejuizo_final.innerHTML = `O total de valor desperdiçado atualmente em todas as carnes somadas está em : R$ ${totalPerda}`
+    // Exibe o total de prejuízo
   }
-  else if (carne == 0) {
-    alert('Selecione uma opção valida para carne!')
-  }
-  else if (unidade == 0) {
-    alert('Selecione uma unidade de medida valida para carne!')
-  }
-  else {
-  if (carne === 1) { // Linguica
-    prejuizoTotal += linguicaPorc * 17; // Preço médio por kg
-    div_Total.innerHTML += `<p><b>Linguiça:</b> R$ ${linguicaPorc * 17}</p>`;
-  } else if (carne === 2) { // Pernil Dianteiro
-    prejuizoTotal += pernilDianteiroPorc * 12; // Preço médio por kg
-    div_Total.innerHTML += `<p><b>Pernil Dianteiro:</b> R$ ${pernilDianteiroPorc * 12}</p>`;
-  } else if (carne === 3) { // Acém
-    prejuizoTotal += acemPorc * 24.98; // Preço médio por kg
-    div_Total.innerHTML += `<p><b>Acém:</b> R$ ${acemPorc * 24.98}</p>`;
-  } else if (carne === 4) { // Músculo
-    prejuizoTotal += musculoPorc * 28; // Preço médio por kg
-    div_Total.innerHTML += `<p><b>Músculo:</b> R$ ${musculoPorc * 28}</p>`;
-  } else if (carne === 5) { // Contrafilé 
-    prejuizoTotal += contrafilePorc * 42.98; // Preço médio por kg
-    div_Total.innerHTML += `<p><b>Contrafilé:</b> R$ ${contrafilePorc * 42.98}</p>`;
-  } else if (carne === 6) { // Pernil Traseiro
-    prejuizoTotal += pernilTraseiroPorc * 28; // Preço médio por kg
-    div_Total.innerHTML += `<p><b>Pernil Traseiro:</b> R$ ${pernilTraseiroPorc * 28}</p>`;
-  } else if (carne === 7) { // Chã
-    prejuizoTotal += chaPorc * 17.39; // Preço médio por kg
-    div_Total.innerHTML += `<p><b>Chã:</b> R$ ${chaPorc * 17.39}</p>`;
-  } else if (carne === 8) { // Lombo
-    prejuizoTotal += lomboPorc * 23.98; // Preço médio por kg
-    div_Total.innerHTML += `<p><b>Lombo:</b> R$ ${lomboPorc * 23.98}</p>`;
-  } else if (carne === 9) { // Costelinha
-    prejuizoTotal += costelinhaPorc * 32.99; // Preço médio por kg
-    div_Total.innerHTML += `<p><b>Costelinha:</b> R$ ${costelinhaPorc * 32.99}</p>`;
-  } else if (carne === 10) { // Maçã
-    prejuizoTotal += macaPorc * 8.93; // Preço médio por kg
-    div_Total.innerHTML += `<p><b>Maçã:</b> R$ ${macaPorc * 8.93}</p>`;
-  }
-}
-  totalPerda += prejuizoTotal
-  div_prejuizo_final.innerHTML = `O total de valor desperdiçado atualmente em todas as carnes somadas está em : R$ ${totalPerda}`
-  // Exibe o total de prejuízo
-}
 </script>
