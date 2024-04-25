@@ -89,11 +89,6 @@ body {
     border-color: #d3d3d3;
 }
 
-.input:focus {
-    outline: none;
-    border-color: #7C9CFF;
-}
-
 h2 {
     color: #7c9cff;
     font-size: 30px;
