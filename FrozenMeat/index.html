@@ -94,17 +94,27 @@
         <div class="como-func" id="como-func">
             <button onclick="subir()"><i class='bx bxs-up-arrow' id="arrowIc"></i></button>
             <div class="como-content">
-                <h2>Como funcionamos?</h2>
+                <h2>Vantagens do
+                    monitoramento:</h2>
                 <div class="cont-cont">
                     <div class="cont-um">
-                        <h2>Trabalhamos com sensores</h2>
+                            <img src="target.png" alt="">
+                            <img src="control-icon.png" alt="">
+                            <img src="qualy-icon.png" alt="">
                     </div>
-                    <div class="cont-dois">
-                        <h2>Dados em tempo real em <br>nossa Dashboard</h2>
+                    <div class="label_div">
+                        <h3>Precisão</h3>
+                        <h3>Controle</h3>
+                        <h3>Qualidade</h3>
                     </div>
-                    <div class="cont-dois">
-                        <h2>Focados única e exclusivamente no refrigeramento de carnes</h2>
-                    </div>
+                    <div class="cont-um">
+                        <img src="secu-icon.png" alt="">
+                        <img src="eva-icon.png" alt="">
+                </div>
+                <div class="label_div2">
+                    <h3>Segurança</h3>
+                    <h3>Recursos</h3>
+                </div>
                 </div>
             </div>
         </div>
@@ -113,11 +123,7 @@
         <div class="last"></div>
         <div class="footer">
             <div class="loc-nav">
-                <li>Inicio</li>
-                <li>Sobre</li>
-                <li>Simulador</li>
-                <li>Login</li>
-                <li>Cadastro</li>
+                
             </div>
             <div class="obg">
                 <h2>Obrigada pela a atenção</h2>
@@ -129,7 +135,7 @@
     <script>
 
        
-        function checkScroll() {
+        function primeira() {
             var newHeader = document.getElementById('hedo');
       
             if (window.scrollY > 0) {
@@ -144,12 +150,12 @@
             }
         }
 
-        window.addEventListener('scroll', checkScroll);
+        window.addEventListener('scroll', primeira);
     </script>
     <script>
 
 
-function checkScroll() {
+function segunda() {
             var back =  document.getElementById('backContainer');
            var cont = document.getElementById('contento');
 
@@ -164,7 +170,7 @@ function checkScroll() {
     }
 }
 
-window.addEventListener('scroll', checkScroll);
+    window.addEventListener('scroll', segunda);
  
 var subGlobal = true;
 
