@@ -118,40 +118,52 @@
     var prejuizoTotal = 0;
 
 
-    // Adiciona condições if para cada tipo de carne selecionado
-    if (carne === 1) { // Linguica
-      prejuizoTotal += linguicaPorc * 17; // Preço médio por kg
-      div_Total.innerHTML += `<p><b>Linguiça:</b> R$ ${linguicaPorc * 17}</p>`;
-    } else if (carne === 2) { // Pernil Dianteiro
-      prejuizoTotal += pernilDianteiroPorc * 12; // Preço médio por kg
-      div_Total.innerHTML += `<p><b>Pernil Dianteiro:</b> R$ ${pernilDianteiroPorc * 12}</p>`;
-    } else if (carne === 3) { // Acém
-      prejuizoTotal += acemPorc * 24.98; // Preço médio por kg
-      div_Total.innerHTML += `<p><b>Acém:</b> R$ ${acemPorc * 24.98}</p>`;
-    } else if (carne === 4) { // Músculo
-      prejuizoTotal += musculoPorc * 28; // Preço médio por kg
-      div_Total.innerHTML += `<p><b>Músculo:</b> R$ ${musculoPorc * 28}</p>`;
-    } else if (carne === 5) { // Contrafilé 
-      prejuizoTotal += contrafilePorc * 42.98; // Preço médio por kg
-      div_Total.innerHTML += `<p><b>Contrafilé:</b> R$ ${contrafilePorc * 42.98}</p>`;
-    } else if (carne === 6) { // Pernil Traseiro
-      prejuizoTotal += pernilTraseiroPorc * 28; // Preço médio por kg
-      div_Total.innerHTML += `<p><b>Pernil Traseiro:</b> R$ ${pernilTraseiroPorc * 28}</p>`;
-    } else if (carne === 7) { // Chã
-      prejuizoTotal += chaPorc * 17.39; // Preço médio por kg
-      div_Total.innerHTML += `<p><b>Chã:</b> R$ ${chaPorc * 17.39}</p>`;
-    } else if (carne === 8) { // Lombo
-      prejuizoTotal += lomboPorc * 23.98; // Preço médio por kg
-      div_Total.innerHTML += `<p><b>Lombo:</b> R$ ${lomboPorc * 23.98}</p>`;
-    } else if (carne === 9) { // Costelinha
-      prejuizoTotal += costelinhaPorc * 32.99; // Preço médio por kg
-      div_Total.innerHTML += `<p><b>Costelinha:</b> R$ ${costelinhaPorc * 32.99}</p>`;
-    } else if (carne === 10) { // Maçã
-      prejuizoTotal += macaPorc * 8.93; // Preço médio por kg
-      div_Total.innerHTML += `<p><b>Maçã:</b> R$ ${macaPorc * 8.93}</p>`;
-    }
-    totalPerda += prejuizoTotal
-    div_prejuizo_final.innerHTML = `O total de valor desperdiçado atualmente em todas as carnes somadas está em : R$ ${totalPerda}`
-    // Exibe o total de prejuízo
+
+  // Adiciona condições if para cada tipo de carne selecionado
+  if (peso <= 0) {
+    alert(' Insira um valor maior que 0 para realizar o calculo!')
   }
+  else if (carne == 0) {
+    alert('Selecione uma opção valida para carne!')
+  }
+  else if (unidade == 0) {
+    alert('Selecione uma unidade de medida valida para carne!')
+  }
+  else {
+  if (carne === 1) { // Linguica
+    prejuizoTotal += linguicaPorc * 17; // Preço médio por kg
+    div_Total.innerHTML += `<p><b>Linguiça:</b> R$ ${linguicaPorc * 17}</p>`;
+  } else if (carne === 2) { // Pernil Dianteiro
+    prejuizoTotal += pernilDianteiroPorc * 12; // Preço médio por kg
+    div_Total.innerHTML += `<p><b>Pernil Dianteiro:</b> R$ ${pernilDianteiroPorc * 12}</p>`;
+  } else if (carne === 3) { // Acém
+    prejuizoTotal += acemPorc * 24.98; // Preço médio por kg
+    div_Total.innerHTML += `<p><b>Acém:</b> R$ ${acemPorc * 24.98}</p>`;
+  } else if (carne === 4) { // Músculo
+    prejuizoTotal += musculoPorc * 28; // Preço médio por kg
+    div_Total.innerHTML += `<p><b>Músculo:</b> R$ ${musculoPorc * 28}</p>`;
+  } else if (carne === 5) { // Contrafilé 
+    prejuizoTotal += contrafilePorc * 42.98; // Preço médio por kg
+    div_Total.innerHTML += `<p><b>Contrafilé:</b> R$ ${contrafilePorc * 42.98}</p>`;
+  } else if (carne === 6) { // Pernil Traseiro
+    prejuizoTotal += pernilTraseiroPorc * 28; // Preço médio por kg
+    div_Total.innerHTML += `<p><b>Pernil Traseiro:</b> R$ ${pernilTraseiroPorc * 28}</p>`;
+  } else if (carne === 7) { // Chã
+    prejuizoTotal += chaPorc * 17.39; // Preço médio por kg
+    div_Total.innerHTML += `<p><b>Chã:</b> R$ ${chaPorc * 17.39}</p>`;
+  } else if (carne === 8) { // Lombo
+    prejuizoTotal += lomboPorc * 23.98; // Preço médio por kg
+    div_Total.innerHTML += `<p><b>Lombo:</b> R$ ${lomboPorc * 23.98}</p>`;
+  } else if (carne === 9) { // Costelinha
+    prejuizoTotal += costelinhaPorc * 32.99; // Preço médio por kg
+    div_Total.innerHTML += `<p><b>Costelinha:</b> R$ ${costelinhaPorc * 32.99}</p>`;
+  } else if (carne === 10) { // Maçã
+    prejuizoTotal += macaPorc * 8.93; // Preço médio por kg
+    div_Total.innerHTML += `<p><b>Maçã:</b> R$ ${macaPorc * 8.93}</p>`;
+  }
+}
+  totalPerda += prejuizoTotal
+  div_prejuizo_final.innerHTML = `O total de valor desperdiçado atualmente em todas as carnes somadas está em : R$ ${totalPerda}`
+  // Exibe o total de prejuízo
+}
 </script>
