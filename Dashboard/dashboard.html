@@ -55,16 +55,22 @@
     <div class="infos">
         <div class="monitoramento">
             <div class="graficogrande">
-                <h3>Frigoríficos</h3>
-                <canvas id="myChart" style="position: relative; width:82%"></canvas>
+                <h3>Frigoríficos - todos</h3>
+                <canvas id="myChart" style="position: relative; width:80%"></canvas>
             </div>
-            <div class="graficopequenoLoja">
-                <h3>Lojas</h3>
-                <canvas id="myChart2" style="position: relative; width:82%"></canvas>
+            <div class="todinhos">
+                <div class="graficopequenoLoja">
+                    <h3>Lojas</h3>
+                    <canvas id="myChart2" style="position: relative; width:60%;"></canvas>
+                </div>
+                <div class="graficopequenoCaminhao">
+                    <h3>Caminhões</h3>
+                    <canvas id="myChart3" style="position: relative; width:60%"></canvas>
+                </div>
             </div>
-            <div class="graficopequenoCaminhao">
-                <h3>Lojas</h3>
-                <canvas id="myChart3" style="position: relative; width:82%"></canvas>
+            <div class="mensagem">
+                <h1>20 frigoríficos precisam da sua atenção!</h1>
+                <a href="dashboard2.html"><button>Ver frigoríficos</button></a>
             </div>
         </div>
     </div>
@@ -80,8 +86,6 @@
         expandButton.addEventListener("click", function () {
             sidebar.classList.toggle("expanded");
         });
-
-
     });
 
 
@@ -91,12 +95,12 @@
     new Chart(ctx, {
         type: 'pie',
         data: {
-            labels: ['Frigoríficos Normais', 'Frigoríficos com Anormalidades'],
+            labels: ['Frigoríficos Normais', 'Frigoríficos Anormais'],
             datasets: [{
                 label: 'Frigoríficos',
-                backgroundColor: ['#6CE5E8', '#41B8D5'],
-                borderColor: '#000',
-                data: [70, 30],
+                backgroundColor: ['#fc7687', '#bf3f55'],
+                borderColor: '#0000003a',
+                data: [96, 4],
                 borderWidth: 1
             }]
         },
@@ -116,12 +120,12 @@
     new Chart(ctx2, {
         type: 'pie',
         data: {
-            labels: ['Frigoríficos Normais', 'Frigoríficos com Anormalidades'],
+            labels: ['Frigoríficos Normais', 'Frigoríficos Anormais'],
             datasets: [{
                 label: 'Frigoríficos',
-                backgroundColor: ['#6CE5E8', '#41B8D5'],
-                borderColor: '#000',
-                data: [70, 30],
+                backgroundColor: ['#fc7687', '#bf3f55'],
+                borderColor: '#0000003a',
+                data: [49, 1],
                 borderWidth: 1
             }]
         },
@@ -138,26 +142,26 @@
 
     const ctx3 = document.getElementById('myChart3');
 
-new Chart(ctx2, {
-    type: 'pie',
-    data: {
-        labels: ['Frigoríficos Normais', 'Frigoríficos com Anormalidades'],
-        datasets: [{
-            label: 'Frigoríficos',
-            backgroundColor: ['#6CE5E8', '#41B8D5'],
-            borderColor: '#000',
-            data: [70, 30],
-            borderWidth: 1
-        }]
-    },
-    options: {
-        plugins: {
-            legend: {
-                labels: {
-                    color: '#000',
-                },
+    new Chart(ctx3, {
+        type: 'pie',
+        data: {
+            labels: ['Frigoríficos Normais', 'Frigoríficos Anormais'],
+            datasets: [{
+                label: 'Frigoríficos',
+                backgroundColor: ['#fc7687', '#bf3f55'],
+                borderColor: '#0000003a',
+                data: [47, 3],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            plugins: {
+                legend: {
+                    labels: {
+                        color: '#000',
+                    },
+                }
             }
         }
-    }
-})
+    })
 </script>
