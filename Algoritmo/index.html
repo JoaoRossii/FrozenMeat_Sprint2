@@ -13,75 +13,88 @@
   <div class="hedo" id="hedo">
     <div class="new-header">
       <div class="imago">
-        <a href="index.html"><img src="Logo Frozen Meat.png" alt=""></a>
+        <a href="../FrozenMeat/index.html"><img src="Logo Frozen Meat.png" alt=""></a>
       </div>
       <div class="optinho">
-        <a href="index.html">
+        <a href="../FrozenMeat/index.html">
           <li>Inicio</li>
         </a>
         <a href="#">
           <li>Sobre</li>
         </a>
-        <a href="../Algoritmo/index.html">
+        <a href="index.html">
           <li>Simulador</li>
         </a>
-        <a href="telaLogin.html">
+        <a href="../FrozenMeat/telaLogin.html">
           <li>Login</li>
         </a>
-        <a href="telaCadastro.html">
+        <a href="../FrozenMeat/telaCadastro.html">
           <li>Cadastro</li>
         </a>
       </div>
     </div>
   </div>
   <div class="principal">
+    <div class="titulo">
+
+      <h1>Calculadora Financeira</h1>
+
+      <p style="text-align: justify;">Com base em dados obtidos através de nossos estudos nos
+        setores alimentícios, foi elaborada está calculadora financeira, que
+        contém os 10 produtos com mais desperdício em açougues. Dos produtos a seguir, preencha (Kg/g) quanto o
+        açougue forneçe:</p>
+      <p class="aviso">Caso não forneça o produto, deixar em branco.</p>
+    </div>
     <div class="secundario">
-      <h1>Calculadora Financeira</h1><br>
-      <div>
+      <div class="explicaSim">
         <!-- div para descentralizar o texto -->
-        <p style="text-align: justify;">Com base em dados obtidos através de pesquisas entre funcionários e gerentes do
+        <!-- <p style="text-align: justify;">Com base em dados obtidos através de pesquisas entre funcionários e gerentes do
           setores de alimentação (dados disponíveis na tabela abaixo), foi elaborada está calculadora financeira, que
           contém os 10 produtos com mais desperdício em açougues. Dos produtos a seguir, preencha (em quilos) quanto o
           açougue forneçe:</p>
-        <p class="aviso">Caso não forneça o produto, deixar em branco.</p>
+        <p class="aviso">Caso não forneça o produto, deixar em branco.</p> -->
       </div>
       <br>
-      <select class="slc1" id="select_carne">
-        <option value="0" selected disabled>Selecione Uma Opção</option>
-        <option value="1">Linguiça Toscana</option>
-        <option value="2">Pernil Dianteiro</option>
-        <option value="3">Acém Bovino</option>
-        <option value="4">Músculo Bovino</option>
-        <option value="5">Contrafilé</option>
-        <option value="6">Chã de Dentro</option>
-        <option value="7">Lombo Suíno</option>
-        <option value="8">Costelinha Suína</option>
-        <option value="9">Maça de Peito</option>
-      </select>
-
-      <select class="slc2" id="select_unidade">
-        <option value="0" selected disabled>Selecione Uma Opção</option>
-        <option value="1">Quilogramas (KG)</option>
-        <option value="2">Gramas (g)</option>
-      </select>
-      <input type="text" id="input_peso" class="ipt">
-      <div class="tabela_total">
-        <img src="https://i.imgur.com/9IZWa6I.png" alt="">
+      <div class="selects">
+        <select class="slc1" id="select_carne">
+          <option value="0" selected disabled>Selecione a Carne</option>
+          <option value="1">Linguiça Toscana</option>
+          <option value="2">Pernil Dianteiro</option>
+          <option value="3">Acém Bovino</option>
+          <option value="4">Músculo Bovino</option>
+          <option value="5">Contrafilé</option>
+          <option value="6">Chã de Dentro</option>
+          <option value="7">Lombo Suíno</option>
+          <option value="8">Costelinha Suína</option>
+          <option value="9">Maça de Peito</option>
+        </select>
+        
+        <select class="slc2" id="select_unidade">
+          <option value="0" selected disabled>Selecione a Medida</option>
+          <option value="1">Quilogramas (KG)</option>
+          <option value="2">Gramas (g)</option>
+        </select>
       </div>
+      <input type="text" id="input_peso" class="ipt">
       <div class="btnzin">
         <button onclick="calcDesperdicio()">Calcular desperdício</button>
       </div>
-      <div class="div_total_background">
-        <div id="div_Total">Total de desperdício:</div>
-      </div>
       <div class="div_prejuizo_carne" id="div_prejuizo_carne"></div>
     </div>
-    <div class="div_prejuizo_final" id="div_prejuizo_final">O total de valor desperdiçado atualmente em todas as carnes
-      somadas está em :</div>
-  </div>
-  <div>
-    <!-- div para descentralizar o texto -->
-    <div id="divDetalhes"></div>
+    <div class="div_total_background">
+      <div id="div_Total">Total de desperdício:</div>
+    </div>
+    <div class="secundarioFoto">
+      <div class="tabela_total">
+        <img src="carnes.png" alt="">
+      </div>
+      <div class="div_prejuizo_final" id="div_prejuizo_final">O total de valor desperdiçado atualmente em todas as carnes
+        somadas está em :</div>
+      </div>
+    </div>
+    <div>
+      <!-- div para descentralizar o texto -->
+      <div id="divDetalhes"></div>
   </div>
   </div>
   </div>

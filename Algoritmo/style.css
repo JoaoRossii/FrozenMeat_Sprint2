@@ -28,29 +28,86 @@ h1 {
   font-size: 2rem;
 }
 
-.titulo {
-  font-family: monospace;
-  font-size: 2.5rem;
+.tabela_total img {
+  width: 350px;
+  height: 400px;
+  margin-top: 100px;
+  margin-bottom: 20px;
 }
+
+.selects {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 520px;
+}
+
 .aviso {
   font-style: italic;
 }
 
 .principal {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
   box-shadow: 0 0 30px 0px #5427846f;
-  border-radius: 5px;
+  border-radius: 20px;
   color: #000;
   background-color: #e5e5e5;
   width: 800px;
   height: fit-content;
   margin-top: 5px;
-  ;
+  position: fixed;
+  bottom: 4%;
+  width: 80%;
+  height: 80vh;
 }
+
+.titulo {
+  font-size: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  width: 100%; 
+  top: 0;
+  height: 40px;
+  margin-top: 80px;
+}
+.titulo p {
+  font-size: 18px;
+  text-align: justify;
+  width: 80%;
+}
+
+.titulo h1 {
+  margin-top: -50px;
+  margin-bottom: 20px;
+}
+
+.explicaSim {
+  max-width: 80%;
+}
+
+.explicaSim p {
+  font-size: 20px;
+
+}
+
 .principal .secundario {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: 1.5rem;
+  width: 50%;
+}
+.principal .secundarioFoto {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1.5rem;
+  width: 50%;
 }
 .principal .input_total {
   display: flex;
@@ -80,8 +137,15 @@ h1 {
   color: #f5f0f6;
   width: 200px;
   height: 50px;
-  font-size: 1rem;
+  font-size: 18px;
   font-weight: bold;
+}
+
+.btnzin button:hover {
+  transform: scale(1.1);
+  transition: 0.5s ease;
+  cursor: pointer;
+  font-size: 20px;
 }
 
 #divDetalhes li {
@@ -94,9 +158,17 @@ h1 {
   background-color: #7C9CFF;
   color: #f5f0f6;
   font-weight: bold;
+  position: absolute;
+  margin-right: 770px;
+  margin-top: 500px;
+  display: flex;
 }
 
-
+#div_Total{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Cria 4 colunas com largura igual */
+  gap: 10px;
+}
 .div_prejuizo_final  {
 
   padding: 10px;
@@ -105,6 +177,7 @@ h1 {
   color: #f5f0f6;
   font-weight: bold;
   margin: 5px;
+  overflow: auto;
 }
 
 #divTotal {
@@ -115,22 +188,32 @@ h1 {
 }
 
 .slc1{
-  width: 230px;
-  border: none;
+  width: 250px;
+  border: 2px solid ;
+  border-color: #7C9CFF;
+  border-radius: 15px;
   font-size: 20px;
   cursor: pointer;
   background: transparent;
-  border-bottom: 2px solid #7C9CFF;
   outline: none;
+  padding: 5px;
+  background-color: #7C9CFF;
+  color: #FFF;
+  margin-bottom: 10px;
 }
 .slc2{
-  width: 230px;
-  border: none;
+  width: 250px;
+  border: 2px solid ;
+  border-color: #7C9CFF;
+  border-radius: 15px;
   font-size: 20px;
   cursor: pointer;
   background: transparent;
-  border-bottom: 2px solid #7C9CFF;
   outline: none;
+  padding: 5px;
+  background-color: #7C9CFF;
+  color: #FFF;
+  margin-bottom: 10px;
 }
 #slc1 option{
   background: #e5e5e5;
