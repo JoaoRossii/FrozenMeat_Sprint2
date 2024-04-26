@@ -23,6 +23,7 @@ create table relacao(
 idRelacao int auto_increment,
 fkUsuario int,
 fkFrigorifico int,
+dataAcesso datetime default current_timestamp,
 PRIMARY KEY (idRelacao, fkUsuario, fkFrigorifico),
 constraint fkUsuarioFrigorifico foreign key (fkUsuario) REFERENCES usuario(id),
 constraint fkFrigorificoUsuario foreign key (fkFrigorifico) REFERENCES frigorifico(id)
@@ -76,10 +77,9 @@ registro date
 );
 
 create table sensor (
-idSensor int auto_increment,
+idSensor int primary key auto_increment,
 fkFrigorifico int,
 registro date,
-primary key (idSensor, fkFrigorifico),
 constraint fkFrigorificoSensor foreign key (fkFrigorifico) references frigorifico(id)
 
 );
