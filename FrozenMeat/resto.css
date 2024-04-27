@@ -74,7 +74,7 @@ body{
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     overflow: hidden;
     transition: width 0.5s ease;
-    position: absolute;
+    position: fixed;
     z-index: 100;
     margin-top: 70px;
 }
@@ -312,7 +312,7 @@ body{
     border: 2px solid #ff5e73;
     color: #fff;
     font-size: 18px;
-    font-weight: none;
+    cursor: pointer;
 }
 
 .mensagem a {
@@ -321,7 +321,8 @@ body{
 
 .bai{
     position: absolute;
-    top: 85%;
+    top: 88%;
+    left: -2px;
     margin-bottom: 10px;
 }
 
