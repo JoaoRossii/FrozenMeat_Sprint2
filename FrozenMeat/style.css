@@ -6,18 +6,22 @@ body {
     scroll-behavior: smooth;
     overflow-x: hidden;
 }
-body::-webkit-scrollbar{
+
+body::-webkit-scrollbar {
     scrollbar-width: thin;
     background: #abaabc46;
 }
-body::-webkit-scrollbar-thumb{
+
+body::-webkit-scrollbar-thumb {
     background: #bf3f55;
     border-radius: 10px;
 }
-.first{
+
+.first {
     width: 100%;
     height: 100vh;
 }
+
 .background-container {
     position: relative;
     top: 0;
@@ -36,7 +40,7 @@ body::-webkit-scrollbar-thumb{
     transform: scale(2);
 }
 
-.header{
+.header {
     width: 100%;
     position: absolute;
     height: 90px;
@@ -44,17 +48,20 @@ body::-webkit-scrollbar-thumb{
     display: flex;
     justify-content: space-between;
 }
-.logo{
+
+.logo {
     width: 300px;
     height: 100%;
 }
-.logo img{
+
+.logo img {
     width: 200px;
     position: absolute;
-    top: -50px;    
+    top: -50px;
     left: 10px;
 }
-.pote{
+
+.pote {
     max-width: 650px;
     width: 100%;
     height: 100%;
@@ -62,7 +69,8 @@ body::-webkit-scrollbar-thumb{
     align-items: center;
     justify-content: space-evenly;
 }
-.pote li{
+
+.pote li {
     list-style: none;
     font-size: 20px;
     width: 85px;
@@ -74,12 +82,14 @@ body::-webkit-scrollbar-thumb{
     align-items: center;
     height: 40px;
 }
-.pote li:hover{
+
+.pote li:hover {
     background: #fff;
     color: #000;
     transition: 0.5s;
 }
-.contento{
+
+.contento {
     width: 100%;
     height: 70%;
     align-items: center;
@@ -89,20 +99,23 @@ body::-webkit-scrollbar-thumb{
     top: 100px;
     transition: opacity 0.6s ease;
 }
-.amos{
+
+.amos {
     width: 35%;
     max-width: 700px;
     height: 350px;
     justify-content: center;
     flex-direction: column;
     display: flex;
-    
+
 
 }
-.amos h2{
+
+.amos h2 {
     font-size: 70px;
 }
-.amos p{
+
+.amos p {
     position: relative;
     text-align: justify;
     bottom: 60px;
@@ -110,25 +123,29 @@ body::-webkit-scrollbar-thumb{
     max-width: 500px;
     font-size: 20px;
 }
-.anoth{
+
+.anoth {
     width: 600px;
     height: 500px;
     position: relative;
     left: 5%;
 }
-.anoth img{
+
+.anoth img {
     width: 100%;
     max-width: 550px;
     padding: 0px 10px 0px 10px;
 }
-.second{
+
+.second {
     width: 100%;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.princi{
+
+.princi {
     width: 95%;
     height: 85vh;
     border-radius: 20px;
@@ -138,7 +155,8 @@ body::-webkit-scrollbar-thumb{
     align-items: center;
     box-shadow: 0 0 20px 10px #00000033;
 }
-.cardo{
+
+.cardo {
     width: 800px;
     height: 90%;
     display: flex;
@@ -148,11 +166,13 @@ body::-webkit-scrollbar-thumb{
     border-right: 2px solid #bf3f54a1;
     color: #872435;
 }
-.cardo img{
+
+.cardo img {
     margin-top: 10px;
     width: 200px;
 }
-.cardo p{
+
+.cardo p {
     padding: 10px;
     word-spacing: 5px;
     font-weight: 700;
@@ -160,12 +180,13 @@ body::-webkit-scrollbar-thumb{
     font-size: 18px;
     padding: 20px;
 }
-.cardo h2{
+
+.cardo h2 {
     font-size: 50px;
     color: #be4459;
 }
 
-.new-header{
+.new-header {
     width: 80%;
     height: 90px;
     border-radius: 10px;
@@ -174,6 +195,7 @@ body::-webkit-scrollbar-thumb{
     display: flex;
     justify-content: space-between;
 }
+
 .hedo {
     width: 100%;
     display: flex;
@@ -186,26 +208,31 @@ body::-webkit-scrollbar-thumb{
     top: 10px;
     transition: opacity 0.5s ease;
 }
-.imago{
+
+.imago {
     width: 300px;
     height: 100%;
     display: flex;
 }
-.imago img{
+
+.imago img {
     width: 180px;
     height: 180px;
     position: absolute;
     bottom: -50px;
     left: 10%;
 }
-.optinho{
+
+.optinho {
     width: 600px;
     height: 100%;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
 }
-.optinho li, a{
+
+.optinho li,
+a {
     color: #fff;
     list-style: none;
     width: 85px;
@@ -219,12 +246,14 @@ body::-webkit-scrollbar-thumb{
     text-decoration: none;
     cursor: pointer;
 }
-.optinho li:hover{
+
+.optinho li:hover {
     background: #fff;
     transition: 0.5s;
     color: #000;
 }
-.back-magos{
+
+.back-magos {
     width: 100%;
     position: fixed;
     height: 100%;
@@ -233,11 +262,13 @@ body::-webkit-scrollbar-thumb{
     z-index: -1;
     opacity: 0.4;
 }
-.terceira{
+
+.terceira {
     width: 100%;
     height: 100vh;
     overflow: hidden;
 }
+
 .como-func {
     width: 100%;
     height: 100%;
@@ -251,7 +282,8 @@ body::-webkit-scrollbar-thumb{
     top: 95%;
     transition: top 0.5s ease;
 }
-.como-func button{
+
+.como-func button {
     width: 40px;
     height: 40px;
     border: none;
@@ -262,7 +294,8 @@ body::-webkit-scrollbar-thumb{
     top: -20px;
     cursor: pointer;
 }
-.como-content{
+
+.como-content {
     width: 95%;
     height: 100%;
     border-radius: 20px;
@@ -270,11 +303,13 @@ body::-webkit-scrollbar-thumb{
     flex-direction: column;
     align-items: center;
 }
-.como-content h2{
+
+.como-content h2 {
     font-size: 50px;
     color: #f0f1f9;
 }
-.cont-cont{ 
+
+.cont-cont {
     position: relative;
     bottom: 50px;
     width: 100%;
@@ -283,17 +318,20 @@ body::-webkit-scrollbar-thumb{
     flex-direction: column;
     justify-content: space-around;
 }
-.cont-um{
-  width: 100%;
-  height: 200px;
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
+
+.cont-um {
+    width: 100%;
+    height: 200px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
 }
-.cont-um img{
+
+.cont-um img {
     width: 200px;
 }
-.cont-dois{
+
+.cont-dois {
     width: 100%;
     height: 200px;
     background: #00000015;
@@ -301,10 +339,12 @@ body::-webkit-scrollbar-thumb{
     justify-content: space-evenly;
     align-items: center;
 }
-.cont-dois img{
+
+.cont-dois img {
     width: 200px;
 }
-.label_div{
+
+.label_div {
     width: 100%;
     position: absolute;
     top: 43%;
@@ -313,7 +353,8 @@ body::-webkit-scrollbar-thumb{
     justify-content: space-evenly;
 
 }
-.label_div2{
+
+.label_div2 {
     width: 100%;
     position: absolute;
     top: 93%;
@@ -322,34 +363,39 @@ body::-webkit-scrollbar-thumb{
     justify-content: space-evenly;
 
 }
-.label_div h3{
+
+.label_div h3 {
     width: 200px;
     font-size: 25px;
     display: flex;
     justify-content: center;
 }
-.label_div2 h3{
+
+.label_div2 h3 {
     width: 220px;
     font-size: 25px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.test{
+
+.test {
     width: 100%;
     height: 100vh;
     display: flex;
     justify-content: center;
     position: absolute;
 }
-.test-cont{
+
+.test-cont {
     width: 100%;
     height: 100%;
-display: flex;
-align-items: center;
-justify-content: space-evenly;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
 }
-.test-cont-um{
+
+.test-cont-um {
     width: 800px;
     margin-left: 50px;
     height: 75%;
@@ -358,34 +404,40 @@ justify-content: space-evenly;
     align-items: center;
     justify-content: center;
 }
-.test-cont-um h2{
+
+.test-cont-um h2 {
     font-size: 60px;
 }
-.test-cont-um p{
+
+.test-cont-um p {
     padding-left: 20px;
-        padding-right: 90px;
-        font-size: 20px;
+    padding-right: 90px;
+    font-size: 20px;
 }
-.test-cont-dois{
+
+.test-cont-dois {
     width: 800px;
     height: 75%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.test-cont-dois img{
+
+.test-cont-dois img {
     width: 80%;
 }
-.quarta{
+
+.quarta {
     width: 100%;
     height: 220vh;
     background: linear-gradient(#7c9dff, #7c9dff85, #f0f1f900, #f0f1f900);
     display: none;
     position: absolute;
 }
-.footer{
+
+.footer {
     width: 100%;
-    height: 500px;
+    height: 200px;
     background: #fc7687;
     position: absolute;
     bottom: 0;
@@ -393,35 +445,46 @@ justify-content: space-evenly;
     justify-content: space-evenly;
     align-items: center;
 }
-.footer img{
+
+.footer img {
     width: 200px;
     height: 200px;
     position: absolute;
     bottom: 0;
     opacity: 0.7;
-
+    margin-right: 1200px;
 }
-.obg{
-    width: 50%;
+
+.footer2 {
+    color: white;
+}
+
+
+.obg {
+    width: 25%;
     height: 90px;
     border-radius: 20px;
     background: #f0f1f9;
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-left: 400px;
 }
-.obg h2{
-    font-size: 50px;
+
+.obg h2 {
+    font-size: 30px;
     color: #be4459;
 }
-.loc-nav{
+
+.loc-nav {
     width: 400px;
     height: 90%;
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
-.loc-nav li{
+
+.loc-nav li {
     list-style: none;
     width: 150px;
     height: 40px;
@@ -435,7 +498,8 @@ justify-content: space-evenly;
     align-items: center;
     cursor: pointer;
 }
-.last{
+
+.last {
     width: 100%;
     height: 50%;
 
@@ -443,7 +507,8 @@ justify-content: space-evenly;
     justify-content: center;
     align-items: center;
 }
-.last img{
+
+.last img {
     width: 70%;
     height: 90%;
 }
