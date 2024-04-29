@@ -116,6 +116,7 @@ body {
     color: #fffffc;
     font-size: 25px;
     width: 50px;
+    text-decoration: none;
     height: 50px;
     cursor: pointer;
     display: flex;
