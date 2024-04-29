@@ -97,3 +97,4 @@ primary key (idHistorico, fkSensor),
 constraint fkSensor foreign key (fkSensor) references sensor(idSensor)
 );
 
+-- teste
