@@ -111,11 +111,16 @@ body{
     color: #fffffc;
     font-size: 25px;
     width: 50px;
+    text-decoration: none;
     height: 50px;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
+}
+.side-bar a{
+    display: flex;
+    text-decoration: none;
 }
 .side-bar .uau{
     color: #fffffc;
