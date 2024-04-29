@@ -1,0 +1,245 @@
+/****** Full Document ******/
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    background: #f0f1f9;
+    background-image: url('try.png');
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+}
+body::-webkit-scrollbar{
+    scrollbar-width: thin;
+    background: #abaabc46;
+}
+body::-webkit-scrollbar-thumb{
+    background: #bf3f55;
+    border-radius: 10px;
+}
+
+/****** Header ******/
+.primeira{
+    width: 100%;
+    margin-bottom: 150px;
+    z-index: 999;
+    /* height: 50vh; */
+}
+
+.hedo {
+    width: 100%;
+    display: flex;
+    z-index: 9;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    opacity: 1;
+    top: 10px;
+}
+
+.new-header{
+    width: 80%;
+    height: 90px;
+    border-radius: 10px;
+    background: #7c9cff;
+    box-shadow: 0 0 20px 10px #0000002d;
+    display: flex;
+    justify-content: space-between;
+}
+
+.imago{
+    width: 300px;
+    height: 100%;
+    display: flex;
+}
+
+.imago img{
+    width: 180px;
+    height: 180px;
+    position: absolute;
+    bottom: -50px;
+    left: 10%;
+}
+
+.optinho{
+    z-index: 999;
+    width: 600px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.optinho li, a{
+    color: #fff;
+    list-style: none;
+    width: 85px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    font-weight: 500;
+    height: 40px;
+    font-size: 20px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.optinho li:hover{
+    background: #fff;
+    transition: 0.5s;
+    color: #000;
+}
+
+/****** Body ******/
+.contento{
+    width: 100%;
+    height: 70%;
+    align-items: center;
+    display: flex;
+    justify-content: space-evenly;
+    padding-top: 200px;
+}
+
+.anoth{
+    width: 600px;
+    height: 500px;
+    position: relative;
+    left: 5%;
+}
+
+.anoth img{
+    width: 100%;
+    max-width: 550px;
+    padding: 0px 10px 0px 10px;
+}
+
+.amos{
+    width: 35%;
+    max-width: 700px;
+    height: 350px;
+    justify-content: center;
+    flex-direction: column;
+    display: flex;
+}
+
+.amos h2{
+    font-size: 70px;
+}
+
+.amos p{
+    position: relative;
+    text-align: justify;
+    bottom: 60px;
+    width: 80%;
+    max-width: 500px;
+    font-size: 20px;
+}
+
+.segunda{
+    width: 99%;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
+}
+
+.como-func {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 30px;
+    background: #7c9cff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.como-func h1{
+    font-size: 90px;
+    color: #fff;
+    padding: 20px;
+}
+
+.conteudo {
+    width: 100%;
+    height: 60vh;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: center;
+}
+
+.cardo{
+    width: 80%;
+    height: 0;
+    padding: 16vh 0;
+    margin: 0 20px;
+    background: #fc7687;
+    border-radius: 20px; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 20px 10px #00000033;
+} 
+
+.cardo img{
+    width: 60px;
+}
+
+.cardo p{
+    word-spacing: 5px;
+    font-weight: 700;
+    text-align: center;
+    font-size: 18px;
+    padding: 0 20px;
+}
+
+.cardo h2{
+    font-size: 50px;
+    color: #be4459;
+}
+
+/****** Footer ******/
+/* .terceira{
+    width: 100%;
+    height: 220vh;
+    background: linear-gradient(#7c9dff, #7c9dff85, #f0f1f900, #f0f1f900);
+    /* display: none;
+    position: absolute;
+} */
+
+.footer{
+    width: 100%;
+    height: 250px;
+    margin-top: 150px;
+    background: #fc7687;
+    /* position: absolute; */
+    bottom: 0;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.footer img{
+    width: 250px;
+    height: 250px;
+    /* position: absolute; */
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    bottom: 0;
+    opacity: 0.7;
+
+}
+/* .obg{
+    width: 50%;
+    height: 90px;
+    border-radius: 20px;
+    background: #f0f1f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.obg h2{
+    font-size: 50px;
+    color: #be4459;
+} */
