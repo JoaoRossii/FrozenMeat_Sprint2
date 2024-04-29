@@ -1,7 +1,8 @@
+-- CRIAÇÃO DO BANCO DE DADOS
 create database frozenMeat;
-
 use frozenMeat;
 
+-- CRIAÇÃO DAS TABELAS DO DOMINIO DE USUARIO
 create table tipoUsuario(
 idtipoUsuario int primary key auto_increment,
 cpf_cnpj varchar (14) not null
@@ -29,6 +30,7 @@ constraint fkUsuarioFrigorifico foreign key (fkUsuario) REFERENCES usuario(id),
 constraint fkFrigorificoUsuario foreign key (fkFrigorifico) REFERENCES frigorifico(id)
 );
 
+-- CRIACÃO DAS TABELAS DO DOMINIO DO TRANSPORTE
 create table transportadora (
 idTransportadora int primary key not null,
 nome varchar(45) not null,
@@ -45,6 +47,7 @@ primary key (idTransporte, fkTransportadora),
 constraint frigorificoCaminhao foreign key (fkFrigorifico) references transportadora(idTransportadora),
 constraint transportadoraCaminhao foreign key (fkTransportadora) references transportadora(idTransportadora));
 
+-- CRIAÇÃO DAS TABELAS DO DOMINIO DA LOJA
 create table empresa(
 idEmpresa int primary key auto_increment,
 nome varchar (45),
@@ -58,6 +61,7 @@ fkEmpresa int,
 foreign key (fkEmpresa) references empresa(idEmpresa)
 );
 
+-- CRIAÇÃO DAS TABELAS DO DOMINIO DO FRIGORIFICO
 create table frigorifico (
 id int primary key auto_increment,
 registrado_em datetime,
@@ -92,3 +96,4 @@ fkSensor int,
 primary key (idHistorico, fkSensor),
 constraint fkSensor foreign key (fkSensor) references sensor(idSensor)
 );
+
