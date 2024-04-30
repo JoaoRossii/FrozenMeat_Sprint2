@@ -17,11 +17,13 @@
 </head>
 
 <body>
-    <div>
+    <div id="aparecendo">
         <h1>Sensor LM 35 - Temperatura</h1>
         <section style="width: 100%;">
             <canvas id="lm35Temperatura"></canvas>
         </section>
+    </div>
+    <div id="ocultos">
         <h1>Sensor DHT 11 - Umidade</h1>
         <section style="width:100%">
             <canvas id="dht11Umidade"></canvas>
@@ -34,7 +36,7 @@
         <section style="width: 100%;">
             <canvas id="luminosidade"></canvas>
         </section>
-       
+
         <h1>Sensor Chave</h1>
         <section style="width: 100%;">
             <canvas id="chave"></canvas>
@@ -42,7 +44,10 @@
     </div>
 
     <script>
-         var contextoLm35Temperatura = document.getElementById('lm35Temperatura').getContext('2d');
+        ocultos.style.display = 'none';
+
+        // lm35temperatura
+        var contextoLm35Temperatura = document.getElementById('lm35Temperatura').getContext('2d');
         contextoLm35Temperatura.canvas.width = 1000;
         contextoLm35Temperatura.canvas.height = 300;
         var lm35Temperatura = new Chart(
@@ -202,8 +207,7 @@
                 }
             }
         );
-        /* -- lm35Temperatura */
-       
+        
         /* -- chave */
         var contextoChave = document.getElementById('chave').getContext('2d');
         contextoChave.canvas.width = 1000;

@@ -29,7 +29,8 @@ const serial = async (
         {
             // altere!
             // Credenciais do banco de dados
-            // Sempre alterar o IP para o IP da máquina local que estiver sendo utilizada!
+             // Sempre alterar o IP para o IP da máquina local que estiver sendo utilizada!
+             host: '10.18.32.39',
             host: '10.18.32.39',
             user: 'aluno',
             password: 'Sptech#2024',
@@ -60,7 +61,7 @@ const serial = async (
 
     // Processa os dados recebidos do Arduino
     arduino.pipe(new serialport.ReadlineParser({ delimiter: '\r\n' })).on('data', async (data) => {
-        // console.log(data);
+        console.log(data);
         const valores = data.split(';');
         const lm35Temperatura = parseFloat(valores[0]);
         const dht11Umidade = parseFloat(valores[1]);
@@ -85,7 +86,6 @@ const serial = async (
                 [lm35Temperatura]
             );
             console.log(lm35Temperatura)
-        
         }
         
     });
