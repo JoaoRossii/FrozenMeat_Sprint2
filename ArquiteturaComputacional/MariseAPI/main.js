@@ -33,7 +33,7 @@ const serial = async (
             host: '10.18.32.39',
             user: 'aluno',
             password: 'Sptech#2024',
-            database: 'arqcomp',
+            database: 'frozenMeat',
             port: 3307
         }
     ).promise();
@@ -81,7 +81,7 @@ const serial = async (
             // altere!
             // Este insert irá inserir os dados na tabela "medida"
             await poolBancoDados.execute(
-                'INSERT INTO medida (lm35_temperatura) VALUES ( ?)',
+                'INSERT INTO historicoFrigorifico (temperatura) VALUES ( ?)',
                 [lm35Temperatura]
             );
             console.log(lm35Temperatura)
