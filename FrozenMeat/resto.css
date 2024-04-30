@@ -112,6 +112,10 @@ body {
     width: 200px;
 }
 
+.side-bar a {
+    text-decoration: none;
+}
+
 .side-bar i {
     color: #fffffc;
     font-size: 25px;
