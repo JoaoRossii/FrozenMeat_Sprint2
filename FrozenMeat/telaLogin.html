@@ -72,7 +72,7 @@
 
         if (cpf == '' ||
             senha == '')
-            div_mensagem.innerHTML = '<u>Atenção!</u> Todos os campos precisam ser preenchidos para realizar o início da sessão! <br><br> <a href="telaCadastro.html">Não é cadastrado ainda? Cadastre-se</a>';
+            div_mensagem.innerHTML = `<u>Atenção!</u> Todos os campos precisam ser preenchidos para realizar o início da sessão! <br><br> <a href="telaCadastro.html"><span style="color: #000;">Não é cadastrado ainda? Cadastre-se</span></a>`;
 
         else if (isNaN(qtdCaracteresCPF)) div_mensagem.innerHTML = 'Ops! Seu CPJ ou CNPJ parecem inválidos! <br><br> <a href="telaCadastro.html">Não é cadastrado ainda? Cadastre-se</a>';
         else if (tamCPF != 11 && tamCPF != 14 && tamCPF != 18) div_mensagem.innerHTML = 'Ops! Seu CPJ ou CNPJ parecem inválidos! <br><br> <a href="telaCadastro.html">Não é cadastrado ainda? Cadastre-se</a>';
