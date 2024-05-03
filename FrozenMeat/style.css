@@ -449,26 +449,25 @@ a {
 .footer img {
     width: 200px;
     height: 200px;
-    position: absolute;
-    bottom: 0;
     opacity: 0.7;
-    margin-right: 1200px;
+
 }
 
 .footer2 {
     color: white;
 }
-
+.loguito{
+    width: 200px;
+}
 
 .obg {
-    width: 25%;
+    width: 35%;
     height: 90px;
     border-radius: 20px;
     background: #f0f1f9;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-left: 400px;
 }
 
 .obg h2 {
