@@ -29,8 +29,10 @@ h1 {
 }
 
 .tabela_total img {
-  width: 350px;
-  height: 400px;
+  width: 100%;
+  height: 100%;
+  max-width: 350px;
+  max-height: 380px;
   margin-top: 100px;
   border-radius: 10px;
   box-shadow: 0 0 20px 10px #1f1e2726;
@@ -102,13 +104,17 @@ h1 {
   flex-direction: column;
   align-items: center;
   margin: 1.5rem;
-  width: 50%;
+  width: 500px;
+  position: relative;
+  top: 5%;
 }
 .principal .secundarioFoto {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: 1.5rem;
+  position: relative;
+  bottom: 20px;
   width: 50%;
 }
 .principal .input_total {
@@ -157,12 +163,11 @@ h1 {
 .div_total_background  {
   padding: 10px;
   border-radius: 10px;
-  background-color: #7C9CFF;
-  color: #f5f0f6;
+  background-color: rgb(124, 156, 255);
+  color: rgb(245, 240, 246);
   font-weight: bold;
-  position: absolute;
-  margin-right: 770px;
-  margin-top: 500px;
+  height: 75px;
+  overflow: auto;
   display: flex;
 }
 
@@ -244,4 +249,9 @@ h1 {
   border: none;
   border-radius: 10px;
   outline: none;
+}
+.down{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 }
