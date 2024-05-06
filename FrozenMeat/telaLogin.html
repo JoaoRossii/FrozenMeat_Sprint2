@@ -39,7 +39,7 @@
                 <h2>Faça seu login</h2>
                 <input type="text" id="input_cpf" placeholder="CPF/CNPJ" class="input">
                 <input type="password" id="input_senha" placeholder="Digite sua senha" class="input">
-                <button onclick="cadastrar()" class="button">Entrar</button>
+                <button onclick="cadastrar()" class="button" id="botom">Entrar</button>
                 <div class="mensagem" id="div_mensagem"></div>
             </div>
             <div id="div_aguardar" class="loading-div">
@@ -53,7 +53,8 @@
 </html>
 
 <script>
-     div_aguardar.style.display = 'none';
+    div_aguardar.style.display = 'none';
+    var tentativas = 4;
 
     function cadastrar() {
         var cpf = input_cpf.value;
@@ -68,16 +69,31 @@
         var underline = senha.indexOf('_');
         var cifrao = senha.indexOf('$');
         var porcentagem = senha.indexOf('%');
-
-
+        
         if (cpf == '' ||
             senha == '')
             div_mensagem.innerHTML = `<u>Atenção!</u> Todos os campos precisam ser preenchidos para realizar o início da sessão! <br><br> <a href="telaCadastro.html"><span style="color: #000;">Não é cadastrado ainda? Cadastre-se</span></a>`;
 
         else if (isNaN(qtdCaracteresCPF)) div_mensagem.innerHTML = 'Ops! Seu CPJ ou CNPJ parecem inválidos! <br><br> <a href="telaCadastro.html">Não é cadastrado ainda? Cadastre-se</a>';
         else if (tamCPF != 11 && tamCPF != 14 && tamCPF != 18) div_mensagem.innerHTML = 'Ops! Seu CPJ ou CNPJ parecem inválidos! <br><br> <a href="telaCadastro.html">Não é cadastrado ainda? Cadastre-se</a>';
-        else if (tamSenha < 8) div_mensagem.innerHTML = 'Ops! Sua senha parece errada.<br><br> <a href="telaCadastro.html">Não é cadastrado ainda? Cadastre-se</a>';
-        else if (hashtag < 0 && arrobaSenha < 0 && underline < 0 && cifrao < 0 && porcentagem < 0) div_mensagem.innerHTML = 'Ops! Sua senha parece estar errada! <br><br> <a href="telaCadastro.html">Não é cadastrado ainda? Cadastre-se</a>';
+        // else if (tamSenha < 8) div_mensagem.innerHTML = 'Ops! Sua senha parece errada.<br><br> <a href="telaCadastro.html">Não é cadastrado ainda? Cadastre-se</a>';
+        else if (tamSenha < 8 && hashtag < 0 && arrobaSenha < 0 && underline < 0 && cifrao < 0 && porcentagem < 0) {
+
+            for (var cont = 1; cont <= tentativas; cont++) {
+               
+                if (tentativas > 0) {
+                    
+                    tentativas -- ;
+                    div_mensagem.innerHTML = `A verificação da senha falhou. Voce Possui ${tentativas} tentativas restantes`;
+                    if (tentativas < 1){
+                        botom.style.display = 'none';
+                        div_mensagem.innerHTML = `Tentativas esgotadas, recarregue a pagina`;
+                    }  
+                }
+            }
+        }  
+        
+
         else div_mensagem.innerHTML = 'Usuário logado! Aguarde enquanto fazemos o redirecionamento da página.';
 
         if (div_mensagem.innerHTML == 'Usuário logado! Aguarde enquanto fazemos o redirecionamento da página.'){
