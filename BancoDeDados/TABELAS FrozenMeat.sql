@@ -164,23 +164,22 @@ INSERT INTO frigorifico(temperatura_ideal_minima, temperatura_ideal_maxima, fkTi
 (-2,2,2,1);
 
 -- ADIÇÃO DOS DADOS DOS SENSORES DOS FRIGORIFICOS
-INSERT INTO sensor(fkFrigorifico, registrado_em) VALUES
-(1,"2018-08-04 02:45:56"),
-(2,"2021-12-29 08:38:47"),
-(2,"2021-12-29 08:38:47"),
-(3,"2024-03-23 10:15:44"),
-(3,"2024-03-23 10:15:44"),
-(4,"2022-03-06 23:51:28"),
-(5,"2021-12-31 05:22:48"),
-(6,"2019-02-14 13:15:57"),
-(7,"2024-02-03 11:23:22");
+INSERT INTO sensor (fkFrigorifico) VALUES
+(1),
+(2),
+(2),
+(3),
+(3),
+(4),
+(5),
+(6),
+(7);
 
 -- ADIÇÃO DOS DADOS DO HISTORICO DE REGISTROS DOS SENSORES DOS FRIGORIFICOS
 -- TEM QUE SER ATRAVES DO ARDUINO
-INSERT INTO historicoFrigorifico(registrado_em, temperatura, fkSensor) VALUES
-("2024-02-03 11:23:22",4,1);
+INSERT INTO historicoFrigorifico(registrado_em, temperatura) VALUES
+("2024-02-03 11:23:22",4);
 
--- VER COMO ADICIONAR A RELAÇÃO (URGENTEMENTE)
 INSERT INTO relacao (fkUsuario, fkFrigorifico, dataAcesso) VALUES
 ( 1 ,1,default),
 ( 2,2,default),
@@ -227,4 +226,19 @@ JOIN frigorifico ON sensor.fkFrigorifico = frigorifico.idFrigorifico;
 -- SELECT historicoFrigorifico.idHistoricoFrigorifico as RegistroHistorico, historicoFrigorifico.registrado_em, sensor.idSensor as Sensor
 -- FROM historicoFrigorifico
 -- JOIN sensor ON historicoFrigorifico.fkSensor = sensor.idSensor;
+
+
+-- CREATE VIEW SIMULANDO VÁRIOS SENSORES COM APENAS 1 SENSOR FÍSICO
+alter table sensor add column fator float;
+update sensor set fator = 0.5 where idSensor = 1;
+update sensor set fator = 0.2 where idSensor = 2;
+update sensor set fator = 0.78 where idSensor = 3;
+update sensor set fator = 0.125 where idSensor = 4;
+update sensor set fator = 0.43 where idSensor = 5;
+update sensor set fator = 0.9 where idSensor = 6;
+update sensor set fator = 1.1 where idSensor = 7;
+-- select sensor.idSensor as sensor, (historicoFrigorifico.temperatura * sensor.fator) as temperatura from sensor, historicoFrigorifico;
+
+create view Sensores as (select sensor.idSensor as sensor, (historicoFrigorifico.temperatura * sensor.fator) as temperatura from sensor, historicoFrigorifico);
+select * from Sensores;
 
