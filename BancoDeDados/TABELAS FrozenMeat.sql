@@ -90,11 +90,14 @@ constraint fkFrigorificoSensor foreign key (fkFrigorifico) references frigorific
 
 create table historicoFrigorifico (
 idHistorico int auto_increment,
-registrado_em datetime,
+registrado_em datetime default current_timestamp,
 temperatura double,
-fkSensor int,
-primary key (idHistorico, fkSensor),
-constraint fkSensor foreign key (fkSensor) references sensor(idSensor)
-);
+-- fkSensor int,
+primary key (idHistorico) -- fkSensor,
+-- constraint fkSensor foreign key (fkSensor) references sensor(idSensor)
+); 
+
+select * from historicoFrigorifico;
+truncate table historicoFrigorifico;
 
 -- segundo teste de novo
