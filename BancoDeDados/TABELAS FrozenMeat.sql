@@ -135,7 +135,7 @@ INSERT INTO usuario (registro, nome, email, telefone, cpf_cnpj, senha, cargo, fk
   ("2020-08-14 17:55:09","Ezekiel Murray","ezekielmurray@outlook.com","11982356205", "50674447847","Hwjyr3182","funcionário",1),      -- funcionário
   ("2019-12-16 22:42:41","Ishmael Booker","ishmaelbooker6726@google.com","11961751818", "50701523881","Smkku6636","funcionário",1);   -- funcionário 
 
-
+truncate table usuario;
 -- ADIÇÃO DOS DADOS DAS EMPRESAS
 INSERT INTO empresa (nome, cep) VALUES
 ( "Perdigão","52455548"),

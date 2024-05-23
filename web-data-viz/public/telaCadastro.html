@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ptbr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastre-se</title>
+    <link rel="stylesheet" href="../../FrozenMeat/style2.css">
+    <script src="./js/sessao.js"></script>
+</head>
+
+<body>
+    <div class="hedo" id="hedo">
+        <div class="new-header">
+            <div class="imago">
+                <a href="index.html"><img src="Logo Frozen Meat.png" alt=""></a>
+            </div>
+            <div class="optinho">
+                <a href="index.html"><li>Inicio</li></a>
+                <a href="../sobreNos/sobre.html">
+                    <li>Sobre</li>
+                </a>
+                <a href="../Algoritmo/index.html"><li>Simulador</li></a>
+                <a href="telaLogin.html"><li>Login</li></a>
+                <a href="telaCadastro.html"><li>Cadastro</li></a>
+            </div>
+        </div>
+    </div>
+    <div class="principal">
+        <h2>CADASTRE-SE</h2>
+        <div class="coluna">
+            <div class="secundaria1">
+                <input type="text" id="input_nome" placeholder="Nome completo" class="input">
+                <input type="text" id="input_cpf" placeholder="CPF/CNPJ" class="input">
+                <input type="text" id="input_email" placeholder="E-mail" class="input">
+                <input type="text" id="input_telefone" placeholder="Número de telefone" class="input">
+            </div>
+            <div class="secundaria2">
+                <input type="text" id="input_empresa" placeholder="Nome da empresa" class="input">
+                <select id="select_cargo" class="input">
+                    <option value="0" selected disabled>Selecione seu cargo</option>
+                    <option value="funcionario">Funcionário</option>
+                    <option value="gerente">Gerente</option>
+                </select>
+                <input type="password" id="input_senha" placeholder="Crie sua senha" class="input">
+                <input type="password" id="input_Confsenha" placeholder="Confirme sua senha" class="input">
+            </div>
+        </div>
+        <button onclick="cadastrar()" class="button">Cadastrar</button>
+        <div class="mensagem" id="div_mensagem"></div>
+        <div id="div_aguardar" class="loading-div">
+            <img src="loading2.gif" id="loading-gif" />
+          </div>
+
+    </div>
+
+  </body>
+
+</html>
+
+<script>
+    div_aguardar.style.display = 'none';
+
+    function cadastrar() {
+    // aguardar();
+
+    //Recupere o valor da nova input pelo nome do id
+    // Agora vá para o método fetch logo abaixo
+    var nomeVar = input_nome.value;
+    var nomeEmp = input_empresa.value;
+    var cpfCnpj = input_cpf.value;
+    var cargo = select_cargo.value;
+    var emailVar = input_email.value;
+    var telefone = input_telefone.value;
+    var senhaVar = input_senha.value;
+
+    var confirmacaoSenhaVar = input_Confsenha.value;
+    if (
+      nomeVar == "" ||
+      nomeEmp == "" ||
+      cpfCnpj == "" ||
+      cargo == "" ||
+      emailVar == "" ||
+      telefone == "" ||
+      senhaVar == "" ||
+      confirmacaoSenhaVar == ""
+    ) {
+      cardErro.style.display = "block";
+      mensagem_erro.innerHTML =
+        "(Mensagem de erro para todos os campos em branco)";
+
+      // finalizarAguardar();
+      return false;
+    } else {
+      setInterval(sumirMensagem, 5000);
+    }
+
+    // Enviando o valor da nova input
+    fetch("/usuarios/cadastrar", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        // crie um atributo que recebe o valor recuperado aqui
+        // Agora vá para o arquivo routes/usuario.js
+        nomeServer: nomeVar,
+        nomeEmpServer: nomeEmp,
+        cpfCnpjServer: cpfCnpj,
+        cargoServer: cargo,
+        emailServer: emailVar,
+        telefoneServer: telefone,
+        senhaServer: senhaVar,
+      }),
+    })
+      .then(function (resposta) {
+        console.log("resposta: ", resposta);
+
+        if (resposta.ok) {
+          cardErro.style.display = "block";
+
+          mensagem_erro.innerHTML =
+            "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+
+          setTimeout(() => {
+            window.location = "login.html";
+          }, "2000");
+
+          limparFormulario();
+          // finalizarAguardar();
+        } else {
+          throw "Houve um erro ao tentar realizar o cadastro!";
+        }
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+        // finalizarAguardar();
+      });
+
+    return false;
+  }
+
+  // function listar() {
+  //   fetch("/empresas/listar", {
+  //     method: "GET",
+  //   })
+  //     .then(function (resposta) {
+  //       resposta.json().then((empresas) => {
+  //         empresas.forEach((empresa) => {
+  //           listaEmpresas.innerHTML += `<option value='${empresa.id}'>${empresa.cnpj}</option>`;
+  //         });
+  //       });
+  //     })
+  //     .catch(function (resposta) {
+  //       console.log(`#ERRO: ${resposta}`);
+  //     });
+  // }
+
+  function sumirMensagem() {
+    cardErro.style.display = "none";
+  }
+</script>
