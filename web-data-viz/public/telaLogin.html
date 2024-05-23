@@ -5,11 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Faça seu login</title>
-    <link rel="stylesheet" href="style2.css">
+    <link rel="stylesheet" href="../../FrozenMeat/style2.css">
 </head>
 
 <body>
     <div class="hedo" id="hedo">
+        <div class="alerta_erro">
+            <div class="card_erro" id="cardErro">
+                <span id="mensagem_erro"></span>
+            </div>
+        </div>
         <div class="new-header">
             <div class="imago">
                 <a href="index.html"><img src="Logo Frozen Meat.png" alt=""></a>
@@ -39,7 +44,7 @@
                 <h2>Faça seu login</h2>
                 <input type="text" id="input_cpf" placeholder="CPF/CNPJ" class="input">
                 <input type="password" id="input_senha" placeholder="Digite sua senha" class="input">
-                <button onclick="cadastrar()" class="button" id="botom">Entrar</button>
+                <button onclick="entrar()" class="button" id="botom">Entrar</button>
                 <div class="mensagem" id="div_mensagem"></div>
             </div>
             <div id="div_aguardar" class="loading-div">
@@ -47,60 +52,80 @@
               </div>
         </div>
     </div>
+    <div id="div_erros_login"></div>
     </div>
 </body>
 
 </html>
 
 <script>
-    div_aguardar.style.display = 'none';
-    var tentativas = 4;
+   function entrar() {
+        // aguardar();
 
-    function cadastrar() {
-        var cpf = input_cpf.value;
-        var cpf_sem_caracteres = cpf.replaceAll('.', '').replaceAll('-', '').replaceAll('/', '');
-        var qtdCaracteresCPF = Number(cpf_sem_caracteres);
-        var tamCPF = cpf_sem_caracteres.length;
+        var cpfCnpj = input_cpf.value;
+        var senhaVar = input_senha.value;
 
-        var senha = input_senha.value;
-        var tamSenha = senha.length;
-        var hashtag = senha.indexOf('#');
-        var arrobaSenha = senha.indexOf('@');
-        var underline = senha.indexOf('_');
-        var cifrao = senha.indexOf('$');
-        var porcentagem = senha.indexOf('%');
-        
-        if (cpf == '' ||
-            senha == '')
-            div_mensagem.innerHTML = `<u>Atenção!</u> Todos os campos precisam ser preenchidos para realizar o início da sessão! <br><br> <a href="telaCadastro.html"><span style="color: #000;">Não é cadastrado ainda? Cadastre-se</span></a>`;
-
-        else if (isNaN(qtdCaracteresCPF)) div_mensagem.innerHTML = 'Ops! Seu CPF ou CNPJ parecem inválidos! <br><br> <a href="telaCadastro.html">Não é cadastrado ainda? Cadastre-se</a>';
-        else if (tamCPF != 11 && tamCPF != 14 && tamCPF != 18) div_mensagem.innerHTML = 'Ops! Seu CPF ou CNPJ parecem inválidos! <br><br> <a href="telaCadastro.html">Não é cadastrado ainda? Cadastre-se</a>';
-        // else if (tamSenha < 8) div_mensagem.innerHTML = 'Ops! Sua senha parece errada.<br><br> <a href="telaCadastro.html">Não é cadastrado ainda? Cadastre-se</a>';
-        else if (tamSenha < 8 && hashtag < 0 && arrobaSenha < 0 && underline < 0 && cifrao < 0 && porcentagem < 0) {
-
-            for (var cont = 1; cont <= tentativas; cont++) {
-               
-                if (tentativas > 0) {
-                    
-                    tentativas -- ;
-                    div_mensagem.innerHTML = `A verificação da senha falhou. Voce Possui ${tentativas} tentativas restantes`;
-                    if (tentativas < 1){
-                        botom.style.display = 'none';
-                        div_mensagem.innerHTML = `Tentativas esgotadas, recarregue a pagina`;
-                    }  
-                }
-            }
-        }  
-        
-
-        else div_mensagem.innerHTML = 'Usuário logado! Aguarde enquanto fazemos o redirecionamento da página.';
-
-        if (div_mensagem.innerHTML == 'Usuário logado! Aguarde enquanto fazemos o redirecionamento da página.'){
-        div_aguardar.style.display = 'block';
-            setTimeout(() => {
-            window.location = "dashboard.html";
-          }, "3000");
+        if (cpfCnpj == "" || senhaVar == "") {
+            cardErro.style.display = "block"
+            mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
+            // finalizarAguardar();
+            return false;
         }
+        else {
+            setInterval(sumirMensagem, 5000)
+        }
+
+        console.log("FORM LOGIN: ", cpfCnpj);
+        console.log("FORM SENHA: ", senhaVar);
+
+        fetch("/usuarios/autenticar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                cpfCnpjServer: cpfCnpj,
+                senhaServer: senhaVar
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!")
+
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+                    sessionStorage.EMAIL_USUARIO = json.email;
+                    sessionStorage.NOME_USUARIO = json.nome;
+                    sessionStorage.ID_USUARIO = json.id;
+                    // sessionStorage.AQUARIOS = JSON.stringify(json.aquarios)
+
+                    setTimeout(function () {
+                        window.location = "./dashboard/cards.html";
+                    }, 1000); // apenas para exibir o loading
+
+                });
+
+            } else {
+
+                console.log("Houve um erro ao tentar realizar o login!");
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+                    // finalizarAguardar(texto);
+                });
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+        return false;
     }
+
+    function sumirMensagem() {
+        cardErro.style.display = "none"
+    }
+
 </script>
