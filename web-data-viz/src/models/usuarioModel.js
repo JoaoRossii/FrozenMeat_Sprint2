@@ -5,8 +5,20 @@ function autenticar(cpfCnpj, senha) {
     var instrucaoSql = `
         SELECT idUsuario, nome, email FROM usuario WHERE cpf_cnpj = '${cpfCnpj}' AND senha = '${senha}';
     `;
+    var instrucaoSqlGer = `
+        SELECT idUsuario, nome, email FROM usuario WHERE cpf_cnpj = '${cpfCnpj}' AND senha = '${senha} WHERE fkTipousuario = 2';
+    `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
-    return database.executar(instrucaoSql);
+    if (database.executar(instrucaoSql) == true) {
+        return database.executar(instrucaoSql);
+
+    } else if (database.executar(instrucaoSqlGer) == true) {
+        return database.executar(instrucaoSqlGer);
+
+    } else {
+        console.log("Erro ao efetuar o login, Verifique seus dados");
+    }
+    
 }
 
 // Coloque os mesmos parâmetros aqui. Vá para a var instrucaoSql
