@@ -1,0 +1,442 @@
+@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap');
+
+:root {
+    /*modo claro*/
+    --main-color: #7c9cff;
+    --background-color: #fffffc;
+    --second-color: #cb4862;
+}
+
+body {
+    transition: background-color 0.3s ease;
+    font-family: "League Spartan", sans-serif;
+    background: var(--background-color);
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+}
+
+.header {
+    width: 100%;
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    z-index: 0;
+}
+
+.header .logo {
+    width: 130px;
+}
+
+.header .usuario {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header .usuario span {
+    font-size: 20px;
+    color: #7c9cff;
+    margin-right: 5px;
+}
+
+.header img {
+    width: 50px;
+}
+
+.header p {
+    opacity: 0;
+}
+
+.side-bar .tit {
+    padding-left: 20px;
+    transition: 0.5s;
+    color: #1f1f1f;
+    font-size: 25px;
+}
+
+.side-bar h1 {
+    font-size: 25px;
+}
+
+.side-bar.expanded .tit {
+    padding-left: 0;
+    transition: 0.5s;
+}
+
+.side-bar {
+    height: 80vh;
+    margin: 35px 15px;
+    width: 80px;
+    display: flex;
+    flex-direction: column;
+    background: var(--main-color);
+    border-radius: 18px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    transition: width 0.5s ease;
+    position: fixed;
+    z-index: 100;
+    margin-top: 70px;
+}
+
+.sidebar ul {
+    transition: margin-right 1s ease;
+}
+
+.side-bar.expanded {
+    width: 220px;
+}
+
+.side-bar.expanded ul {
+    margin-right: 160px;
+    transition: 0.5s;
+}
+
+.side-bar ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+.side-bar li {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    height: 60px;
+    margin-left: 15px;
+    width: 200px;
+}
+
+.side-bar a {
+    text-decoration: none;
+}
+
+.side-bar i {
+    color: #fffffc;
+    font-size: 25px;
+    width: 50px;
+    text-decoration: none;
+    height: 50px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.side-bar .uau {
+    color: #fffffc;
+    font-size: 25px;
+}
+
+.side-bar .uau2 {
+    color: #fffffc;
+    font-size: 25px;
+}
+
+.side-bar i:hover {
+    background: var(--second-color);
+    border-radius: 10px;
+    transition: 0.5s;
+}
+
+.side-bar.expanded li:hover {
+    background: var(--second-color);
+    border-radius: 10px;
+    transition: 0.5s;
+}
+
+.side-bar.expanded .meni:hover {
+    background: transparent;
+}
+
+.side-bar.expanded .pesqui:hover {
+    background: transparent;
+}
+
+.side-bar.expanded .menu {
+    font-size: 30px;
+}
+
+.side-bar span {
+    position: absolute;
+    left: 82px;
+    margin-top: 3px;
+    color: #fffffc;
+    transition: margin-left 0.5s ease;
+}
+
+.side-bar .menu:hover {
+    background: transparent;
+}
+
+.side-bar .pesq {
+    z-index: 100;
+}
+
+.side-bar .pesq:hover {
+    background: transparent;
+}
+
+.side-bar input {
+    height: 50px;
+    background: #94effd47;
+    border-radius: 10px;
+    border: none;
+    color: #fffffc;
+    position: absolute;
+    left: 10px;
+    width: 145px;
+    z-index: 0;
+    outline: none;
+    padding-left: 50px;
+}
+
+.side-bar.expanded i:hover {
+    background: transparent;
+}
+
+.side-bar.expanded input::placeholder {
+    padding-left: 2px;
+}
+
+.side-bar input::placeholder {
+    padding-left: 20px;
+}
+
+.backing {
+    position: relative;
+}
+
+.side-bar .bai1 {
+    margin-top: 220px
+}
+
+.backing svg {
+    transform: translateX(307px);
+}
+
+.side-bar .sci {
+    color: var(--second-color);
+}
+
+.infos {
+    width: 100%;
+    height: 50vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    height: 40vh;
+    margin-top: 50px;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.card img {
+    width: 150px;
+}
+
+.card p {
+    width: 200px;
+    text-align: center;
+}
+
+.card .caminhao {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.card .caminhao p {
+    margin-top: 70px;
+}
+
+.card .loja {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.card .loja p {
+    margin-top: 30px;
+}
+
+.monitoramento {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 80%;
+    height: 45vh;
+    margin-left: 30px;
+    margin-bottom: 30px;
+    border-radius: 18px;
+    background-color: #7c9cff;
+}
+
+.graficogrande h3 {
+    text-align: center;
+    color: #fff;
+    font-size: 20px;
+}
+
+
+.graficopequenoLoja h3 {
+    text-align: center;
+    color: #fff;
+    font-size: 20px;
+}
+
+.graficopequenoCaminhao h3 {
+    text-align: center;
+    color: #fff;
+    font-size: 20px;
+}
+
+.graficopequenoCaminhao {
+    padding-left: 20px;
+}
+
+.mensagem {
+    width: 20%;
+    height: 30vh;
+    color: #fff;
+    font-size: 35px;
+    font-weight: none;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.todinhos {
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+}
+
+.mensagem button {
+    width: 70%;
+    height: 50px;
+    border-radius: 20px;
+    background-color: #fc7687;
+    border: 2px solid #ff5e73;
+    color: #fff;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.mensagem a {
+    width: 100%;
+}
+
+.bai {
+    position: absolute;
+    top: 88%;
+    left: -2px;
+    margin-bottom: 10px;
+}
+
+.principal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 50vh;
+    margin-top: 80px;
+}
+
+
+.tabela {
+    width: 100%;
+    height: 32vh;
+    margin-bottom: 50px;
+}
+
+.tabela,
+tr,
+th,
+td {
+    border: solid 1px #000;
+    border-collapse: collapse;
+    padding: 10px;
+}
+
+.tabela button {
+    color: #507af8;
+    text-decoration: underline;
+    font-size: 14px;
+    background-color: transparent;
+    border: none;
+}
+
+.grandona {
+    width: 100%;
+    height: 40vh;
+    display: flex;
+    justify-content: center;
+}
+
+.detalhes {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    flex-direction: column;
+    width: 70%;
+    border-radius: 15px;
+    height: 30vh;
+    margin-top: 100px;
+    background-color: #7c9cff;
+}
+
+.detalhes p {
+    width: 70%;
+    margin-top: 20px;
+    color: #fff;
+    font-weight: none;
+    font-size: 40px;
+}
+
+.detalhes span {
+    width: 70%;
+    color: #fff;
+    font-size: 20px;
+}
+
+.graficos {
+    width: 100%;
+    height: 60vh;
+}
+
+.grafGde {
+    margin-left: 350px;
+    height: 70vh;
+}
+
+.scroll {
+    overflow: scroll;
+    height: 40vh;
+    margin-top: 30px;
+    margin-bottom: 50px;
+    display: flex;
+    justify-content: center;
+    width: 50%;
+}
