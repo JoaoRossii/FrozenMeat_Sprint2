@@ -1,8 +1,25 @@
 -- CRIAÇÃO DO BANCO DE DADOS
-drop database frozenMeat;
+-- drop database frozenMeat;
 create database frozenMeat;
 use frozenMeat;
 show tables;
+
+-- CRIAÇÃO DA TABELA EMPRESA
+create table empresa (
+  idEmpresa int primary key auto_increment,
+  nome varchar(256),
+  cep char(8)
+);
+
+-- CRIAÇÃO DA TABELA LOJA
+create table loja (
+  idLoja int primary key auto_increment,
+  nome varchar (256),
+  fkEmpresa int,
+
+  foreign key (fkEmpresa) references empresa(idEmpresa)
+);
+
 
 -- CRIAÇÃO DA TABELA DOS TIPOS DE USUARIO
 create table tipoUsuario (
@@ -22,27 +39,12 @@ create table usuario (
   senha varchar(256),
   cargo varchar(256),
   fkTipoUsuario int,
+  fkLoja int,
 -- constraint para cargo?? funcionario
 
-  foreign key (fkTipoUsuario) references tipoUsuario(idTipoUsuario)
+  foreign key (fkTipoUsuario) references tipoUsuario(idTipoUsuario),
+  foreign key (fkLoja) references loja(idLoja)
 );
-
--- CRIAÇÃO DA TABELA EMPRESA
-create table empresa (
-  idEmpresa int primary key auto_increment,
-  nome varchar(256),
-  cep char(8)
-);
-
--- CRIAÇÃO DA TABELA LOJA
-create table loja (
-  idLoja int primary key auto_increment,
-  nome varchar (256),
-  fkEmpresa int,
-
-  foreign key (fkEmpresa) references empresa(idEmpresa)
-);
-
 -- CRIAÇÃO DA TABELA DOS TIPOS DE FRIGORIFICO
 create table tipoFrigorifico (
   idTipoFrigorifico int primary key auto_increment,

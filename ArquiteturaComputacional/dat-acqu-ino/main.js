@@ -30,7 +30,7 @@ const serial = async (
             // altere!
             // Credenciais do banco de dados
              // Sempre alterar o IP para o IP da máquina local que estiver sendo utilizada!
-             host: '10.18.32.39',
+            host: '10.18.32.18',
             host: '10.18.32.39',
             user: 'aluno',
             password: 'Sptech#2024',
