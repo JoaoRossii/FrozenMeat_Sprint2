@@ -10,12 +10,12 @@ function autenticar(req, res) {
     } else if (senha == undefined) {
         res.status(400).send("Sua senha está indefinida!");
     } else {
-
         usuarioModel.autenticar(cpfCnpj, senha)
             .then(
                 function (resultadoAutenticar) {
                     console.log(`\nResultados encontrados: ${resultadoAutenticar.length}`);
                     console.log(`Resultados: ${JSON.stringify(resultadoAutenticar)}`); // transforma JSON em String
+                    console.log('Resultado em Object' + Object.values(resultadoAutenticar));
 
                     if (resultadoAutenticar.length == 1) {
                         console.log(resultadoAutenticar);
@@ -104,7 +104,79 @@ function cadastrar(req, res) {
     }
 }
 
+function todosFrigorificos(req, res) {
+
+    usuarioModel.todosFrigorificos()
+        .then(data => {
+            if(data && data.length > 0) {
+                console.log('Temperatura atual obtida com sucesso:', data);
+                res.json(data[0]);
+            } else {
+                res.status(404).json({ error: 'ERRO Temperatura não encontrada'});
+            }
+        })
+        .catch(error => {
+            console.error('Erro ao obter temperatura:', error);
+            res.status(500).json({ error: 'Erro ao obter temperatura:'})
+        });
+}
+function todosFrigorificosLoja(req, res) {
+
+    usuarioModel.todosFrigorificosLoja()
+        .then(data => {
+            if(data && data.length > 0) {
+                console.log('Temperatura atual obtida com sucesso:', data);
+                res.json(data[0]);
+            } else {
+                res.status(404).json({ error: 'ERRO Temperatura não encontrada'});
+            }
+        })
+        .catch(error => {
+            console.error('Erro ao obter temperatura:', error);
+            res.status(500).json({ error: 'Erro ao obter temperatura:'})
+        });
+}
+
+function todosFrigorificosCaminhao(req, res) {
+
+    usuarioModel.todosFrigorificosCaminhao()
+        .then(data => {
+            if(data && data.length > 0) {
+                console.log('Temperatura atual obtida com sucesso:', data);
+                res.json(data[0]);
+            } else {
+                res.status(404).json({ error: 'ERRO Temperatura não encontrada'});
+            }
+        })
+        .catch(error => {
+            console.error('Erro ao obter temperatura:', error);
+            res.status(500).json({ error: 'Erro ao obter temperatura:'})
+        });
+}
+
+function notificacaoAtencaoFrigorifico(req, res) {
+
+    usuarioModel.notificacaoAtencaoFrigorifico()
+        .then(data => {
+            if(data && data.length > 0) {
+                console.log('Temperatura atual obtida com sucesso:', data);
+                res.json(data[0]);
+            } else {
+                res.status(404).json({ error: 'ERRO Temperatura não encontrada'});
+            }
+        })
+        .catch(error => {
+            console.error('Erro ao obter temperatura:', error);
+            res.status(500).json({ error: 'Erro ao obter temperatura:'})
+        });
+}
+
+
 module.exports = {
     autenticar,
-    cadastrar
+    cadastrar,
+    todosFrigorificos,
+    todosFrigorificosLoja,
+    todosFrigorificosCaminhao,
+    notificacaoAtencaoFrigorifico
 }

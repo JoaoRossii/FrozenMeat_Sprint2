@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="resto.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <script src="../js/sessao.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <title>Dashboard</title>
@@ -73,7 +74,7 @@
                 </div>
             </div>
             <div class="mensagem">
-                <p>4 frigoríficos precisam da sua atenção!</p>
+                <p id="atencao"></p>
                 <a href="dashboard2.html"><button>Ver frigoríficos</button></a>
             </div>
         </div>
@@ -83,28 +84,153 @@
 
 </html>
 <script>
+
+    
     document.addEventListener("DOMContentLoaded", function () {
         const sidebar = document.getElementById("sidebar");
         const expandButton = document.getElementById("expandButton");
-
+        
         expandButton.addEventListener("click", function () {
             sidebar.classList.toggle("expanded");
         });
     });
+    
+
+    function frigorificosAtencao() {
+        fetch('/usuarios/notificacaoAtencaoFrigorifico')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Erro na requisição de temperatura');
+                }
+                return response.json();
+            })
+            .then (data => {
+                if (data.anormal !== undefined) {
+                    notificacaoAtual(data.anormal);
+                } else {
+                    throw new Error("Erro ao receber temperaturas");
+                }
+            })
+            .catch(error => {
+                console.error("Erro ao atulizar o gráfico:", error);
+            })
+    }
+    
+    function notificacaoAtual(anormal) {
+        const NotificacaoAnormal = [Number(anormal)];
+        
+        if (anormal > 0) {
+            atencao.innerHTML += `${NotificacaoAnormal} frigoríficos precisam da sua atenção!`;
+        } else {
+            atencao.innerHTML += `Nenhum frigorifico fora do ideal.`;
+        }
+    }
+
+    frigorificosAtencao();
+    
+    // Atualizar dados do grafico de todos os frigorificos - JR
+    function atualizarFrigorifico() {
+        fetch('/usuarios/todosFrigorificos')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Erro na requisição de temperatura');
+                }
+                return response.json();
+            })
+            .then (data => {
+                if (data.anormal !== undefined && data.normal !== undefined) {
+                    temperaturaAtual(data.anormal, data.normal);
+                } else {
+                    throw new Error("Erro ao receber temperaturas");
+                }
+            })
+            .catch(error => {
+                console.error("Erro ao atulizar o gráfico:", error);
+            })
+
+    }
+
+    function temperaturaAtual(anormal, normal) {
+        const data = [anormal, normal];
+        myChart.data.datasets[0].data = data;
+        myChart.update();
+        }
+        
+        atualizarFrigorifico();
+    
+
+    // Atualizar dados do gráfico de todos os frigorificos de loja
+    function atualizarFrigorificoLoja() {
+        fetch('/usuarios/todosFrigorificosLoja')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Erro na requisição de temperatura');
+                }
+                return response.json();
+            })
+            .then (data => {
+                if (data.anormal !== undefined && data.normal !== undefined) {
+                    temperaturaAtualLoja(data.anormal, data.normal);
+                } else {
+                    throw new Error("Erro ao receber temperaturas");
+                }
+            })
+            .catch(error => {
+                console.error("Erro ao atulizar o gráfico:", error);
+            })
+    }
+
+    function temperaturaAtualLoja(anormal, normal) {
+        const data = [anormal, normal];
+        myChart2.data.datasets[0].data = data;
+        myChart2.update();
+    }
+
+    atualizarFrigorificoLoja();
+
+
+    // Atualizar dados do gráfico de todos os frigorificos de caminhão
+    function atualizarFrigorificoCaminhao() {
+        fetch('/usuarios/todosFrigorificosCaminhao')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Erro na requisição de temperatura');
+                }
+                return response.json();
+            })
+            .then (data => {
+                if (data.anormal !== undefined && data.normal !== undefined) {
+                    temperaturaAtualCaminhao(data.anormal, data.normal);
+                } else {
+                    throw new Error("Erro ao receber temperaturas");
+                }
+            })
+            .catch(error => {
+                console.error("Erro ao atulizar o gráfico:", error);
+            })
+    }
+
+    atualizarFrigorificoCaminhao();
+
+    function temperaturaAtualCaminhao(anormal, normal) {
+        const data = [anormal, normal];
+        myChart3.data.datasets[0].data = data;
+        myChart3.update();
+    }
 
 
     //gráficos de pizza
     const ctx = document.getElementById('myChart');
 
-    new Chart(ctx, {
+    const myChart = new Chart(ctx, {
         type: 'pie',
         data: {
-            labels: ['Frigoríficos Normais', 'Frigoríficos Anormais'],
+            labels: ['Frigorificos Anormais', ' Frigorificos Normais'],
             datasets: [{
                 label: 'Frigoríficos',
-                backgroundColor: ['#fc7687', '#bf3f55'],
+                backgroundColor: [ '#bf3f55', '#fc7687'],
                 borderColor: '#0000003a',
-                data: [96, 4],
+                data: [0, 0],
                 borderWidth: 1
             }]
         },
@@ -121,15 +247,15 @@
 
     const ctx2 = document.getElementById('myChart2');
 
-    new Chart(ctx2, {
+    const myChart2 = new Chart(ctx2, {
         type: 'pie',
         data: {
-            labels: ['Frigoríficos Normais', 'Frigoríficos Anormais'],
+            labels: ['Frigorificos Anormais', ' Frigorificos Normais'],
             datasets: [{
                 label: 'Frigoríficos',
-                backgroundColor: ['#fc7687', '#bf3f55'],
+                backgroundColor: [ '#bf3f55', '#fc7687'],
                 borderColor: '#0000003a',
-                data: [49, 1],
+                data: [0, 0],
                 borderWidth: 1
             }]
         },
@@ -146,15 +272,15 @@
 
     const ctx3 = document.getElementById('myChart3');
 
-    new Chart(ctx3, {
+    const myChart3 = new Chart(ctx3, {
         type: 'pie',
         data: {
-            labels: ['Frigoríficos Normais', 'Frigoríficos Anormais'],
+            labels: ['Frigorificos Anormais', ' Frigorificos Normais'],
             datasets: [{
                 label: 'Frigoríficos',
-                backgroundColor: ['#fc7687', '#bf3f55'],
+                backgroundColor: [ '#bf3f55', '#fc7687'],
                 borderColor: '#0000003a',
-                data: [47, 3],
+                data: [0, 0],
                 borderWidth: 1
             }]
         },

@@ -5,19 +5,8 @@ function autenticar(cpfCnpj, senha) {
     var instrucaoSql = `
         SELECT idUsuario, nome, email FROM usuario WHERE cpf_cnpj = '${cpfCnpj}' AND senha = '${senha}';
     `;
-    var instrucaoSqlGer = `
-        SELECT idUsuario, nome, email FROM usuario WHERE cpf_cnpj = '${cpfCnpj}' AND senha = '${senha} WHERE fkTipousuario = 2';
-    `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
-    if (database.executar(instrucaoSql) == true) {
-        return database.executar(instrucaoSql);
-
-    } else if (database.executar(instrucaoSqlGer) == true) {
-        return database.executar(instrucaoSqlGer);
-
-    } else {
-        console.log("Erro ao efetuar o login, Verifique seus dados");
-    }
+    return database.executar(instrucaoSql);
     
 }
 
@@ -34,7 +23,59 @@ function cadastrar(nome, cpfCnpj, cargo, email, telefone, senha) {
     return database.executar(instrucaoSql);
 }
 
+// Gráfico de todos os frigorificos da Dashboard
+function todosFrigorificos() {
+    var mysqlQuery = `
+        SELECT SUM(CASE WHEN anormal.temperatura < 0 OR anormal.temperatura > 4 THEN 1 ELSE 0 END) AS anormal,
+            SUM(CASE WHEN anormal.temperatura BETWEEN 0 AND 4 THEN 1 ELSE 0 END) AS normal
+            FROM frigorifico
+            JOIN sensor ON fkFrigorifico = idFrigorifico
+            JOIN historicofrigorifico AS anormal ON anormal.fkSensor = idSensor;
+    `;
+    console.log("Executando a instrução SQL: \n" + mysqlQuery);
+    return database.executar(mysqlQuery);
+}
+
+// Gráfico de todos os frigorificos da Dashboard Loja
+function todosFrigorificosLoja() {
+    var mysqlQuery = `
+        SELECT SUM(CASE WHEN anormal.temperatura < 0 OR anormal.temperatura > 4 THEN 1 ELSE 0 END) AS anormal,
+	        SUM(CASE WHEN anormal.temperatura BETWEEN 0 AND 4 THEN 1 ELSE 0 END) AS normal
+            FROM frigorifico JOIN sensor ON fkFrigorifico = idFrigorifico
+            JOIN historicofrigorifico AS anormal ON anormal.fkSensor = idSensor
+            JOIN loja on loja.idLoja = fkLoja;
+    `;
+    console.log("Executando a instrução SQL: \n" + mysqlQuery);
+    return database.executar(mysqlQuery);
+}
+
+// Gráfico de todos os frigorificos da Dashboard Caminhao
+function todosFrigorificosCaminhao() {
+    var mysqlQuery = `
+        SELECT SUM(CASE WHEN anormal.temperatura < 0 OR anormal.temperatura > 4 THEN 1 ELSE 0 END) AS anormal,
+	        SUM(CASE WHEN anormal.temperatura BETWEEN 0 AND 4 THEN 1 ELSE 0 END) AS normal
+            FROM frigorifico JOIN sensor ON fkFrigorifico = idFrigorifico
+            JOIN historicofrigorifico AS anormal ON anormal.fkSensor = idSensor
+            JOIN caminhao on caminhao.fkFrigorifico = idFrigorifico;
+    `;
+    console.log("Executando a instrução SQL: \n" + mysqlQuery);
+    return database.executar(mysqlQuery);
+}
+
+function notificacaoAtencaoFrigorifico() {
+    var mysqlQuery = `
+        select count(anormal.temperatura) as anormal from frigorifico join sensor on fkFrigorifico = idFrigorifico 
+        join historicofrigorifico as anormal on anormal.fkSensor = idSensor and (anormal.temperatura < 0 or anormal.temperatura > 4);
+    `;
+    console.log("Executando a instrução SQL: \n" + mysqlQuery);
+    return database.executar(mysqlQuery);
+}
+
 module.exports = {
     autenticar,
-    cadastrar
+    cadastrar,
+    todosFrigorificos,
+    todosFrigorificosLoja,
+    todosFrigorificosCaminhao,
+    notificacaoAtencaoFrigorifico
 };
