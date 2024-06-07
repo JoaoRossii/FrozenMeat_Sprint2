@@ -248,10 +248,10 @@ update sensor set fator = 0.57 where idSensor = 8;
 -- select sensor.idSensor as sensor, (historicoFrigorifico.temperatura * sensor.fator) as temperatura from sensor, historicoFrigorifico;
 
 create view Sensores as (select sensor.idSensor as sensor, (historicoFrigorifico.temperatura * sensor.fator) as temperatura from sensor, historicoFrigorifico);
-select * from Sensores where sensor = 2;
-select * from Sensores where sensor = 2;
-select * from Sensores where sensor = 2;
-select * from Sensores where sensor = 2;
+select * from Sensores where sensor = 2 limit 24;
+select * from Sensores where sensor = 2 limit 24;
+select * from Sensores where sensor = 2 limit 24;
+select * from Sensores where sensor = 2 limit 24;
 
 
 insert into frigorifico values 
