@@ -39,20 +39,20 @@
         <div class="container">
             <div class="card">
                 <img src="freezer.png">
-                <p>Você possui 100 frigoríficos sob monitoramento FrozenMeat.</p>
-            </div>
-
-            <div class="card">
-                <div class="caminhao">
-                    <img src="caminhão.png">
-                    <p>50 sensores estão instalados nos caminhões de transporte Swift.</p>
-                </div>
+                <p id="cardFreezer"></p>
             </div>
 
             <div class="card">
                 <div class="loja">
                     <img src="loja.png">
-                    <p>50 sensores estão instalados nos frigoríficos das lojas Swift.</p>
+                    <p id="cardLoja">50 sensores estão instalados nos frigoríficos das lojas Swift.</p>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="caminhao">
+                    <img src="caminhão.png">
+                    <p id="cardCaminhao"></p>
                 </div>
             </div>
         </div>
@@ -94,7 +94,6 @@
             sidebar.classList.toggle("expanded");
         });
     });
-    
 
     function frigorificosAtencao() {
         fetch('/usuarios/notificacaoAtencaoFrigorifico')
@@ -140,6 +139,7 @@
             .then (data => {
                 if (data.anormal !== undefined && data.normal !== undefined) {
                     temperaturaAtual(data.anormal, data.normal);
+                    alertaCardFrigo(data.anormal, data.normal)
                 } else {
                     throw new Error("Erro ao receber temperaturas");
                 }
@@ -154,7 +154,17 @@
         const data = [anormal, normal];
         myChart.data.datasets[0].data = data;
         myChart.update();
+    }
+
+    function alertaCardFrigo(anormal, normal) {
+        const todosFrigo = [Number(anormal) + Number(normal)];
+
+        if (todosFrigo > 0) {
+            cardFreezer.innerHTML = `Você possúi ${todosFrigo} sensores estão instalados nos frigoríficos das lojas Swift.`;
+        } else {
+            cardFreezer.innerHTML = `Você não possui nenhum frigoríficos sob monitoramento FrozenMeat.`;
         }
+    }
         
         atualizarFrigorifico();
     
@@ -171,6 +181,7 @@
             .then (data => {
                 if (data.anormal !== undefined && data.normal !== undefined) {
                     temperaturaAtualLoja(data.anormal, data.normal);
+                    alertaCardLoja(data.anormal, data.normal)
                 } else {
                     throw new Error("Erro ao receber temperaturas");
                 }
@@ -184,6 +195,16 @@
         const data = [anormal, normal];
         myChart2.data.datasets[0].data = data;
         myChart2.update();
+    }
+
+    function alertaCardLoja(anormal, normal) {
+        const lojaFrigo = [Number(anormal) + Number(normal)];
+
+        if (lojaFrigo > 0) {
+            cardLoja.innerHTML = `${lojaFrigo} sensores estão instalados nos frigoríficos das lojas Swift.`;
+        } else {
+            cardLoja.innerHTML = `Nenhum sensor esta instalado nos frigoríficos das lojas Swift.`;
+        }
     }
 
     atualizarFrigorificoLoja();
@@ -201,6 +222,7 @@
             .then (data => {
                 if (data.anormal !== undefined && data.normal !== undefined) {
                     temperaturaAtualCaminhao(data.anormal, data.normal);
+                    alertaCardTruck(data.anormal, data.normal);
                 } else {
                     throw new Error("Erro ao receber temperaturas");
                 }
@@ -210,15 +232,26 @@
             })
     }
 
-    atualizarFrigorificoCaminhao();
-
     function temperaturaAtualCaminhao(anormal, normal) {
         const data = [anormal, normal];
         myChart3.data.datasets[0].data = data;
         myChart3.update();
     }
 
+    function alertaCardTruck(anormal, normal) {
+        const truckFrigo = [Number(anormal) + Number(normal)];
 
+        if (truckFrigo > 0) {
+            cardCaminhao.innerHTML = `${truckFrigo} sensores estão instalados nos caminhões de transporte Swift.`;
+        } else {
+            cardCaminhao.innerHTML = `Nenhum sensor esta instalado nos caminhões de transporte Swift.`;
+        }
+    }
+
+    atualizarFrigorificoCaminhao();
+
+
+    
     //gráficos de pizza
     const ctx = document.getElementById('myChart');
 
