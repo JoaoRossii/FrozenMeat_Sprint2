@@ -128,81 +128,81 @@ create table historicoFrigorifico (
 -- ("Pessoa Jurídica");
 
 -- ADIÇÃO DOS DADOS USUARIOS
-INSERT INTO usuario (registro, nome, email, telefone, cpf_cnpj, senha, cargo, fkTipoUsuario) VALUES
-   ("2022-07-06 09:29:26","Boris Bradley","borisbradley@hotmail.com","11948489368", "50124842855","Ptbuk3637","usuario",1),             -- usuario 
-   ("2023-09-12 10:23:25","Wesley Mclean","wesleymclean@outlook.com","11929345786", "50326957842","Kxvca7527","funcionário",1),         -- funcionário 
-   ("2018-06-27 17:04:11","Lila Rowland","lilarowland3038@hotmail.com","11925878821", "50666443857","Lgcrr2226","funcionário",1),       -- funcionário 
-   ("2018-10-24 15:26:57","Elvis Berger","elvisberger222@outlook.com","11944647365", "50377147892","Bhhld4520","gerente",1),            -- funcionário 
-   ("2023-06-06 20:36:14","Summer Lewis","summerlewis@hotmail.com","11988441252", "15841944000143","Bsymz6133","dono",2),               -- dono 
-   ("2021-11-19 18:50:22","Joan Gray","joangray@hotmail.com","11906954701", "81561418000284","Swjqq0648","dono",2),                     -- dono 
-   ("2021-09-26 13:16:58","Genevieve Sargent","genevievesargent@google.com","11918372815", "50538475897","Yceiw4299","gerente",1),      -- gerente 
-   ("2020-08-14 17:55:09","Ezekiel Murray","ezekielmurray@outlook.com","11982356205", "50674447847","Hwjyr3182","funcionário",1),      -- funcionário
-   ("2019-12-16 22:42:41","Ishmael Booker","ishmaelbooker6726@google.com","11961751818", "50701523881","Smkku6636","funcionário",1);   -- funcionário 
-select * from usuario;
+-- INSERT INTO usuario (registro, nome, email, telefone, cpf_cnpj, senha, cargo, fkTipoUsuario) VALUES
+   -- ("2022-07-06 09:29:26","Boris Bradley","borisbradley@hotmail.com","11948489368", "50124842855","Ptbuk3637","usuario",1),             -- usuario 
+   -- ("2023-09-12 10:23:25","Wesley Mclean","wesleymclean@outlook.com","11929345786", "50326957842","Kxvca7527","funcionário",1),         -- funcionário 
+   -- ("2018-06-27 17:04:11","Lila Rowland","lilarowland3038@hotmail.com","11925878821", "50666443857","Lgcrr2226","funcionário",1),       -- funcionário 
+   -- ("2018-10-24 15:26:57","Elvis Berger","elvisberger222@outlook.com","11944647365", "50377147892","Bhhld4520","gerente",1),            -- funcionário 
+   -- ("2023-06-06 20:36:14","Summer Lewis","summerlewis@hotmail.com","11988441252", "15841944000143","Bsymz6133","dono",2),               -- dono 
+   -- ("2021-11-19 18:50:22","Joan Gray","joangray@hotmail.com","11906954701", "81561418000284","Swjqq0648","dono",2),                     -- dono 
+   -- ("2021-09-26 13:16:58","Genevieve Sargent","genevievesargent@google.com","11918372815", "50538475897","Yceiw4299","gerente",1),      -- gerente 
+   -- ("2020-08-14 17:55:09","Ezekiel Murray","ezekielmurray@outlook.com","11982356205", "50674447847","Hwjyr3182","funcionário",1),      -- funcionário
+   -- ("2019-12-16 22:42:41","Ishmael Booker","ishmaelbooker6726@google.com","11961751818", "50701523881","Smkku6636","funcionário",1);   -- funcionário 
+-- select * from usuario;
 
 -- ADIÇÃO DOS DADOS DAS EMPRESAS
- INSERT INTO empresa (nome, cep) VALUES
- ( "Perdigão","52455548"),
- ( "Seara","85102382"),
- ( "Swift","61742737");
-select * from empresa;
-select * from loja;
-select * from tipoFrigorifico;
+ -- INSERT INTO empresa (nome, cep) VALUES
+ -- ( "Perdigão","52455548"),
+ -- ( "Seara","85102382"),
+ -- ( "Swift","61742737");
+-- select * from empresa;
+-- select * from loja;
+-- select * from tipoFrigorifico;
 
 -- ADIÇÃO DOS DADOS DAS LOJAS
- INSERT INTO loja (nome, fkEmpresa) VALUES
- ( "Perdigão Santo André",1),
- ( "Seara Alimentos",2),
- ( "Swift Consolação",3);
+ -- INSERT INTO loja (nome, fkEmpresa) VALUES
+ -- ( "Perdigão Santo André",1),
+ -- ( "Seara Alimentos",2),
+ -- ( "Swift Consolação",3);
 
 -- ADIÇÃO DOS DADOS DO TIPO DE FRIGORIFICO
- INSERT INTO tipoFrigorifico(tipo) VALUES
- ("Fixo"),
- ("Movél");
+ -- INSERT INTO tipoFrigorifico(tipo) VALUES
+ -- ("Fixo"),
+ -- ("Movél");
 
 -- ADIÇÃO DOS DADOS DOS FRIGORIFICOS
- INSERT INTO frigorifico(temperatura_ideal_minima, temperatura_ideal_maxima, fkTipo, fkLoja) VALUES
- (0,4,1,3),
- (0,4,1,3),
- (0,4,1,3),
- (-4,2,2,2),
- (-4,2,2,2),
- (-2,2,2,1),
- (-2,2,2,1);
-select * from sensor;
+ -- INSERT INTO frigorifico(temperatura_ideal_minima, temperatura_ideal_maxima, fkTipo, fkLoja) VALUES
+ -- (0,4,1,3),
+ -- (0,4,1,3),
+ -- (0,4,1,3),
+ -- (-4,2,2,2),
+ -- (-4,2,2,2),
+ -- (-2,2,2,1),
+ -- (-2,2,2,1);
+-- select * from sensor;
 -- ADIÇÃO DOS DADOS DOS SENSORES DOS FRIGORIFICOS
- INSERT INTO sensor (fkFrigorifico) VALUES
- (8),
- (9),
- (10),
- (11),
- (12),
- (13),
- (14);
+ -- INSERT INTO sensor (fkFrigorifico) VALUES
+ -- (8),
+ -- (9),
+ -- (10),
+ -- (11),
+ -- (12),
+ -- (13),
+ -- (14);
 
 -- ADIÇÃO DOS DADOS DO HISTORICO DE REGISTROS DOS SENSORES DOS FRIGORIFICOS
 -- TEM QUE SER ATRAVES DO ARDUINO
-INSERT INTO historicoFrigorifico(registrado_em, temperatura, fkSensor) VALUES
-("2024-02-03 11:23:22",3,15);
+-- INSERT INTO historicoFrigorifico(registrado_em, temperatura, fkSensor) VALUES
+-- ("2024-02-03 11:23:22",3,15);
 
- INSERT INTO relacao (fkUsuario, fkFrigorifico, dataAcesso) VALUES
- ( 1 ,8,default),
- ( 2,9,default),
- ( 7,10,default);
+ -- INSERT INTO relacao (fkUsuario, fkFrigorifico, dataAcesso) VALUES
+ -- ( 1 ,8,default),
+ -- ( 2,9,default),
+ -- ( 7,10,default);
 
-select * from sensor join historicofrigorifico on fksensor = idsensor;
+-- select * from sensor join historicofrigorifico on fksensor = idsensor;
 
 -- ADIÇÃO DOS DADOS DA TRANSPORTADORA
- INSERT INTO transportadora (nome, cep, frotas) VALUES
- ('Vale do Mogi','59460368','45'),
- ('KP Transportes','74102313','30');
+ -- INSERT INTO transportadora (nome, cep, frotas) VALUES
+ -- ('Vale do Mogi','59460368','45'),
+ -- ('KP Transportes','74102313','30');
 
  -- ADIÇÃO DOS DADOS DO CAMINHÃO
-INSERT INTO caminhao (placa, modelo, fkFrigorifico, fkTransportadora) VALUES
- ("WLS7H61","Actros Refrigerado",8,1),
- ("KLX9D72","Actros Refrigerado",9,1),
- ("GIU2F75","Scania R-series Refrigerado",13,2),
- ("RXP9G14","Scania R-series Refrigerado",14,2);
+-- INSERT INTO caminhao (placa, modelo, fkFrigorifico, fkTransportadora) VALUES
+ -- ("WLS7H61","Actros Refrigerado",8,1),
+ -- ("KLX9D72","Actros Refrigerado",9,1),
+ -- ("GIU2F75","Scania R-series Refrigerado",13,2),
+ -- ("RXP9G14","Scania R-series Refrigerado",14,2);
 
 -- CRIAÇÃO DOS JOIN DAS TABELAS
 
@@ -238,19 +238,43 @@ JOIN frigorifico ON sensor.fkFrigorifico = frigorifico.idFrigorifico;
 -- CREATE VIEW SIMULANDO VÁRIOS SENSORES COM APENAS 1 SENSOR FÍSICO
 alter table sensor add column fator float;
 update sensor set fator = 0.5 where idSensor = 1;
-update sensor set fator = 0.2 where idSensor = 2;
+update sensor set fator = 1.5 where idSensor = 2;
 update sensor set fator = 0.78 where idSensor = 3;
 update sensor set fator = 0.125 where idSensor = 4;
-update sensor set fator = 0.43 where idSensor = 5;
-update sensor set fator = 0.9 where idSensor = 6;
-update sensor set fator = 1.1 where idSensor = 7;
+update sensor set fator = 1.1 where idSensor = 5;
+update sensor set fator = 1 where idSensor = 6;
+update sensor set fator = 0.6 where idSensor = 7;
+update sensor set fator = 0.57 where idSensor = 8;
 -- select sensor.idSensor as sensor, (historicoFrigorifico.temperatura * sensor.fator) as temperatura from sensor, historicoFrigorifico;
 
 create view Sensores as (select sensor.idSensor as sensor, (historicoFrigorifico.temperatura * sensor.fator) as temperatura from sensor, historicoFrigorifico);
-select * from Sensores;
+select * from Sensores where sensor = 2;
+select * from Sensores where sensor = 2;
+select * from Sensores where sensor = 2;
+select * from Sensores where sensor = 2;
 
-truncate table historicoFrigorifico;
-truncate table usuario;
+
+insert into frigorifico values 
+(default, default, 0, 4, null, null),
+(default, default, 0, 4, null, null),
+(default, default, 0, 4, null, null),
+(default, default, 0, 4, null, null),
+(default, default, 0, 4, null, null),
+(default, default, 0, 4, null, null),
+(default, default, 0, 4, null, null),
+(default, default, 0, 4, null, null);
+
+
+insert into sensor values 
+(default, 1, default),
+(default, 2, default),
+(default, 3, default),
+(default, 4, default),
+(default, 5, default),
+(default, 6, default),
+(default, 7, default),
+(default, 8, default);
+
 
 select * from usuario;
 select * from historicoFrigorifico;
