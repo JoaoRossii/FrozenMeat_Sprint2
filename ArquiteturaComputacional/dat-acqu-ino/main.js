@@ -78,14 +78,13 @@ const serial = async (
 
         // Insere os dados no banco de dados (se habilitado)
         if (HABILITAR_OPERACAO_INSERIR) {
-
-            // altere!
-            // Este insert irá inserir os dados na tabela "medida"
+          for(var i = 2;i<6;i++){
             await poolBancoDados.execute(
-                'INSERT INTO historicoFrigorifico (temperatura) VALUES (?)',
-                [lm35Temperatura]
+                
+                'INSERT INTO historicoFrigorifico (temperatura, fkSensor) VALUES (?,?)',
+                [lm35Temperatura,i]
             );
-            console.log(lm35Temperatura)
+        }
         }
         
     });

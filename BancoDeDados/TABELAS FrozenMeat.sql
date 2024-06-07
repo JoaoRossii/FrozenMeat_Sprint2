@@ -117,7 +117,7 @@ create table historicoFrigorifico (
 
   primary key (idHistoricoFrigorifico, fkSensor),
   constraint fkSensor foreign key (fkSensor) references sensor(idSensor)
-);
+); 
 
 
 -- CRIÇÃO DOS INSERT DE CADA TABELA
@@ -238,20 +238,22 @@ JOIN frigorifico ON sensor.fkFrigorifico = frigorifico.idFrigorifico;
 -- CREATE VIEW SIMULANDO VÁRIOS SENSORES COM APENAS 1 SENSOR FÍSICO
 alter table sensor add column fator float;
 update sensor set fator = 0.5 where idSensor = 1;
-update sensor set fator = 1.5 where idSensor = 2;
-update sensor set fator = 0.78 where idSensor = 3;
-update sensor set fator = 0.125 where idSensor = 4;
-update sensor set fator = 1.1 where idSensor = 5;
+update sensor set fator = 2.5 where idSensor = 2;
+update sensor set fator = -0.2 where idSensor = 3;
+update sensor set fator = -0.5 where idSensor = 4;
+update sensor set fator = 2.8 where idSensor = 5;
 update sensor set fator = 1 where idSensor = 6;
 update sensor set fator = 0.6 where idSensor = 7;
 update sensor set fator = 0.57 where idSensor = 8;
 -- select sensor.idSensor as sensor, (historicoFrigorifico.temperatura * sensor.fator) as temperatura from sensor, historicoFrigorifico;
 
 create view Sensores as (select sensor.idSensor as sensor, (historicoFrigorifico.temperatura * sensor.fator) as temperatura from sensor, historicoFrigorifico);
-select * from Sensores where sensor = 2 limit 24;
-select * from Sensores where sensor = 2 limit 24;
-select * from Sensores where sensor = 2 limit 24;
-select * from Sensores where sensor = 2 limit 24;
+
+select truncate(temperatura, 2) as temperatura, sensor from Sensores where sensor = 2 limit 24;
+select truncate(temperatura, 2) as temperatura, sensor from Sensores where sensor = 3 limit 24;
+select truncate(temperatura, 2) as temperatura, sensor from Sensores where sensor = 4 limit 24;
+select truncate(temperatura, 2) as temperatura, sensor from Sensores where sensor = 5 limit 24;
+
 
 
 insert into frigorifico values 
@@ -275,7 +277,7 @@ insert into sensor values
 (default, 7, default),
 (default, 8, default);
 
-
+select * from sensor;
 select * from usuario;
 select * from historicoFrigorifico;
 
