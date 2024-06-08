@@ -422,16 +422,17 @@ td {
 
 .detalhes p {
     width: 70%;
-    margin-top: 20px;
+    margin-bottom: 50px;
     color: #fff;
     font-weight: none;
     font-size: 40px;
 }
 
 .detalhes span {
-    width: 70%;
+    width: 60%;
     color: #fff;
     font-size: 20px;
+    text-align: left;
 }
 
 .graficos {

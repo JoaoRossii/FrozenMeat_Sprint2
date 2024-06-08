@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Criptografia</h1>
+    <hr />
+    Nome:<input type="text" id="ipt_senha" /> <br />
+    <button onclick="Criptografia()">criptar</button>
+</body>
+
+</html>
+
+<script>
+    console.log(1234)
+    // var criptar = [];
+    var senhaAntiga = [];
+    const senhaCriptografada = [];
+
+    function Criptografia() {
+        const A = "a0#";
+        const a = "a1#";
+        const B = "b0#";
+        const b = "b1#";
+        const C = "c0#";
+        const c = "c1#";
+        const D = "d0#";
+        const d = "d1#";
+        const E = "e0#";
+        const e = "e1#";
+        const F = "f0#";
+        const f = "f1#";
+        const G = "g0#";
+        const g = "g1#";
+        const H = "h0#";
+        const h = "h1#";
+        const I = "i0#";
+        const i = "i1#";
+        const J = "j0#";
+        const j = "j1#";
+        const K = "k0#";
+        const k = "k1#";
+        const L = "l0#";
+        const l = "l1#";
+        const M = "m0#";
+        const m = "m1#";
+        const N = "n0#";
+        const n = "n1#";
+        const O = "o0#";
+        const o = "o1#";
+        const P = "p0#";
+        const p = "p1#";
+        const Q = "q0#";
+        const q = "q1#";
+        const R = "r0#";
+        const r = "r1#";
+        const S = "s0#";
+        const s = "s1#";
+        const T = "t0#";
+        const t = "t1#";
+        const U = "u0#";
+        const u = "u1#";
+        const V = "v0#";
+        const v = "v1#";
+        const W = "w0#";
+        const w = "w1#";
+        const X = "x0#";
+        const x = "x1#";
+        const Y = "y0#";
+        const y = "y1#";
+        const Z = "z0#";
+        const z = "z1#";
+        const um = "01$";
+        const dois = "02$";
+        const tres = "03$";
+        const quatro = "04$";
+        const cinco = "05$";
+        const seis = "06$";
+        const sete = "07$";
+        const oito = "08$";
+        const nove = "09$";
+        const zero = "00$";
+        const arroba = "ar4";
+        const cifrao = "5if";
+        const porcentagem = "p0r";
+        const Ecomer = "ec4";
+        
+        var senha = ipt_senha.value;
+
+        // criptar.push(senha);
+        senhaAntiga.push(senha);
+
+
+        var palavra = senhaAntiga[0];
+
+
+        var senhaSecreta = "";
+        for (index = 0; index < palavra.length; index++) {
+
+            if (palavra[index] == "j") {
+                senhaSecreta += j;
+                console.log(senhaSecreta[index]);
+
+            } else if (palavra[index] == "o") {
+                senhaSecreta += o;
+                console.log(senhaSecreta[index]);
+
+            } else if (palavra[index] == "a") {
+                senhaSecreta += a;
+                console.log(senhaSecreta[index]);
+
+            } else if (palavra[index] == "2") {
+                senhaSecreta += dois;
+                console.log(senhaSecreta[index]);
+
+            } else if (palavra[index] == "0") {
+                senhaSecreta += zero;
+                console.log(senhaSecreta[index]);
+
+            } else if (palavra[index] == "5") {
+                senhaSecreta += cinco;
+                console.log(senhaSecreta[index]);
+            }
+        }
+        senhaCriptografada[0] = senhaSecreta;
+    }
+</script>
