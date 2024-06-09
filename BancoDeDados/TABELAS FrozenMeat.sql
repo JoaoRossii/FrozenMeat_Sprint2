@@ -1,5 +1,6 @@
 -- CRIAÇÃO DO BANCO DE DADOS
--- drop database frozenMeat;
+drop database frozenMeat;
+create database frozenMeat;
 use frozenMeat;
 show tables;
 
@@ -56,6 +57,7 @@ create table tipoFrigorifico (
 -- CRIAÇÃO DA TABELA FRIGORIFICO
 create table frigorifico (
   idFrigorifico int primary key auto_increment,
+  nome varchar(256),
   registrado_em datetime default current_timestamp,
   temperatura_ideal_minima double,
   temperatura_ideal_maxima double,
@@ -123,9 +125,9 @@ create table historicoFrigorifico (
 -- CRIÇÃO DOS INSERT DE CADA TABELA
 
 -- ADIÇÃO DOS TIPOS DE USUARIO
--- INSERT INTO tipoUsuario (tipo) VALUES
--- ("Pessoa Física"),
--- ("Pessoa Jurídica");
+INSERT INTO tipoUsuario (tipo) VALUES
+("Pessoa Física"),
+("Pessoa Jurídica");
 
 -- ADIÇÃO DOS DADOS USUARIOS
 INSERT INTO usuario (registro, nome, email, telefone, cpf_cnpj, senha, cargo, fkTipoUsuario) VALUES
@@ -161,34 +163,35 @@ select * from tipoFrigorifico;
  ("Movél");
 
 -- ADIÇÃO DOS DADOS DOS FRIGORIFICOS
- INSERT INTO frigorifico(temperatura_ideal_minima, temperatura_ideal_maxima, fkTipo, fkLoja) VALUES
- (0,4,1,3),
- (0,4,1,3),
- (0,4,1,3),
- (-4,2,2,2),
- (-4,2,2,2),
- (-2,2,2,1),
- (-2,2,2,1);
+ INSERT INTO frigorifico(nome, temperatura_ideal_minima, temperatura_ideal_maxima, fkTipo, fkLoja) VALUES
+ ('a',0,4,1,3),
+ ('b',0,4,1,3),
+ ('c',0,4,1,3),
+ ('d',-4,2,2,2),
+ ('e',-4,2,2,2),
+ ('f',-2,2,2,1),
+ ('g',-2,2,2,1);
 select * from sensor;
 -- ADIÇÃO DOS DADOS DOS SENSORES DOS FRIGORIFICOS
  INSERT INTO sensor (fkFrigorifico) VALUES
- (8),
- (9),
- (10),
- (11),
- (12),
- (13),
- (14);
+ (1),
+ (2),
+ (3),
+ (4),
+ (5),
+ (6),
+ (7);
+
 
 -- ADIÇÃO DOS DADOS DO HISTORICO DE REGISTROS DOS SENSORES DOS FRIGORIFICOS
 -- TEM QUE SER ATRAVES DO ARDUINO
 INSERT INTO historicoFrigorifico(registrado_em, temperatura, fkSensor) VALUES
-("2024-02-03 11:23:22",3,15);
+("2024-02-03 11:23:22",3,1);
 
  INSERT INTO relacao (fkUsuario, fkFrigorifico, dataAcesso) VALUES
- ( 1 ,8,default),
- ( 2,9,default),
- ( 7,10,default);
+ ( 1 ,6,default),
+ ( 2,1,default),
+ ( 7,3,default);
 
 select * from sensor join historicofrigorifico on fksensor = idsensor;
 
@@ -199,10 +202,10 @@ select * from sensor join historicofrigorifico on fksensor = idsensor;
 
  -- ADIÇÃO DOS DADOS DO CAMINHÃO
 INSERT INTO caminhao (placa, modelo, fkFrigorifico, fkTransportadora) VALUES
- ("WLS7H61","Actros Refrigerado",8,1),
- ("KLX9D72","Actros Refrigerado",9,1),
- ("GIU2F75","Scania R-series Refrigerado",13,2),
- ("RXP9G14","Scania R-series Refrigerado",14,2);
+ ("WLS7H61","Actros Refrigerado",1,1),
+ ("KLX9D72","Actros Refrigerado",3,1),
+ ("GIU2F75","Scania R-series Refrigerado",5,2),
+ ("RXP9G14","Scania R-series Refrigerado",4,2);
 
 -- CRIAÇÃO DOS JOIN DAS TABELAS
 
@@ -250,9 +253,6 @@ update sensor set fator = 1.1 where idSensor = 7;
 create view Sensores as (select sensor.idSensor as sensor, (historicoFrigorifico.temperatura * sensor.fator) as temperatura from sensor, historicoFrigorifico);
 select * from Sensores;
 
-truncate table historicoFrigorifico;
-truncate table usuario;
-
 select * from usuario;
 select * from historicoFrigorifico;
 
@@ -293,3 +293,15 @@ SELECT
 FROM frigorifico JOIN sensor ON fkFrigorifico = idFrigorifico
 JOIN historicofrigorifico AS anormal ON anormal.fkSensor = idSensor
 JOIN loja on loja.idLoja = fkLoja;
+
+select f.nome nomeFrigorifico,
+  tf.tipo tipoFrigorifico,
+  f.registrado_em dataRegistro
+  from frigorifico f
+  join tipoFrigorifico tf on f.fkTipo = tf.idTipoFrigorifico
+  join sensor s on f.idFrigorifico = s.fkFrigorifico
+  join historicoFrigorifico hf on s.idSensor = hf.fkSensor
+  and (hf.temperatura < f.temperatura_ideal_minima or hf.temperatura > f.temperatura_ideal_maxima)
+  join relacao r on f.idFrigorifico = r.fkFrigorifico
+  right join usuario u on r.fkUsuario = u.idUsuario
+  where u.idUsuario = 2;

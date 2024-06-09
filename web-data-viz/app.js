@@ -1,21 +1,27 @@
 // var ambiente_processo = 'producao';
-var ambiente_processo = 'desenvolvimento';
+var ambiente_processo = "desenvolvimento";
 
-var caminho_env = ambiente_processo === 'producao' ? '.env' : '.env.dev';
+var caminho_env = ambiente_processo === "producao" ? ".env" : ".env.dev";
 // Acima, temos o uso do operador ternário para definir o caminho do arquivo .env
 // A sintaxe do operador ternário é: condição ? valor_se_verdadeiro : valor_se_falso
 
 require("dotenv").config({ path: caminho_env });
+// criando variáveis
 
 var express = require("express");
 var cors = require("cors");
 var path = require("path");
+
+// definindo uma variável mais curta:
 var PORTA_APP = process.env.APP_PORT;
 var HOST_APP = process.env.APP_HOST;
 
 var app = express();
 
 var indexRouter = require("./src/routes/index");
+var lojaRouter = require("./src/routes/loja");
+var frigorificoRouter = require("./src/routes/frigorifico");
+var sensorRouter = require("./src/routes/sensor");
 var usuarioRouter = require("./src/routes/usuarios");
 var avisosRouter = require("./src/routes/avisos");
 var medidasRouter = require("./src/routes/medidas");
@@ -29,6 +35,9 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(cors());
 
 app.use("/", indexRouter);
+app.use("/lojas", lojaRouter);
+app.use("/frigorificos", frigorificoRouter);
+app.use("/sensors", sensorRouter);
 app.use("/usuarios", usuarioRouter);
 app.use("/avisos", avisosRouter);
 app.use("/medidas", medidasRouter);
@@ -36,7 +45,7 @@ app.use("/aquarios", aquariosRouter);
 app.use("/empresas", empresasRouter);
 
 app.listen(PORTA_APP, function () {
-    console.log(`
+  console.log(`
     ##   ##  ######   #####             ####       ##     ######     ##              ##  ##    ####    ######  
     ##   ##  ##       ##  ##            ## ##     ####      ##      ####             ##  ##     ##         ##  
     ##   ##  ##       ##  ##            ##  ##   ##  ##     ##     ##  ##            ##  ##     ##        ##   

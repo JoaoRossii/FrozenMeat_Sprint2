@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+  </head>
+  <body onload="carregou()">
+    <table id="tabela1">
+      <tr>
+        <th>Frigorífico</th>
+        <th>Categoria do Sensor</th>
+        <th>Data de registro do frigorífico</th>
+        <th>Detalhes</th>
+      </tr>
+    </table>
+  </body>
+</html>
+
+<script>
+  /*
+    <tr>
+        <td>Swift - Pamplona</td>
+        <td>Loja</td>
+        <td>23/03/2024</td>
+        <td><button onclick="detalhes1()">Ver detalhes</button></td>
+    </tr>
+  */
+  const tabela1 = document.querySelector("#tabela1");
+
+  function carregou() {
+    setInterval(pegarDados, 500);
+  }
+
+  function pegarDados() {
+    fetch("usuarios/foraFaixa", {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: {
+        idUsuario: sessionStorage.ID_USUARIO,
+      },
+    })
+      .then((resposta) => {
+        if (resposta.ok) {
+          reposta
+            .json()
+            .then((dados) => {
+              // dados = [
+              //   {
+              //     nomeFrigorifico: "Swift - Pamplona",
+              //     tipoFrigorifico: "Loja",
+              //     dataRegistro: "23/03/2024",
+              //   },
+              // ];
+              for (let i = 0; i < dados.length; i++) {
+                tabela1 += `<tr>
+                    <td>${dados[i].nomeFrigorifico}</td>
+                    <td>${dados[i].tipoFrigorifico}</td>
+                    <td>${dados[i].dataRegistro}</td>
+                    <td><button onclick="detalhes(${dados[i].idFrigorifico})">Ver detalhes</button></td>
+                    </tr>`;
+              }
+            })
+            .catch((erro) => {
+              console.log("Erro ao pegar dados:", erro);
+            });
+        }
+      })
+      .catch((erro) => {
+        console.log("Erro ao pegar dados:", erro);
+      });
+  }
+
+  function detalhes(idFrigorifico) {
+    fetch("frigorificos/pegarDadosFrigorifico", {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: {
+        idFrigorifico: idFrigorifico,
+      },
+    })
+      .then((resposta) => {
+        if (resposta.ok) {
+          reposta
+            .json()
+            .then((dados) => {
+              // dados = [
+              //   {
+              //     dataRegistro: "23/03/2024",
+              //     temperatura: 2,
+              //     temperatura_ideal_maxima: 4,
+              //     temperatura_ideal_minima: -2,
+              //   },
+              //   {
+              //     dataRegistro: "24/03/2024",
+              //     temperatura: 4,
+              //     temperatura_ideal_maxima: 4,
+              //     temperatura_ideal_minima: -2,
+              //   },
+              // ];
+
+              const ctx = document.getElementById("myChart");
+
+              let dadosChart = {
+                type: "line",
+                data: {
+                  labels: [],
+                  datasets: [
+                    {
+                      label: "Temperatura",
+                      backgroundColor: "#7c9cff",
+                      borderColor: "#7c9cff",
+                      data: [],
+                      borderWidth: 1,
+                    },
+                    {
+                      label: "Limite inferior",
+                      backgroundColor: "red",
+                      borderColor: "red",
+                      data: [],
+                      borderWidth: 1,
+                    },
+                    {
+                      label: "Limite superior",
+                      backgroundColor: "red",
+                      borderColor: "red",
+                      data: [],
+                      borderWidth: 1,
+                    },
+                  ],
+                },
+                options: {
+                  scales: {
+                    y: {
+                      beginAtZero: true,
+                    },
+                  },
+                },
+              };
+
+              for (let i = 0; i < dados.length; i++) {
+                dadosChart.data.labels.push(dados[i].dataRegistro)
+                dadosChart.data.datasets[0].data.push(dados[i].temperatura)
+                dadosChart.data.datasets[1].data.push(dados[i].temperatura_ideal_minima)
+                dadosChart.data.datasets[2].data.push(dados[i].temperatura_ideal_maxima)
+              }
+
+              new Chart(ctx, dadosChart);
+            })
+            .catch((erro) => {
+              console.log("Erro ao pegar dados:", erro);
+            });
+        }
+      })
+      .catch((erro) => {
+        console.log("Erro ao pegar dados:", erro);
+      });
+  }
+</script>

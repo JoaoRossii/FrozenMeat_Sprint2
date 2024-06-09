@@ -28,4 +28,8 @@ router.get("/notificacaoAtencaoFrigorifico", function (req, res) {
     usuarioController.notificacaoAtencaoFrigorifico(req, res);
 });
 
+router.post("/foraFaixa", function (req, res) {
+    usuarioController.foraFaixa(req, res);
+});
+
 module.exports = router;
