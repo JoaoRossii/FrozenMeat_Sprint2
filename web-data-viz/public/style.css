@@ -235,9 +235,9 @@ body::-webkit-scrollbar-thumb {
 a {
     color: #fff;
     list-style: none;
-    width: 150px;
+    width: 85px;
     display: flex;
-    justify-content: start;
+    justify-content: center;
     align-items: center;
     border-radius: 10px;
     font-weight: 500;
