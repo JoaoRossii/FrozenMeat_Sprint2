@@ -20,7 +20,7 @@ var app = express();
 
 var indexRouter = require("./src/routes/index");
 var lojaRouter = require("./src/routes/loja");
-var frigorificoRouter = require("./src/routes/frigorifico");
+var frigorificoRouter = require("./src/routes/frigorificos");
 var sensorRouter = require("./src/routes/sensor");
 var usuarioRouter = require("./src/routes/usuarios");
 var avisosRouter = require("./src/routes/avisos");
