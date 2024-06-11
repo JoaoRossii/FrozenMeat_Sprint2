@@ -15,7 +15,7 @@
         <p>Frozen Maet</p>
         <img src="image-removebg-preview.png" class="logo">
         <div class="usuario">
-            <span>Olá, usuário</span>
+            <span id="usuarioDynamic">Olá, </span>
             <img src="prof.png" alt="">
 
         </div>
@@ -580,4 +580,7 @@
     //     grafico1.style.display = 'none';
     //     grafico3.style.display = 'none';
     // }
+
+        usuarioDynamic.innerHTML += sessionStorage.NOME_USUARIO;
+
 </script>
