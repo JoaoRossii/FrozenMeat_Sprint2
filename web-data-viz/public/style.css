@@ -535,7 +535,7 @@ a {
 
 
 #container {
-    width: 400px;
+    width: 350px;
     height: 60vh;
     background: #fff;
     border-radius: 10px;
@@ -564,7 +564,7 @@ textarea[type="text"] {
     font-size: 16px;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     border-radius: 5px;
-    width: 85%;
+    width: 82%;
     height: 25px;
     border-radius: 20px;
     outline: none;
@@ -656,4 +656,18 @@ button:hover {
 }
 .close i{
     color: #fff;
+}
+.a1{
+    width: 100px;
+}
+.a1:hover{
+    transform: scale(1.15);
+    transition: 0.5s;
+}
+.a2{
+    width: 160px;
+}
+.a2:hover{
+    transform: scale(1.15);
+    transition: 0.5s;
 }
