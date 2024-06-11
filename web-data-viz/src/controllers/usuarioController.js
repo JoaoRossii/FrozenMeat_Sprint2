@@ -167,6 +167,23 @@ function notificacaoAtencaoFrigorifico(req, res) {
     });
 }
 
+function tabelaDashDois_1(req, res) {
+  usuarioModel
+    .tabelaDashDois_1()
+    .then((data) => {
+      if (data && data.length > 0) {
+        console.log("Temperatura atual obtida com sucesso:", data);
+        res.json(data);
+      } else {
+        res.status(404).json({ error: "ERRO Temperatura não encontrada" });
+      }
+    })
+    .catch((error) => {
+      console.error("Erro ao obter temperatura:", error);
+      res.status(500).json({ error: "Erro ao obter temperatura:" });
+    });
+}
+
 function foraFaixa(req, res) {
   // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
   var idUsuario = req.body.idUsuarioServer;
@@ -188,6 +205,76 @@ function foraFaixa(req, res) {
   }
 }
 
+function graficoLoja1(req, res) {
+  usuarioModel.graficoLoja1()
+    .then(
+      function (resultado) {
+        res.json(resultado);
+      }
+    ).catch(
+      function (erro) {
+        console.log(erro);
+        console.log(
+          "\nErro ao Exibir o Grafico Loja1! Erro:",
+          erro.sqlMessage
+        );
+        res.status(500).json(erro.sqlMessage);
+      }
+    )
+}
+function graficoLoja2(req, res) {
+  usuarioModel.graficoLoja2()
+    .then(
+      function (resultado) {
+        res.json(resultado);
+      }
+    ).catch(
+      function (erro) {
+        console.log(erro);
+        console.log(
+          "\nErro ao Exibir o Grafico Loja1! Erro:",
+          erro.sqlMessage
+        );
+        res.status(500).json(erro.sqlMessage);
+      }
+    )
+}
+function graficoLoja3(req, res) {
+  usuarioModel.graficoLoja3()
+    .then(
+      function (resultado) {
+        res.json(resultado);
+      }
+    ).catch(
+      function (erro) {
+        console.log(erro);
+        console.log(
+          "\nErro ao Exibir o Grafico Loja1! Erro:",
+          erro.sqlMessage
+        );
+        res.status(500).json(erro.sqlMessage);
+      }
+    )
+}
+function graficoLoja4(req, res) {
+  usuarioModel.graficoLoja4()
+    .then(
+      function (resultado) {
+        res.json(resultado);
+      }
+    ).catch(
+      function (erro) {
+        console.log(erro);
+        console.log(
+          "\nErro ao Exibir o Grafico Loja1! Erro:",
+          erro.sqlMessage
+        );
+        res.status(500).json(erro.sqlMessage);
+      }
+    )
+}
+
+
 module.exports = {
   cadastrar,
   autenticar,
@@ -196,4 +283,9 @@ module.exports = {
   todosFrigorificosCaminhao,
   notificacaoAtencaoFrigorifico,
   foraFaixa,
+  graficoLoja1,
+  graficoLoja2,
+  graficoLoja3,
+  graficoLoja4,
+  tabelaDashDois_1
 };

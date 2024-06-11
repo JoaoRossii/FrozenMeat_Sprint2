@@ -143,8 +143,6 @@ select * from usuario;
 
 -- ADIÇÃO DOS DADOS DAS EMPRESAS
  INSERT INTO empresa (nome, cep) VALUES
- ( "Perdigão","52455548"),
- ( "Seara","85102382"),
  ( "Swift","61742737");
 select * from empresa;
 select * from loja;
@@ -152,9 +150,10 @@ select * from tipoFrigorifico;
 
 -- ADIÇÃO DOS DADOS DAS LOJAS
  INSERT INTO loja (nome, fkEmpresa) VALUES
- ( "Perdigão Santo André",1),
- ( "Seara Alimentos",2),
- ( "Swift Consolação",3);
+ ( "Swift - Pamplona",1),
+ ( "Swift - Vila Mariana",1),
+ ( "Swift - Cambuci",1),
+ ( "Swift - Pirituba",1);
 
 -- ADIÇÃO DOS DADOS DO TIPO DE FRIGORIFICO
  INSERT INTO tipoFrigorifico(tipo) VALUES
@@ -166,31 +165,30 @@ select * from tipoFrigorifico;
  ('a',0,4,1,3),
  ('b',0,4,1,3),
  ('c',0,4,1,3),
- ('d',-4,2,2,2),
- ('e',-4,2,2,2),
- ('f',-2,2,2,1),
- ('g',-2,2,2,1);
+ ('d',-4,2,2,2);
 select * from sensor;
 -- ADIÇÃO DOS DADOS DOS SENSORES DOS FRIGORIFICOS
  INSERT INTO sensor (fkFrigorifico) VALUES
  (1),
  (2),
  (3),
- (4),
- (5),
- (6),
- (7);
+ (4);
 
 
 -- ADIÇÃO DOS DADOS DO HISTORICO DE REGISTROS DOS SENSORES DOS FRIGORIFICOS
 -- TEM QUE SER ATRAVES DO ARDUINO
 INSERT INTO historicoFrigorifico(registrado_em, temperatura, fkSensor) VALUES
-("2024-02-03 11:23:22",3,1);
+("2024-02-03 11:23:22",10,1),
+("2024-02-03 11:23:22",-4,2),
+("2024-02-03 11:23:22",-2,3),
+("2024-02-03 11:23:22",-2,4);
 
  INSERT INTO relacao (fkUsuario, fkFrigorifico, dataAcesso) VALUES
- ( 1 ,6,default),
- ( 2,1,default),
+ ( 1 ,1,default),
+ ( 2,2,default),
  ( 7,3,default);
+ 
+ select * from frigorifico;
 
 select * from sensor join historicofrigorifico on fksensor = idsensor;
 
@@ -202,8 +200,8 @@ select * from sensor join historicofrigorifico on fksensor = idsensor;
  -- ADIÇÃO DOS DADOS DO CAMINHÃO
 INSERT INTO caminhao (placa, modelo, fkFrigorifico, fkTransportadora) VALUES
  ("WLS7H61","Actros Refrigerado",1,1),
- ("KLX9D72","Actros Refrigerado",3,1),
- ("GIU2F75","Scania R-series Refrigerado",5,2),
+ ("KLX9D72","Actros Refrigerado",2,1),
+ ("GIU2F75","Scania R-series Refrigerado",3,2),
  ("RXP9G14","Scania R-series Refrigerado",4,2);
 
 -- CRIAÇÃO DOS JOIN DAS TABELAS
@@ -240,19 +238,23 @@ JOIN frigorifico ON sensor.fkFrigorifico = frigorifico.idFrigorifico;
 -- CREATE VIEW SIMULANDO VÁRIOS SENSORES COM APENAS 1 SENSOR FÍSICO
 alter table sensor add column fator float;
 update sensor set fator = 0.5 where idSensor = 1;
-update sensor set fator = 0.2 where idSensor = 2;
-update sensor set fator = 0.78 where idSensor = 3;
-update sensor set fator = 0.125 where idSensor = 4;
-update sensor set fator = 0.43 where idSensor = 5;
-update sensor set fator = 0.9 where idSensor = 6;
-update sensor set fator = 1.1 where idSensor = 7;
+update sensor set fator = 2.5 where idSensor = 2;
+update sensor set fator = -0.2 where idSensor = 3;
+update sensor set fator = -0.5 where idSensor = 4;
+update sensor set fator = 2.8 where idSensor = 5;
+update sensor set fator = 1 where idSensor = 6;
+update sensor set fator = 0.6 where idSensor = 7;
 
 -- select sensor.idSensor as sensor, (historicoFrigorifico.temperatura * sensor.fator) as temperatura from sensor, historicoFrigorifico;
-
-create view Sensores as (select sensor.idSensor as sensor, (historicoFrigorifico.temperatura * sensor.fator) as temperatura from sensor, historicoFrigorifico);
+create view Sensores as (select sensor.idSensor as sensor, (historicoFrigorifico.temperatura * sensor.fator) as temperatura, historicoFrigorifico.registrado_em as horario from sensor, historicoFrigorifico);
 select * from Sensores;
+select truncate(temperatura, 2) as temperatura, sensor, horario from Sensores where sensor = 1 limit 24;
+select truncate(temperatura, 2) as temperatura, sensor, horario from Sensores where sensor = 3 limit 24;
+select truncate(temperatura, 2) as temperatura, sensor, horario from Sensores where sensor = 4 limit 24;
+select truncate(temperatura, 2) as temperatura, sensor, horario from Sensores where sensor = 5 limit 24;
 
 select * from usuario;
+select * from loja;
 select * from historicoFrigorifico;
 
 select * from frigorifico;	
@@ -325,5 +327,31 @@ select f.nome nomeFrigorifico,
   join relacao r on f.idFrigorifico = r.fkFrigorifico
   right join usuario u on r.fkUsuario = u.idUsuario
   where u.idUsuario = 2;
+  
+  select * from usuario;
+  
+  alter table usuario modify column cpf_cnpj varchar(33);
+  
+select * from frigorifico join sensor on fkFrigorifico = idFrigorifico 
+join historicofrigorifico on fkSensor = idSensor;
+
+select * from frigorifico join sensor on fkFrigorifico = idFrigorifico 
+join historicofrigorifico on fkSensor = idSensor
+join caminhao on caminhao.fkFrigorifico = frigorifico.idFrigorifico;
+
+select loja.nome, tipoFrigorifico.tipo from frigorifico  join sensor on fkFrigorifico = idFrigorifico 
+left join historicofrigorifico on fkSensor = idSensor
+join loja on idloja = fkLoja
+join tipoFrigorifico on idTipoFrigorifico = fkTipo;
+
+
+select * from loja;
+select * from sensor;
+select * from frigorifico;
+
+truncate frigorifico;
+select * from historicofrigorifico;
+select * from caminhao;
+select * from tipoFrigorifico;
   
   

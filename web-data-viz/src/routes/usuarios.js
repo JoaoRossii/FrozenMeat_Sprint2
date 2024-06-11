@@ -28,8 +28,28 @@ router.get("/notificacaoAtencaoFrigorifico", function (req, res) {
     usuarioController.notificacaoAtencaoFrigorifico(req, res);
 });
 
+router.get("/tabelaDashDois_1", function (req, res) {
+    usuarioController.tabelaDashDois_1(req, res);
+});
+
 router.post("/foraFaixa", function (req, res) {
     usuarioController.foraFaixa(req, res);
+});
+
+router.get("/graficoLoja1", function (req, res) {
+    usuarioController.graficoLoja1(req, res);
+});
+
+router.get("/graficoLoja2", function (req, res) {
+    usuarioController.graficoLoja2(req, res);
+});
+
+router.get("/graficoLoja3", function (req, res) {
+    usuarioController.graficoLoja3(req, res);
+});
+
+router.get("/graficoLoja4", function (req, res) {
+    usuarioController.graficoLoja4(req, res);
 });
 
 module.exports = router;

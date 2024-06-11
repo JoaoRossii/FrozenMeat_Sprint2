@@ -42,56 +42,27 @@
 
     <div class="principal">
         <div class="scroll">
-            <table class="tabela">
-                <tr>
-                    <th>Frigorífico</th>
-                    <th>Categoria do Sensor</th>
-                    <th>Data</th>
-                    <th>Detalhes</th>
-                </tr>
-                <tr>
-                    <td>Swift - Pamplona</td>
-                    <td>Loja</td>
-                    <td>23/03/2024</td>
-                    <td><button onclick="detalhes1()">Ver detalhes</button></td>
-                </tr>
-                <tr>
-                    <td>Swift - Vila Mariana</td>
-                    <td>Caminhão</td>
-                    <td>01/04/2024</td>
-                    <td><button onclick="detalhes2()">Ver detalhes</button></td>
-                </tr>
-                <td>Swift - Cambuci</td>
-                <td>Caminhão</td>
-                <td>10/02/2024</td>
-                <td><button onclick="detalhes3()">Ver detalhes</button></td>
-                </tr>
-                <tr>
-                    <td>Swift - Pirituba</td>
-                    <td>Caminhão</td>
-                    <td>15/04/2024</td>
-                    <td><button onclick="detalhes4()">Ver detalhes</button></td>
-                </tr>
+            <table class="tabela" id="pepperoni">
+                
             </table>
         </div>
     </div>
 
+    <div id="cervejada"></div>
+
     <div class="grafGde">
-    <div id="grafico1" class="graficos">
-        <h3>Swift - Pamplona</h3>
-        <canvas id="myChart" style="position: relative"></canvas>
+        <div id="grafico" class="graficos">
+    <!-- <div id="grafico1" class="graficos">
+        
     </div>
     <div id="grafico2" class="graficos">
-        <h3>Swift - Vila Mariana</h3>
-        <canvas id="myChart2" style="position: relative"></canvas>
+        
     </div>
     <div id="grafico3" class="graficos">
-        <h3>Swift - Cambuci</h3>
-        <canvas id="myChart3" style="position: relative"></canvas>
+        
     </div>
-    <div id="grafico4" class="graficos">
-        <h3>Swift - Pirituba</h3>
-        <canvas id="myChart4" style="position: relative"></canvas>
+    <div id="grafico4" class="graficos"> -->
+        
     </div>
 </div>
 </body>
@@ -99,6 +70,456 @@
 </html>
 
 <script>
+
+    let proximaAtualizacao;
+
+    // window.onload = exibirSensoresDoUsuario();
+
+    function exibirSensoresDoUsuario(idGrafico) {
+        
+        document.getElementById("grafico").innerHTML = `
+            <h3></h3>
+            <canvas id="myChart" style="position: relative"></canvas>
+        `;
+        // document.getElementById("grafico1").innerHTML += `
+        //     <h3>Perdigão - Santo André</h3>
+        //     <canvas id="myChart" style="position: relative"></canvas>
+        // `;
+        // document.getElementById("grafico2").innerHTML += `
+        //     <h3>Seara Alimentos</h3>
+        //     <canvas id="myChart2" style="position: relative"></canvas>
+        // `;
+        // document.getElementById("grafico3").innerHTML += `
+        //     <h3>Swift - Consolação</h3>
+        //     <canvas id="myChart3" style="position: relative"></canvas>
+        // `;
+        // document.getElementById("grafico4").innerHTML += `
+        //     <h3>Swift - Pamplona</h3>
+        //     <canvas id="myChart4" style="position: relative"></canvas>
+        // `;
+
+        obterDadosdoGrafico(idGrafico);
+        // obterDadosdoGrafico1();
+        // obterDadosdoGrafico2();
+        // obterDadosdoGrafico3();
+        // obterDadosdoGrafico4();
+    }
+
+    function tabelaGraficos() {
+        fetch('/usuarios/tabelaDashDois_1')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Erro na requisição de temperatura');
+                }
+                return response.json();
+            })
+            .then (dados => {
+                for (let i = 0; i < dados.length; i++) {
+                    let data = dados[i]
+                    let linha = i;
+                    console.log(data)
+                    console.log(linha)
+                    if (data.nome !== undefined, data.tipo !== undefined, data.horario !== undefined) {
+                        frigorificoAtual(data.nome, data.tipo, data.horario, linha);
+                    } else {
+                        throw new Error("Erro ao receber temperaturas");
+                    }
+                }
+            })
+            .catch(error => {
+                console.error("Erro ao atulizar o gráfico:", error);
+            })
+    }
+    
+    function frigorificoAtual(nome, tipo, horarios, linha) {
+        const nomeFrigo = (nome);
+        const tipoFrigo = (tipo);
+        const horaFrigo = (horarios);
+        const idDiv = Number(linha) + 1;
+
+        console.log(idDiv)
+        if (nomeFrigo != undefined) {
+            for (var index = 0; index < 1; index ++){
+                pepperoni.innerHTML +=`<tr>
+                    <td id="empresa0">${nomeFrigo}</td>  
+                    <td id="loja0">${tipoFrigo}</td>
+                    <td id="data0">${horaFrigo}</td>
+                    <td><button onclick="detalhes(${idDiv})">Ver detalhes</button></td>
+                </tr>`;
+        }
+        } else {
+            cervejada.innerHTML += `Nenhum frigorifico fora do ideal.`;
+        }
+    }
+
+    tabelaGraficos();
+
+    function obterDadosdoGrafico(idGrafico) {
+        
+        if (proximaAtualizacao != undefined) {
+            clearTimeout(proximaAtualizacao);
+        }
+
+        fetch(`/usuarios/graficoLoja${idGrafico}`,{cache: 'no-store'}).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    resposta.reverse();
+
+                    plotarGrafico(resposta);
+                });
+            } else {
+                console.error('Erro na requisição')
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na requisição dos dados para o grafico: ${error.message}`);
+            });
+    }
+
+    function plotarGrafico(resposta) {
+        console.log('Começando PLotagem dos graficos');
+
+        let labels = [];
+
+        let dados = {
+            labels: labels,
+            datasets: [{
+                label: 'Temperatura',
+                data: [],
+                fill: false,
+                borderColor: '#7c9cff',
+                tension: 0.1,
+            },{
+                label: 'Limite inferior',
+                backgroundColor: 'red',
+                borderColor: 'red',
+                data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                borderWidth: 1
+            },{
+                label: 'Limite superior',
+                backgroundColor: 'red',
+                borderColor: 'red',
+                data: [4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4],
+                borderWidth: 1
+            }]
+        };
+
+        console.log('------------');
+        console.log(resposta);
+
+        for (i = 0; i < resposta.length; i++) {
+            var registro = resposta[i];
+            labels.push(registro.horario);
+            dados.datasets[0].data.push(registro.temperatura);
+        }
+
+        const config = {
+            type: 'line',
+            data: dados,
+        }
+
+        let myChart = new Chart(
+            document.getElementById(`myChart`),
+            config
+        )
+
+    }
+    
+    grafico.style.display = 'none';
+    // funções para aparecerem os gráficos
+    function detalhes(idGrafico) {
+        exibirSensoresDoUsuario(idGrafico);
+          grafico.style.display = 'block';
+        window.scrollTo({
+            top: 900,
+            behavior: "smooth"
+        })
+    }
+
+
+    // function obterDadosdoGrafico1() {
+        
+    //     if (proximaAtualizacao != undefined) {
+    //         clearTimeout(proximaAtualizacao);
+    //     }
+
+    //     fetch(`/usuarios/graficoLoja1`,{cache: 'no-store'}).then(function (response) {
+    //         if (response.ok) {
+    //             response.json().then(function (resposta) {
+    //                 console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+    //                 resposta.reverse();
+
+    //                 plotarGrafico1(resposta);
+    //             });
+    //         } else {
+    //             console.error('Erro na requisição')
+    //         }
+    //     })
+    //         .catch(function (error) {
+    //             console.error(`Erro na requisição dos dados para o grafico: ${error.message}`);
+    //         });
+    // }
+    // function obterDadosdoGrafico2() {
+        
+    //     if (proximaAtualizacao != undefined) {
+    //         clearTimeout(proximaAtualizacao);
+    //     }
+
+    //     fetch(`/usuarios/graficoLoja2`,{cache: 'no-store'}).then(function (response) {
+    //         if (response.ok) {
+    //             response.json().then(function (resposta) {
+    //                 console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+    //                 resposta.reverse();
+
+    //                 plotarGrafico1(resposta);
+    //             });
+    //         } else {
+    //             console.error('Erro na requisição')
+    //         }
+    //     })
+    //         .catch(function (error) {
+    //             console.error(`Erro na requisição dos dados para o grafico: ${error.message}`);
+    //         });
+    // }
+    // function obterDadosdoGrafico3() {
+        
+    //     if (proximaAtualizacao != undefined) {
+    //         clearTimeout(proximaAtualizacao);
+    //     }
+
+    //     fetch(`/usuarios/graficoLoja3`,{cache: 'no-store'}).then(function (response) {
+    //         if (response.ok) {
+    //             response.json().then(function (resposta) {
+    //                 console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+    //                 resposta.reverse();
+
+    //                 plotarGrafico1(resposta);
+    //             });
+    //         } else {
+    //             console.error('Erro na requisição')
+    //         }
+    //     })
+    //         .catch(function (error) {
+    //             console.error(`Erro na requisição dos dados para o grafico: ${error.message}`);
+    //         });
+    // }
+    // function obterDadosdoGrafico4() {
+        
+    //     if (proximaAtualizacao != undefined) {
+    //         clearTimeout(proximaAtualizacao);
+    //     }
+
+    //     fetch(`/usuarios/graficoLoja4`,{cache: 'no-store'}).then(function (response) {
+    //         if (response.ok) {
+    //             response.json().then(function (resposta) {
+    //                 console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+    //                 resposta.reverse();
+
+    //                 plotarGrafico1(resposta);
+    //             });
+    //         } else {
+    //             console.error('Erro na requisição')
+    //         }
+    //     })
+    //         .catch(function (error) {
+    //             console.error(`Erro na requisição dos dados para o grafico: ${error.message}`);
+    //         });
+    // }
+
+    
+    // function plotarGrafico1(resposta) {
+    //     console.log('Começando PLotagem dos graficos');
+
+    //     let labels = [];
+
+    //     let dados = {
+    //         labels: labels,
+    //         datasets: [{
+    //             data: [],
+    //             fill: false,
+    //             borderColor: 'red',
+    //             tension: 0.1,
+    //         },{
+    //             label: 'Limite inferior',
+    //             backgroundColor: 'red',
+    //             borderColor: 'red',
+    //             data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+    //             borderWidth: 1
+    //         },{
+    //             label: 'Limite superior',
+    //             backgroundColor: 'red',
+    //             borderColor: 'red',
+    //             data: [4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4],
+    //             borderWidth: 1
+    //         }]
+    //     };
+
+    //     console.log('------------');
+    //     console.log(resposta);
+
+    //     for (i = 0; i < resposta.length; i++) {
+    //         var registro = resposta[i];
+    //         labels.push(registro.horario);
+    //         dados.datasets[0].data.push(registro.temperatura);
+    //     }
+
+    //     const config = {
+    //         type: 'line',
+    //         data: dados,
+    //     }
+
+    //     let myChart = new Chart(
+    //         document.getElementById(`myChart`),
+    //         config
+    //     )
+
+    // }
+
+    // function plotarGrafico2(resposta) {
+    //     console.log('Começando PLotagem dos graficos');
+
+    //     let labels = [];
+
+    //     let dados = {
+    //         labels: labels,
+    //         datasets: [{
+    //             data: [],
+    //             fill: false,
+    //             borderColor: 'red',
+    //             tension: 0.1,
+    //         },{
+    //             label: 'Limite inferior',
+    //             backgroundColor: 'red',
+    //             borderColor: 'red',
+    //             data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+    //             borderWidth: 1
+    //         },{
+    //             label: 'Limite superior',
+    //             backgroundColor: 'red',
+    //             borderColor: 'red',
+    //             data: [4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4],
+    //             borderWidth: 1
+    //         }]
+    //     };
+
+    //     console.log('------------');
+    //     console.log(resposta);
+
+    //     for (i = 0; i < resposta.length; i++) {
+    //         var registro = resposta[i];
+    //         labels.push(registro.horario);
+    //         dados.datasets[0].data.push(registro.temperatura);
+    //     }
+
+    //     const config = {
+    //         type: 'line',
+    //         data: dados,
+    //     }
+
+    //     let myChart2 = new Chart(
+    //         document.getElementById(`myChart2`),
+    //         config
+    //     )
+
+    // }
+
+    // function plotarGrafico3(resposta) {
+    //     console.log('Começando PLotagem dos graficos');
+
+    //     let labels = [];
+
+    //     let dados = {
+    //         labels: labels,
+    //         datasets: [{
+    //             data: [],
+    //             fill: false,
+    //             borderColor: 'red',
+    //             tension: 0.1,
+    //         },{
+    //             label: 'Limite inferior',
+    //             backgroundColor: 'red',
+    //             borderColor: 'red',
+    //             data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+    //             borderWidth: 1
+    //         },{
+    //             label: 'Limite superior',
+    //             backgroundColor: 'red',
+    //             borderColor: 'red',
+    //             data: [4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4],
+    //             borderWidth: 1
+    //         }]
+    //     };
+
+    //     console.log('------------');
+    //     console.log(resposta);
+
+    //     for (i = 0; i < resposta.length; i++) {
+    //         var registro = resposta[i];
+    //         labels.push(registro.horario);
+    //         dados.datasets[0].data.push(registro.temperatura);
+    //     }
+
+    //     const config = {
+    //         type: 'line',
+    //         data: dados,
+    //     }
+
+    //     let myChart3 = new Chart(
+    //         document.getElementById(`myChart3`),
+    //         config
+    //     )
+
+    // }
+
+    // function plotarGrafico4(resposta) {
+    //     console.log('Começando PLotagem dos graficos');
+
+    //     let labels = [];
+
+    //     let dados = {
+    //         labels: labels,
+    //         datasets: [{
+    //             data: [],
+    //             fill: false,
+    //             borderColor: 'red',
+    //             tension: 0.1,
+    //         },{
+    //             label: 'Limite inferior',
+    //             backgroundColor: 'red',
+    //             borderColor: 'red',
+    //             data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+    //             borderWidth: 1
+    //         },{
+    //             label: 'Limite superior',
+    //             backgroundColor: 'red',
+    //             borderColor: 'red',
+    //             data: [4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4],
+    //             borderWidth: 1
+    //         }]
+    //     };
+
+    //     console.log('------------');
+    //     console.log(resposta);
+
+    //     for (i = 0; i < resposta.length; i++) {
+    //         var registro = resposta[i];
+    //         labels.push(registro.horario);
+    //         dados.datasets[0].data.push(registro.temperatura);
+    //     }
+
+    //     const config = {
+    //         type: 'line',
+    //         data: dados,
+    //     }
+
+    //     let myChart4 = new Chart(
+    //         document.getElementById(`myChart4`),
+    //         config
+    //     )
+
+    // }
+
     document.addEventListener("DOMContentLoaded", function () {
         const sidebar = document.getElementById("sidebar");
         const expandButton = document.getElementById("expandButton");
@@ -109,199 +530,54 @@
     });
 
 
-    grafico1.style.display = 'none';
-    grafico2.style.display = 'none';
-    grafico3.style.display = 'none';
-    grafico4.style.display = 'none';
+    // grafico1.style.display = 'none';
+    // grafico2.style.display = 'none';
+    // grafico3.style.display = 'none';
+    // grafico4.style.display = 'none';
 
-    // gráficos de linha 
-    const ctx = document.getElementById('myChart');
-
-    new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: ['00:00', '1:00', '2:00', '3:00', '4:00', '5:00', '6:00', '7:00', '8:00', '9:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00'],
-            datasets: [{
-                label: 'Temperatura',
-                backgroundColor: '#7c9cff',
-                borderColor: '#7c9cff',
-                data: [3.2, 1.6, 3.5, 4.0, 2.8, 1.2, 2.0, 3.6, 4.8, 4.9, 4.5, 4.2, 0.4, 2.0, 3.6, 1.2, 2.4, 0.8, 2.8, 4.0, 1.6, 3.2, 2.0, 3.6],
-                borderWidth: 1
-            }, {
-                label: 'Limite inferior',
-                backgroundColor: 'red',
-                borderColor: 'red',
-                data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-                borderWidth: 1
-        },{
-                label: 'Limite superior',
-                backgroundColor: 'red',
-                borderColor: 'red',
-                data: [4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4],
-                borderWidth: 1
-        }
-    ]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
-    });
-
-    const ctx2 = document.getElementById('myChart2');
-
-    new Chart(ctx2, {
-        type: 'line',
-        data: {
-            labels: ['00:00', '1:00', '2:00', '3:00', '4:00', '5:00', '6:00', '7:00', '8:00', '9:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00'],
-            datasets: [{
-                label: 'Temperatura',
-                backgroundColor: '#7c9cff',
-                borderColor: '#7c9cff',
-                data: [3.2, 1.6, 3.9, 4.0, 2.0, 1.2, 2.0, 3.6, -0.4, 4.5, 4.7, 4.6, 4.4, 3.8, 3.6, 1.2, 2.4, 0.8, 2.8, 4.0, 1.6, 3.2, 2.0, 3.6],
-                borderWidth: 1
-            }, {
-                label: 'Limite inferior',
-                backgroundColor: 'red',
-                borderColor: 'red',
-                data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-                borderWidth: 1
-        },{
-                label: 'Limite superior',
-                backgroundColor: 'red',
-                borderColor: 'red',
-                data: [4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4],
-                borderWidth: 1
-        }
-            ]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
-    });
-
-    const ctx3 = document.getElementById('myChart3');
-
-    new Chart(ctx3, {
-        type: 'line',
-        data: {
-            labels: ['00:00', '1:00', '2:00', '3:00', '4:00', '5:00', '6:00', '7:00', '8:00', '9:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00'],
-            datasets: [{
-                label: 'Temperatura',
-                backgroundColor: '#7c9cff',
-                borderColor: '#7c9cff',
-                data: [3.2, 1.6, 3.9, 4.0, 2.0, -0.6, -0.8, 3.6, 0.0, 2.8, 1.6, 3.2, 0.4, 2.0, 3.6, 1.2, 2.4, 0.8, 2.8, 4.9, 1.6, 3.2, 2.0, 3.6],
-                borderWidth: 1
-            },{
-                label: 'Limite inferior',
-                backgroundColor: 'red',
-                borderColor: 'red',
-                data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-                borderWidth: 1
-        },{
-                label: 'Limite superior',
-                backgroundColor: 'red',
-                borderColor: 'red',
-                data: [4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4],
-                borderWidth: 1
-        }
-            ]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
-    });
-
-    const ctx4 = document.getElementById('myChart4');
-
-    new Chart(ctx4, {
-        type: 'line',
-        data: {
-            labels: ['00:00', '1:00', '2:00', '3:00', '4:00', '5:00', '6:00', '7:00', '8:00', '9:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00'],
-            datasets: [{
-                label: 'Temperatura',
-                backgroundColor: '#7c9cff',
-                borderColor: '#7c9cff',
-                data: [3.2, 1.6, 3.9, 4.0, 2.0, 1.2, 2.0, 3.6, 0.0, 2.8, 1.6, 3.2, 0.4, 2.0, 3.6, 1.2, 2.4, 0.8, 2.8, 4.0, 4.2, 4.2, 4.2, 4.2],
-                borderWidth: 1
-            }, {
-                label: 'Limite inferior',
-                backgroundColor: 'red',
-                borderColor: 'red',
-                data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-                borderWidth: 1
-        },{
-                label: 'Limite superior',
-                backgroundColor: 'red',
-                borderColor: 'red',
-                data: [4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4],
-                borderWidth: 1
-        }
-            ]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
-    });
-
-    // funções para aparecerem os gráficos
-    function detalhes1() {
-          grafico1.style.display = 'block';
-        window.scrollTo({
-            top: 900,
-            behavior: "smooth"
-        })
+    // // funções para aparecerem os gráficos
+    // function detalhes1() {
+    //       grafico1.style.display = 'block';
+    //     window.scrollTo({
+    //         top: 900,
+    //         behavior: "smooth"
+    //     })
       
-        grafico2.style.display = 'none';
-        grafico3.style.display = 'none';
-        grafico4.style.display = 'none';
-    }
+    //     grafico2.style.display = 'none';
+    //     grafico3.style.display = 'none';
+    //     grafico4.style.display = 'none';
+    // }
 
-    function detalhes2() {
-        grafico2.style.display = 'block';
-        window.scrollTo({
-            top: 1000,
-            behavior: "smooth"
-        })
-        grafico1.style.display = 'none';
-        grafico3.style.display = 'none';
-        grafico4.style.display = 'none';
-    }
+    // function detalhes2() {
+    //     grafico2.style.display = 'block';
+    //     window.scrollTo({
+    //         top: 1000,
+    //         behavior: "smooth"
+    //     })
+    //     grafico1.style.display = 'none';
+    //     grafico3.style.display = 'none';
+    //     grafico4.style.display = 'none';
+    // }
 
-    function detalhes3() {
-        grafico3.style.display = 'block';
-        window.scrollTo({
-            top: 900,
-            behavior: "smooth"
-        })
-        grafico2.style.display = 'none';
-        grafico1.style.display = 'none';
-        grafico4.style.display = 'none';
-    }
+    // function detalhes3() {
+    //     grafico3.style.display = 'block';
+    //     window.scrollTo({
+    //         top: 900,
+    //         behavior: "smooth"
+    //     })
+    //     grafico2.style.display = 'none';
+    //     grafico1.style.display = 'none';
+    //     grafico4.style.display = 'none';
+    // }
 
-    function detalhes4() {
-        grafico4.style.display = 'block';
-        window.scrollTo({
-            top: 900,
-            behavior: "smooth"
-        })
-        grafico2.style.display = 'none';
-        grafico1.style.display = 'none';
-        grafico3.style.display = 'none';
-    }
+    // function detalhes4() {
+    //     grafico4.style.display = 'block';
+    //     window.scrollTo({
+    //         top: 900,
+    //         behavior: "smooth"
+    //     })
+    //     grafico2.style.display = 'none';
+    //     grafico1.style.display = 'none';
+    //     grafico3.style.display = 'none';
+    // }
 </script>

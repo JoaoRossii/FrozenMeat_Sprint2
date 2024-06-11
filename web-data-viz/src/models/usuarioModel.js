@@ -79,6 +79,17 @@ function notificacaoAtencaoFrigorifico() {
   return database.executar(mysqlQuery);
 }
 
+function tabelaDashDois_1() {
+  var mysqlQuery = `
+        select loja.nome as nome, tipoFrigorifico.tipo as tipo, sensor.registrado_em as horario, historicofrigorifico.temperatura from frigorifico  join sensor on fkFrigorifico = idFrigorifico 
+        left join historicofrigorifico on fkSensor = idSensor
+        join loja on idloja = fkLoja
+        join tipoFrigorifico on idTipoFrigorifico = fkTipo;
+    `;
+  console.log("Executando a instrução SQL: \n" + mysqlQuery);
+  return database.executar(mysqlQuery);
+}
+
 function foraFaixa(idUsuario) {
   var mysqlQuery = `
   select f.idFrigorifico,
@@ -98,6 +109,30 @@ function foraFaixa(idUsuario) {
   return database.executar(mysqlQuery);
 }
 
+function graficoLoja1() {
+  var instrucaoSql = `select truncate(temperatura, 2) as temperatura, sensor, horario from Sensores where sensor = 1 limit 24;`;
+
+  return database.executar(instrucaoSql);
+}
+
+function graficoLoja2() {
+  var instrucaoSql = `select truncate(temperatura, 2) as temperatura, sensor, horario from Sensores where sensor = 2 limit 24;`;
+
+  return database.executar(instrucaoSql);
+}
+
+function graficoLoja3() {
+  var instrucaoSql = `select truncate(temperatura, 2) as temperatura, sensor, horario from Sensores where sensor = 3 limit 24;`;
+
+  return database.executar(instrucaoSql);
+}
+
+function graficoLoja4() {
+  var instrucaoSql = `select truncate(temperatura, 2) as temperatura, sensor, horario from Sensores where sensor = 4 limit 24;`;
+
+  return database.executar(instrucaoSql);
+}
+
 module.exports = {
   autenticar,
   cadastrar,
@@ -106,4 +141,9 @@ module.exports = {
   todosFrigorificosCaminhao,
   notificacaoAtencaoFrigorifico,
   foraFaixa,
+  graficoLoja1,
+  graficoLoja2,
+  graficoLoja3,
+  graficoLoja4,
+  tabelaDashDois_1
 };
