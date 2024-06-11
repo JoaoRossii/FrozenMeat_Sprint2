@@ -84,7 +84,7 @@
 
     function cadastrar() {
 
-        var cpfCnpj = input_cpf.value;
+        var cpfCnpj2 = input_cpf.value;
         var senhaVar = input_senha.value;
         var senhaVarConfirma = input_Confsenha.value;
         var cpfCnpjCripto = input_cpf.value;
@@ -636,7 +636,7 @@
         var ponto = emailVar.indexOf('.');
 
         var cpf = input_cpf.value;
-        var cpf_sem_caracteres = cpfCnpj.replaceAll('.', '').replaceAll('-', '').replaceAll('/', '');
+        var cpf_sem_caracteres = cpfCnpj2.replaceAll('.', '').replaceAll('-', '').replaceAll('/', '');
         var qtdCaracteresCPF = Number(cpf_sem_caracteres);
         var tamCPF = cpf_sem_caracteres.length;
 
