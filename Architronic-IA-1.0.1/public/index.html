@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FrozenSuport</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="container">
+    <h1>FrozenSuport</h1>
+    <div class="content-chat" id="content-chat">
+    </div>
+    <div class="enviar">
+        <textarea id="pergunta" type="text" placeholder="Digite a pergunta..."></textarea>
+        <button onclick="gerarResposta()"><i class='bx bxs-send'></i></button>
+    </div>
+</div>
+
+<script>
+
+
+    async function gerarResposta() {
+        var pergunta = document.getElementById('pergunta').value;
+        var contentChat = document.getElementById('content-chat');
+
+
+        const response = await fetch('/perguntar', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ pergunta })
+        });
+
+        const data = await response.json();
+
+        const historicoDiv = document.createElement('div');
+        historicoDiv.className = 'historicoDiv';
+        historicoDiv.innerHTML = `<div class="historicoPergunta"><p>${pergunta}</p></div><div class="historicoResposta"><p>${data.resultado}</p></div>`;
+        
+        contentChat.appendChild(historicoDiv);
+
+        document.getElementById('pergunta').value = '';
+    }
+</script>
+
+</body>
+</html>

@@ -1,5 +1,4 @@
 -- CRIAÇÃO DO BANCO DE DADOS
-drop database frozenMeat;
 create database frozenMeat;
 use frozenMeat;
 show tables;
@@ -294,6 +293,27 @@ FROM frigorifico JOIN sensor ON fkFrigorifico = idFrigorifico
 JOIN historicofrigorifico AS anormal ON anormal.fkSensor = idSensor
 JOIN loja on loja.idLoja = fkLoja;
 
+
+select * from frigorifico join sensor on fkFrigorifico = idFrigorifico 
+join historicofrigorifico on fkSensor = idSensor;
+
+select * from frigorifico join sensor on fkFrigorifico = idFrigorifico 
+join historicofrigorifico on fkSensor = idSensor
+join caminhao on caminhao.fkFrigorifico = frigorifico.idFrigorifico;
+
+select * from frigorifico join sensor on fkFrigorifico = idFrigorifico 
+join historicofrigorifico on fkSensor = idSensor
+join loja on idloja = fkLoja
+join caminhao on fkLoja = loja.idloja;
+
+select * from loja;
+select * from sensor;
+select * from frigorifico;
+select * from historicofrigorifico;
+select * from caminhao;
+
+update frigorifico set fkLoja = null where idFrigorifico in (8, 9, 13, 14);
+
 select f.nome nomeFrigorifico,
   tf.tipo tipoFrigorifico,
   f.registrado_em dataRegistro
@@ -305,3 +325,5 @@ select f.nome nomeFrigorifico,
   join relacao r on f.idFrigorifico = r.fkFrigorifico
   right join usuario u on r.fkUsuario = u.idUsuario
   where u.idUsuario = 2;
+  
+  

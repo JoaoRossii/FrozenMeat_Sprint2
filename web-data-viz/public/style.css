@@ -640,3 +640,20 @@ button:hover {
     align-items: center;
     text-align: start;
 }
+.close{
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    position: fixed;
+    bottom: 95%;
+    cursor: pointer;
+    right: 94%;
+    background: #60a0f5;
+}
+.close:hover{
+    background: #ee6060;
+    transition: 0.5s;
+}
+.close i{
+    color: #fff;
+}

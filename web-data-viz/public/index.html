@@ -16,6 +16,9 @@
 
   
 <div id="container">
+    <div class="close" onclick="closeChat()">
+        <i class='bx bx-x'></i>
+    </div>
   <h1>FrozenSuport</h1>
   <div class="content-chat" id="content-chat">
   </div>
@@ -250,6 +253,10 @@
   function abrirSup(){
      container.style.display = 'flex'
   }
+  function closeChat(){
+     container.style.display = 'none'
+    }
+
 
   async function gerarResposta() {
       var pergunta = document.getElementById('pergunta').value;
