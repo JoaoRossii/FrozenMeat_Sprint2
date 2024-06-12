@@ -245,7 +245,7 @@ update sensor set fator = 1 where idSensor = 6;
 update sensor set fator = 0.6 where idSensor = 7;
 
 -- select sensor.idSensor as sensor, (historicoFrigorifico.temperatura * sensor.fator) as temperatura from sensor, historicoFrigorifico;
-create view Sensores as (select sensor.idSensor as sensor, (historicoFrigorifico.temperatura * sensor.fator) as temperatura, historicoFrigorifico.registrado_em as horario from sensor, historicoFrigorifico);
+create view Sensores as (select sensor.idSensor as sensor, (historicofrigorifico.temperatura * sensor.fator) as temperatura, historicofrigorifico.registrado_em as horario from sensor, historicofrigorifico);
 select * from Sensores;
 select truncate(temperatura, 2) as temperatura, sensor, horario from Sensores where sensor = 1 limit 24;
 select truncate(temperatura, 2) as temperatura, sensor, horario from Sensores where sensor = 3 limit 24;
