@@ -318,8 +318,6 @@ SELECT
     COUNT(CASE WHEN status = 'normal' THEN 1 END) AS normal
 FROM 
     SensorStatus;
-    
-
 
 insert into historicofrigorifico (fkSensor, temperatura) values 
 (5, 3),
