@@ -119,8 +119,8 @@
                     let linha = i;
                     console.log(data)
                     console.log(linha)
-                    if (data.nome !== undefined, data.tipo !== undefined, data.horario !== undefined) {
-                        frigorificoAtual(data.nome, data.tipo, data.horario, linha);
+                    if (data.nome !== undefined, data.tipo !== undefined) {
+                        frigorificoAtual(data.nome, data.tipo, linha);
                     } else {
                         throw new Error("Erro ao receber temperaturas");
                     }
@@ -131,25 +131,19 @@
             })
     }
     
-    function frigorificoAtual(nome, tipo, horarios, linha) {
+    function frigorificoAtual(nome, tipo, linha) {
         const nomeFrigo = (nome);
         const tipoFrigo = (tipo);
-        const horaFrigo = (horarios);
         const idDiv = Number(linha) + 1;
 
         console.log(idDiv)
         if (nomeFrigo != undefined) {
             for (var index = 0; index < 1; index ++){
-
-                var nomeF = nomeFrigo[index];
-                var tipoF = tipoFrigo[index];
-                var horaF = horaFrigo[index];
-                var idF = idDiv[index];
+                
                 pepperoni.innerHTML +=`<tr>
-                    <td id="empresa0">${nomeF}</td>  
-                    <td id="loja0">${tipoF}</td>
-                    <td id="data0">${horaF}</td>
-                    <td><button onclick="detalhes(${idF})">Ver detalhes</button></td>
+                    <td id="empresa0">${nomeFrigo}</td>  
+                    <td id="loja0">${tipoFrigo}</td>
+                    <td><button onclick="detalhes(${idDiv})">Ver detalhes</button></td>
                 </tr>`;
         }
         } else {

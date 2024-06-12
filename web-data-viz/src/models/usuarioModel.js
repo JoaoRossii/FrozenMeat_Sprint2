@@ -81,10 +81,8 @@ function notificacaoAtencaoFrigorifico() {
 
 function tabelaDashDois_1() {
   var mysqlQuery = `
-        select loja.nome as nome, tipoFrigorifico.tipo as tipo, sensor.registrado_em as horario, historicofrigorifico.temperatura from frigorifico  join sensor on fkFrigorifico = idFrigorifico 
-        left join historicofrigorifico on fkSensor = idSensor
-        join loja on idloja = fkLoja
-        join tipoFrigorifico on idTipoFrigorifico = fkTipo;
+        select loja.nome, tipo from loja join frigorifico on fkLoja = idLoja 
+join tipoFrigorifico on idTipoFrigorifico = fkTipo;
     `;
   console.log("Executando a instrução SQL: \n" + mysqlQuery);
   return database.executar(mysqlQuery);
