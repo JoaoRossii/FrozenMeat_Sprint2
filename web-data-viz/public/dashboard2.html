@@ -139,12 +139,17 @@
 
         console.log(idDiv)
         if (nomeFrigo != undefined) {
-            for (var index = 0; index < 4; index ++){
+            for (var index = 0; index < 1; index ++){
+
+                var nomeF = nomeFrigo[index];
+                var tipoF = tipoFrigo[index];
+                var horaF = horaFrigo[index];
+                var idF = idDiv[index];
                 pepperoni.innerHTML +=`<tr>
-                    <td id="empresa0">${nomeFrigo}</td>  
-                    <td id="loja0">${tipoFrigo}</td>
-                    <td id="data0">${horaFrigo}</td>
-                    <td><button onclick="detalhes(${idDiv})">Ver detalhes</button></td>
+                    <td id="empresa0">${nomeF}</td>  
+                    <td id="loja0">${tipoF}</td>
+                    <td id="data0">${horaF}</td>
+                    <td><button onclick="detalhes(${idF})">Ver detalhes</button></td>
                 </tr>`;
         }
         } else {
