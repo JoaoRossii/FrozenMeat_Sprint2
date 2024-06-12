@@ -238,8 +238,8 @@
         myChart3.update();
     }
 
-    function alertaCardTruck(anormal, normal) {
-        const truckFrigo = [Number(anormal) + Number(normal)];
+    function alertaCardTruck(sensores) {
+        const truckFrigo = [Number(sensores)];
 
         if (truckFrigo > 0) {
             cardCaminhao.innerHTML = `${truckFrigo/2} sensores estão instalados nos caminhões de transporte Swift.`;
