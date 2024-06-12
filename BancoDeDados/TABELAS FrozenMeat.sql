@@ -26,15 +26,6 @@ create table tipoUsuario (
   -- criar uma constraint para pessoa fisica e juridica
 );
 
-SELECT SUM(distinct CASE WHEN anormal.temperatura < 0 OR anormal.temperatura > 4 THEN 1 ELSE 0 END) AS anormal,
-	        SUM(distinct CASE WHEN anormal.temperatura BETWEEN 0 AND 4 THEN 1 ELSE 0 END) AS normal
-            FROM frigorifico JOIN sensor ON fkFrigorifico = idFrigorifico
-            JOIN historicofrigorifico AS anormal ON anormal.fkSensor = idSensor
-            JOIN loja on loja.idLoja = fkLoja;
-            
-
-            
-
 -- CRIAÇÃO DA TABELA USUARIO
 create table usuario (
   idUsuario int primary key auto_increment,
@@ -128,6 +119,7 @@ create table historicofrigorifico (
   constraint fkSensor foreign key (fkSensor) references sensor(idSensor)
 );
 
+select * from historicofrigorifico;
 
 -- CRIÇÃO DOS INSERT DE CADA TABELA
 
@@ -303,6 +295,42 @@ FROM frigorifico JOIN sensor ON fkFrigorifico = idFrigorifico
 JOIN historicofrigorifico AS anormal ON anormal.fkSensor = idSensor
 JOIN loja on loja.idLoja = fkLoja;
 
+select 
+count(case when temperatura < 0 or temperatura > 4 then 1 end) as anormal,
+count(case when temperatura between 0 and 4 then 1 end) as normal
+from historicofrigorifico join sensor on idSensor = fkSensor;
+
+
+WITH SensorStatus AS (
+    SELECT 
+        fkSensor,
+        CASE 
+            WHEN MAX(temperatura) > 4 OR MIN(temperatura) < 0 THEN 'anormal'
+            ELSE 'normal'
+        END AS status
+    FROM 
+        historicofrigorifico
+    GROUP BY 
+        fkSensor
+)
+SELECT 
+    COUNT(CASE WHEN status = 'anormal' THEN 1 END) AS anormal,
+    COUNT(CASE WHEN status = 'normal' THEN 1 END) AS normal
+FROM 
+    SensorStatus;
+    
+
+
+insert into historicofrigorifico (fkSensor, temperatura) values 
+(5, 3),
+(6, 3),
+(7, 3),
+(8, 3),
+(9, 3),
+(10, 3),
+(11, 3),
+(12, 3);
+
 
 select * from frigorifico join sensor on fkFrigorifico = idFrigorifico 
 join historicofrigorifico on fkSensor = idSensor;
@@ -330,7 +358,7 @@ select f.nome nomeFrigorifico,
   from frigorifico f
   join tipoFrigorifico tf on f.fkTipo = tf.idTipoFrigorifico
   join sensor s on f.idFrigorifico = s.fkFrigorifico
-  join historicoFrigorifico hf on s.idSensor = hf.fkSensor
+  join historicofrigorifico hf on s.idSensor = hf.fkSensor
   and (hf.temperatura < f.temperatura_ideal_minima or hf.temperatura > f.temperatura_ideal_maxima)
   join relacao r on f.idFrigorifico = r.fkFrigorifico
   right join usuario u on r.fkUsuario = u.idUsuario
@@ -352,6 +380,9 @@ left join historicofrigorifico on fkSensor = idSensor
 join loja on idloja = fkLoja
 join tipoFrigorifico on idTipoFrigorifico = fkTipo;
 
+select loja.nome, tipo from loja join frigorifico on fkLoja = idLoja 
+join tipoFrigorifico on idTipoFrigorifico = fkTipo;
+
 
 select * from loja;
 select * from sensor;
@@ -361,6 +392,5 @@ truncate frigorifico;
 select * from historicofrigorifico;
 select * from caminhao;
 select * from tipoFrigorifico;
- 
- truncate table historicofrigorifico;
+  
   

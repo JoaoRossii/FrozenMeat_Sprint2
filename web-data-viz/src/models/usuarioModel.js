@@ -34,25 +34,23 @@ function autenticar(cpfCnpj, senha) {
 // Gráfico de todos os frigorificos da Dashboard
 function todosFrigorificos() {
   var mysqlQuery = `
-       WITH UltimoRegistro AS (
+        WITH SensorStatus AS (
     SELECT 
-        anormal.*,
-        ROW_NUMBER() OVER (PARTITION BY sensor.fkFrigorifico ORDER BY anormal.registrado_em DESC) AS rn
+        fkSensor,
+        CASE 
+            WHEN MAX(temperatura) > 4 OR MIN(temperatura) < 0 THEN 'anormal'
+            ELSE 'normal'
+        END AS status
     FROM 
-        historicofrigorifico AS anormal
-    JOIN 
-        sensor ON anormal.fkSensor = sensor.idSensor
+        historicofrigorifico
+    GROUP BY 
+        fkSensor
 )
-
 SELECT 
-    SUM(CASE WHEN UltimoRegistro.temperatura < 0 OR UltimoRegistro.temperatura > 4 THEN 1 ELSE 0 END) AS anormal,
-    SUM(CASE WHEN UltimoRegistro.temperatura BETWEEN 0 AND 4 THEN 1 ELSE 0 END) AS normal
+    COUNT(CASE WHEN status = 'anormal' THEN 1 END) AS anormal,
+    COUNT(CASE WHEN status = 'normal' THEN 1 END) AS normal
 FROM 
-    frigorifico
-JOIN 
-    sensor ON sensor.fkFrigorifico = frigorifico.idFrigorifico
-JOIN 
-    UltimoRegistro ON UltimoRegistro.fkSensor = sensor.idSensor AND UltimoRegistro.rn = 1;
+    SensorStatus;
     `;
   console.log("Executando a instrução SQL: \n" + mysqlQuery);
   return database.executar(mysqlQuery);
@@ -61,25 +59,11 @@ JOIN
 // Gráfico de todos os frigorificos da Dashboard Loja
 function todosFrigorificosLoja() {
   var mysqlQuery = `
-       WITH UltimoRegistro AS (
-    SELECT 
-        anormal.*,
-        ROW_NUMBER() OVER (PARTITION BY sensor.fkFrigorifico ORDER BY anormal.registrado_em DESC) AS rn
-    FROM 
-        historicofrigorifico AS anormal
-    JOIN 
-        sensor ON anormal.fkSensor = sensor.idSensor
-)
-
-SELECT 
-    SUM(CASE WHEN UltimoRegistro.temperatura < 0 OR UltimoRegistro.temperatura > 4 THEN 1 ELSE 0 END) AS anormal,
-    SUM(CASE WHEN UltimoRegistro.temperatura BETWEEN 0 AND 4 THEN 1 ELSE 0 END) AS normal
-FROM 
-    frigorifico
-JOIN 
-    sensor ON sensor.fkFrigorifico = frigorifico.idFrigorifico
-JOIN 
-    UltimoRegistro ON UltimoRegistro.fkSensor = sensor.idSensor AND UltimoRegistro.rn = 1;
+        SELECT SUM(CASE WHEN anormal.temperatura < 0 OR anormal.temperatura > 4 THEN 1 ELSE 0 END) AS anormal,
+	        SUM(CASE WHEN anormal.temperatura BETWEEN 0 AND 4 THEN 1 ELSE 0 END) AS normal
+            FROM frigorifico JOIN sensor ON fkFrigorifico = idFrigorifico
+            JOIN historicofrigorifico AS anormal ON anormal.fkSensor = idSensor
+            JOIN loja on loja.idLoja = fkLoja;
     `;
   console.log("Executando a instrução SQL: \n" + mysqlQuery);
   return database.executar(mysqlQuery);
@@ -88,25 +72,11 @@ JOIN
 // Gráfico de todos os frigorificos da Dashboard Caminhao
 function todosFrigorificosCaminhao() {
   var mysqlQuery = `
-       WITH UltimoRegistro AS (
-    SELECT 
-        anormal.*,
-        ROW_NUMBER() OVER (PARTITION BY sensor.fkFrigorifico ORDER BY anormal.registrado_em DESC) AS rn
-    FROM 
-        historicofrigorifico AS anormal
-    JOIN 
-        sensor ON anormal.fkSensor = sensor.idSensor
-)
-
-SELECT 
-    SUM(CASE WHEN UltimoRegistro.temperatura < 0 OR UltimoRegistro.temperatura > 4 THEN 1 ELSE 0 END) AS anormal,
-    SUM(CASE WHEN UltimoRegistro.temperatura BETWEEN 0 AND 4 THEN 1 ELSE 0 END) AS normal
-FROM 
-    frigorifico
-JOIN 
-    sensor ON sensor.fkFrigorifico = frigorifico.idFrigorifico
-JOIN 
-    UltimoRegistro ON UltimoRegistro.fkSensor = sensor.idSensor AND UltimoRegistro.rn = 1;
+        SELECT SUM(CASE WHEN anormal.temperatura < 0 OR anormal.temperatura > 4 THEN 1 ELSE 0 END) AS anormal,
+	        SUM(CASE WHEN anormal.temperatura BETWEEN 0 AND 4 THEN 1 ELSE 0 END) AS normal
+            FROM frigorifico JOIN sensor ON fkFrigorifico = idFrigorifico
+            JOIN historicofrigorifico AS anormal ON anormal.fkSensor = idSensor
+            JOIN caminhao on caminhao.fkFrigorifico = idFrigorifico;
     `;
   console.log("Executando a instrução SQL: \n" + mysqlQuery);
   return database.executar(mysqlQuery);
@@ -114,24 +84,22 @@ JOIN
 
 function notificacaoAtencaoFrigorifico() {
   var mysqlQuery = `
-        WITH UltimoRegistro AS (
+            WITH SensorStatus AS (
     SELECT 
-        anormal.*,
-        ROW_NUMBER() OVER (PARTITION BY sensor.fkFrigorifico ORDER BY anormal.registrado_em DESC) AS rn
+        fkSensor,
+        CASE 
+            WHEN MAX(temperatura) > 4 OR MIN(temperatura) < 0 THEN 'anormal'
+            ELSE 'normal'
+        END AS status
     FROM 
-        historicofrigorifico AS anormal
-    JOIN 
-        sensor ON anormal.fkSensor = sensor.idSensor
+        historicofrigorifico
+    GROUP BY 
+        fkSensor
 )
-
 SELECT 
-    SUM(CASE WHEN UltimoRegistro.temperatura < 0 OR UltimoRegistro.temperatura > 2 THEN 1 ELSE 0 END) AS anormal
+    COUNT(CASE WHEN status = 'anormal' THEN 1 END) AS anormal
 FROM 
-    frigorifico
-JOIN 
-    sensor ON sensor.fkFrigorifico = frigorifico.idFrigorifico
-JOIN 
-    UltimoRegistro ON UltimoRegistro.fkSensor = sensor.idSensor AND UltimoRegistro.rn = 1;
+    SensorStatus;
     `;
   console.log("Executando a instrução SQL: \n" + mysqlQuery);
   return database.executar(mysqlQuery);
