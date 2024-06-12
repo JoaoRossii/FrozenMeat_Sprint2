@@ -32,8 +32,6 @@ SELECT SUM(distinct CASE WHEN anormal.temperatura < 0 OR anormal.temperatura > 4
             JOIN historicofrigorifico AS anormal ON anormal.fkSensor = idSensor
             JOIN loja on loja.idLoja = fkLoja;
             
-            select * from historicofrigorifico;
-            
 
             
 
