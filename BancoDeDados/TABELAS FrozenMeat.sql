@@ -19,7 +19,6 @@ create table loja (
   foreign key (fkEmpresa) references empresa(idEmpresa)
 );
 
-
 -- CRIAÇÃO DA TABELA DOS TIPOS DE USUARIO
 create table tipoUsuario (
   idTipoUsuario int primary key auto_increment,
@@ -34,7 +33,7 @@ create table usuario (
   nome varchar (256),
   email varchar (256),
   telefone char (11),
-  cpf_cnpj varchar (14),
+  cpf_cnpj varchar (50),
   senha varchar(256),
   cargo varchar(256),
   fkTipoUsuario int,
@@ -110,7 +109,7 @@ create table sensor (
 );
 
 -- CRIAÇÃO DA TABELA DO HISTORICO DE TEMPERATURA DOS FRIGORIFICOS
-create table historicoFrigorifico (
+create table historicofrigorifico (
   idHistoricoFrigorifico int auto_increment,
   registrado_em datetime default current_timestamp,
   temperatura double,
@@ -177,7 +176,7 @@ select * from sensor;
 
 -- ADIÇÃO DOS DADOS DO HISTORICO DE REGISTROS DOS SENSORES DOS FRIGORIFICOS
 -- TEM QUE SER ATRAVES DO ARDUINO
-INSERT INTO historicoFrigorifico(registrado_em, temperatura, fkSensor) VALUES
+INSERT INTO historicofrigorifico(registrado_em, temperatura, fkSensor) VALUES
 ("2024-02-03 11:23:22",10,1),
 ("2024-02-03 11:23:22",-4,2),
 ("2024-02-03 11:23:22",-2,3),
