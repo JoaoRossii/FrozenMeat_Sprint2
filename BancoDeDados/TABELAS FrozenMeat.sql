@@ -237,10 +237,10 @@ JOIN frigorifico ON sensor.fkFrigorifico = frigorifico.idFrigorifico;
 
 -- CREATE VIEW SIMULANDO VÁRIOS SENSORES COM APENAS 1 SENSOR FÍSICO
 alter table sensor add column fator float;
-update sensor set fator = 0.5 where idSensor = 1;
+update sensor set fator = -0.5 where idSensor = 1;
 update sensor set fator = 2.5 where idSensor = 2;
 update sensor set fator = -0.2 where idSensor = 3;
-update sensor set fator = -0.5 where idSensor = 4;
+update sensor set fator = 2.8 where idSensor = 4;
 update sensor set fator = 2.8 where idSensor = 5;
 update sensor set fator = 1 where idSensor = 6;
 update sensor set fator = 0.6 where idSensor = 7;
