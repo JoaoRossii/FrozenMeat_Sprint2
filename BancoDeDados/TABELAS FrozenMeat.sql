@@ -352,5 +352,6 @@ truncate frigorifico;
 select * from historicofrigorifico;
 select * from caminhao;
 select * from tipoFrigorifico;
-  
+ 
+ truncate table historicofrigorifico;
   

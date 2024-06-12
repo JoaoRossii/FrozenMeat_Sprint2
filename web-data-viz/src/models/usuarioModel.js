@@ -34,7 +34,7 @@ function autenticar(cpfCnpj, senha) {
 // Gráfico de todos os frigorificos da Dashboard
 function todosFrigorificos() {
   var mysqlQuery = `
-        SELECT SUM(CASE WHEN anormal.temperatura < 0 OR anormal.temperatura > 4 THEN 1 ELSE 0 END) AS anormal,
+        SELECT SUM(CASE WHEN anormal.temperatura < 0 OR anormal.temperatura > 2 THEN 1 ELSE 0 END) AS anormal,
             SUM(CASE WHEN anormal.temperatura BETWEEN 0 AND 4 THEN 1 ELSE 0 END) AS normal
             FROM frigorifico
             JOIN sensor ON fkFrigorifico = idFrigorifico
@@ -47,7 +47,7 @@ function todosFrigorificos() {
 // Gráfico de todos os frigorificos da Dashboard Loja
 function todosFrigorificosLoja() {
   var mysqlQuery = `
-        SELECT SUM(CASE WHEN anormal.temperatura < 0 OR anormal.temperatura > 4 THEN 1 ELSE 0 END) AS anormal,
+        SELECT SUM(CASE WHEN anormal.temperatura < 0 OR anormal.temperatura > 2 THEN 1 ELSE 0 END) AS anormal,
 	        SUM(CASE WHEN anormal.temperatura BETWEEN 0 AND 4 THEN 1 ELSE 0 END) AS normal
             FROM frigorifico JOIN sensor ON fkFrigorifico = idFrigorifico
             JOIN historicofrigorifico AS anormal ON anormal.fkSensor = idSensor
@@ -60,7 +60,7 @@ function todosFrigorificosLoja() {
 // Gráfico de todos os frigorificos da Dashboard Caminhao
 function todosFrigorificosCaminhao() {
   var mysqlQuery = `
-        SELECT SUM(CASE WHEN anormal.temperatura < 0 OR anormal.temperatura > 4 THEN 1 ELSE 0 END) AS anormal,
+        SELECT SUM(CASE WHEN anormal.temperatura < 0 OR anormal.temperatura > 2 THEN 1 ELSE 0 END) AS anormal,
 	        SUM(CASE WHEN anormal.temperatura BETWEEN 0 AND 4 THEN 1 ELSE 0 END) AS normal
             FROM frigorifico JOIN sensor ON fkFrigorifico = idFrigorifico
             JOIN historicofrigorifico AS anormal ON anormal.fkSensor = idSensor
