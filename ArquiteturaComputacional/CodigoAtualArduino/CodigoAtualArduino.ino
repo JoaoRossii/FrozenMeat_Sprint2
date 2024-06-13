@@ -13,6 +13,6 @@ void loop() {
   // temperatura = temperatura - 25; // Ajuste da temperatura para simulação do ambiente;
   Serial.println(temperatura);
 
-  delay(500);
+  delay(10000);
 }
 
