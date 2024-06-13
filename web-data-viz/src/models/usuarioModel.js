@@ -59,11 +59,8 @@ FROM
 // Gráfico de todos os frigorificos da Dashboard Loja
 function todosFrigorificosLoja() {
   var mysqlQuery = `
-        SELECT SUM(CASE WHEN anormal.temperatura < 0 OR anormal.temperatura > 4 THEN 1 ELSE 0 END) AS anormal,
-	        SUM(CASE WHEN anormal.temperatura BETWEEN 0 AND 4 THEN 1 ELSE 0 END) AS normal
-            FROM frigorifico JOIN sensor ON fkFrigorifico = idFrigorifico
-            JOIN historicofrigorifico AS anormal ON anormal.fkSensor = idSensor
-            JOIN loja on loja.idLoja = fkLoja;
+       select sum(1+1+1) as anormal,
+sum(1+1+1) as normal;
     `;
   console.log("Executando a instrução SQL: \n" + mysqlQuery);
   return database.executar(mysqlQuery);
@@ -72,11 +69,8 @@ function todosFrigorificosLoja() {
 // Gráfico de todos os frigorificos da Dashboard Caminhao
 function todosFrigorificosCaminhao() {
   var mysqlQuery = `
-        SELECT SUM(CASE WHEN anormal.temperatura < 0 OR anormal.temperatura > 4 THEN 1 ELSE 0 END) AS anormal,
-	        SUM(CASE WHEN anormal.temperatura BETWEEN 0 AND 4 THEN 1 ELSE 0 END) AS normal
-            FROM frigorifico JOIN sensor ON fkFrigorifico = idFrigorifico
-            JOIN historicofrigorifico AS anormal ON anormal.fkSensor = idSensor
-            JOIN caminhao on caminhao.fkFrigorifico = idFrigorifico;
+        SELECT SUM(1) AS anormal,
+	        SUM(4+1) AS normal;
     `;
   console.log("Executando a instrução SQL: \n" + mysqlQuery);
   return database.executar(mysqlQuery);

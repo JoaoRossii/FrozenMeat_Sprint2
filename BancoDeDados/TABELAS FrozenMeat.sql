@@ -320,6 +320,10 @@ FROM
     SensorStatus;
 
 insert into historicofrigorifico (fkSensor, temperatura) values 
+(1, -2),
+(2, -2),
+(3, -2),
+(4, -2),
 (5, 3),
 (6, 3),
 (7, 3),
@@ -328,6 +332,8 @@ insert into historicofrigorifico (fkSensor, temperatura) values
 (10, 3),
 (11, 3),
 (12, 3);
+
+select * from historicofrigorifico;
 
 
 select * from frigorifico join sensor on fkFrigorifico = idFrigorifico 
